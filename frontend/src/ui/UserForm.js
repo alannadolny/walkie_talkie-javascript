@@ -1,7 +1,12 @@
 import { Form, Formik, Field, ErrorMessage } from 'formik';
+import { useParams } from 'react-router-dom';
+import { connect } from 'react-redux';
 import * as yup from 'yup';
+import { SignIn } from '../ducks/user/operation';
 
-function UserForm() {
+function UserForm({ SignIn }) {
+  const { action } = useParams();
+
   const schema = yup.object().shape({
     login: yup.string('Login should be a string').required('Login is required'),
     password: yup
@@ -11,10 +16,13 @@ function UserForm() {
 
   return (
     <div>
+      {action === 'login' ? 'sign in' : 'register'}
+      {/* sign in i register wpakuj w cos jak chcesz, tak zeby pasowalo ci do stylowania */}
       <Formik
         validationSchema={schema}
-        onSubmit={(values) => {
-          console.log(values);
+        onSubmit={(values, { resetForm }) => {
+          SignIn(values.login, values.password);
+          resetForm();
         }}
         enableReinitialize={true}
         initialValues={{
@@ -29,8 +37,8 @@ function UserForm() {
           </div>
           <strong>Login </strong>
           <Field name='login' />
-          <strong>password: </strong>
-          <Field name='password' />
+          <strong>Password: </strong>
+          <Field name='password' type='password' />
           <button type='submit'>zaloguj</button>
         </Form>
       </Formik>
@@ -38,4 +46,8 @@ function UserForm() {
   );
 }
 
-export default UserForm;
+const mapDispatchToProps = {
+  SignIn,
+};
+
+export default connect(null, mapDispatchToProps)(UserForm);

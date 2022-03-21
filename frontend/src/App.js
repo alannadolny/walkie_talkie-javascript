@@ -1,18 +1,20 @@
-import walkieTalkie from './walkie-talkie.png';
 import './App.css';
-import UserForm from './ui/UserForm';
-import { Link } from 'react-router-dom';
 import Main from './ui/Main';
 import Header from './ui/Header';
-
-{/* <UserForm /> */}
+import UserForm from './ui/UserForm';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
     <div className='App'>
-      <Header />
-      <Main />
-      
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path='/' element={<Main />} />
+          <Route path='/form/:action' element={<UserForm />} />
+          <Route path='/form/:action' element={<UserForm />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
