@@ -1,38 +1,98 @@
-.App {
-  text-align: center;
+.App{
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 0px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+header{
+  width: 100%;
+  height: 100px;
+  background-color: rgb(89, 192, 41);
+  border-bottom: 5px solid rgb(80, 80, 80);
+  display: inline-flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+#header-left-container{
+  height: 100%;
+  margin-left: 25px;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex-direction: row;
+}
+
+#logo{
+  width: 75px;
+  height: 75px;
+}
+
+h1{
+  margin: 0px;
+  font-size: 60px;
   color: white;
+  -webkit-text-stroke: 1px rgb(80, 80, 80);
+}
+nav{
+  margin: 0px 20px 0px 0px;
 }
 
-.App-link {
-  color: #61dafb;
+ul{
+  list-style: none;
+  list-style-type: none;
+  padding-left: 0px;
+  margin: 0px;
+  display: inline-flex;
+  flex-wrap: nowrap;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+li{
+  margin-right: 30px;
+  padding: 0px;
+}
+
+.nav a{
+  width: 100%;
+  text-decoration: none;
+  margin: 0px;
+  padding: 0px 10px 0px 5px;
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  -webkit-text-stroke: 0.3px rgb(80, 80, 80);
+  z-index: 1;
+  position: relative;
+}
+
+.nav a::after{
+  content: '';
+  position: absolute;
+  width: 100%;
+  bottom: -41.5px;
+  right: 0px;
+  height: 0px;
+  background-color: transparent;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  transition: height 0.4s linear;
+}
+
+.nav a:hover::after{
+  height: 77px;
+  background-color: white;
+  border-left: 3px solid rgb(80, 80, 80);
+  border-right: 3px solid rgb(80, 80, 80);
+  border-top: 3px solid rgb(80, 80, 80);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  z-index: -1;
+}
+
+.nav a:hover{
+  color: rgb(89, 192, 41);
+  -webkit-text-stroke: 0.3px transparent;
 }
