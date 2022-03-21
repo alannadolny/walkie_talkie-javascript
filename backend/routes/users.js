@@ -32,6 +32,7 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   try {
+    console.log(req.body.login, req.body.password);
     const user = await User.findOne({
       login: req.body.login,
       password: req.body.password,
@@ -49,7 +50,7 @@ router.post('/login', async (req, res) => {
           httpOnly: true,
           expires: dayjs().add(2, 'hours').toDate(),
         })
-        .send({ status: 'logged successfully' });
+        .send({ status: 'logged successfully', login: req.body.login });
     }
   } catch (err) {
     return res.status(500).send(err);
