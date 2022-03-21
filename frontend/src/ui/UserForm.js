@@ -2,9 +2,9 @@ import { Form, Formik, Field, ErrorMessage } from 'formik';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as yup from 'yup';
-import { SignIn } from '../ducks/user/operation';
+import { SignIn, Register } from '../ducks/user/operation';
 
-function UserForm({ SignIn }) {
+function UserForm({ SignIn, Register }) {
   const { action } = useParams();
 
   const schema = yup.object().shape({
@@ -20,9 +20,10 @@ function UserForm({ SignIn }) {
       {/* sign in i register wpakuj w cos jak chcesz, tak zeby pasowalo ci do stylowania */}
       <Formik
         validationSchema={schema}
-        onSubmit={(values, { resetForm }) => {
-          SignIn(values.login, values.password);
-          resetForm();
+        onSubmit={(values) => {
+          action === 'login'
+            ? SignIn(values.login, values.password)
+            : Register(values.login, values.password);
         }}
         enableReinitialize={true}
         initialValues={{
@@ -48,6 +49,7 @@ function UserForm({ SignIn }) {
 
 const mapDispatchToProps = {
   SignIn,
+  Register,
 };
 
 export default connect(null, mapDispatchToProps)(UserForm);
