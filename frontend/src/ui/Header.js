@@ -13,7 +13,8 @@ function Header({ user }) {
           {' '}
           <img id='logo' alt='error' src={walkieTalkie} />{' '}
         </Link>
-        <h1> Walkie Talkie </h1>
+        <h1 id="header-text"> Walkie Talkie </h1>
+        <h1 id="header-text-after"> WK </h1>
       </div>
       <nav className='nav'>
         <ul>

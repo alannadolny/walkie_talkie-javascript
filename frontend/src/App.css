@@ -31,12 +31,21 @@ header{
   height: 75px;
 }
 
-h1{
+#header-text{
   margin: 0px;
   font-size: 60px;
   color: white;
   -webkit-text-stroke: 1px rgb(80, 80, 80);
 }
+
+#header-text-after{
+  display: none;
+  margin: 0px;
+  font-size: 60px;
+  color: white;
+  -webkit-text-stroke: 1px rgb(80, 80, 80);
+}
+
 nav{
   margin: 0px 20px 0px 0px;
 }
@@ -97,6 +106,100 @@ li{
   -webkit-text-stroke: 0.3px transparent;
 }
 
+@media (max-width: 1100px){
+  #header-text{
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 1000px){
+  #header-text{
+    display: none;
+  }
+  #header-text-after{
+    display: block;
+  }
+}
+
+@media (max-width: 850px){
+  header{
+    justify-content: space-around;
+  }
+
+  #header-text-after{
+    display: none;
+  }
+}
+
+@media (max-width: 725px){
+  #header-left-container{
+    display: none;
+  }
+  
+  nav{
+    width: 100%;
+    margin-right: 30px;
+    margin-left: 30px;
+  }
+
+  ul{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  li{
+    margin: 0;
+  }
+}
+
+@media (max-width: 650px){
+  .nav a{
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 500px){
+  header{
+    height: 200px;
+  }
+
+  nav{
+    height: 100%;
+    margin: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  ul{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+
+  li{
+    width: 100%;
+    margin-top: 10px;
+    border-bottom: 2px solid rgb(80, 80, 80);
+    text-align: center;
+  }
+
+  .nav a{
+    letter-spacing: 5px;
+    padding: 0;
+  }
+
+  .nav a::after{
+    display: none;
+  }
+
+  .nav a:hover{
+    color: white;
+    -webkit-text-stroke: 0.3px rgb(80, 80, 80);
+  }
+}
 
 /* formularz logowania */
 
@@ -111,8 +214,8 @@ li{
 }
 
 .login-form{
-  width: 25%;
-  height: 70%;
+  width: 384px;
+  height: 430px;
   margin: 0px;
   padding: 0px;
   border: 5px solid rgb(80, 80, 80);
@@ -159,7 +262,6 @@ li{
 }
 
 form{
-  margin-top: 30px;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -211,4 +313,13 @@ button:hover{
 
 #help{
   margin-top: 30px;
+}
+
+@media (max-width: 450px){
+  .login-form{
+    width: 100%;
+    border-right: 0px;
+    border-left: 0px;
+    border-radius: 0;
+  }
 }
