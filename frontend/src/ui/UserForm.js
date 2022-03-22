@@ -19,10 +19,6 @@ function UserForm({ SignIn, Register, user }) {
       .required('Password is required'),
   });
 
-  useEffect(() => {
-    if (user.login) navigate('/');
-  }, [user]);
-
   return (
     <div>
       <div className='main-login'>
@@ -38,6 +34,7 @@ function UserForm({ SignIn, Register, user }) {
                 action === 'login'
                   ? SignIn(values.login, values.password)
                   : Register(values.login, values.password);
+                navigate('/');
               }}
               enableReinitialize={true}
               initialValues={{
