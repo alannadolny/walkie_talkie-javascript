@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import { getUserFromState } from '../ducks/user/selector';
 import { connect } from 'react-redux';
 import * as _ from 'lodash';
+import { Logout } from '../ducks/user/operation';
 
-function Header({ user }) {
+function Header({ user, Logout }) {
   return (
     <header>
-      {console.log(user)}
       <div id='header-left-container'>
         <Link to='/'>
           {' '}
@@ -34,7 +34,9 @@ function Header({ user }) {
             {!user.login ? (
               <Link to='/form/login'> SIGN IN </Link>
             ) : (
-              <a href='/'>LOG OUT</a>
+              <Link to='/' onClick={() => Logout()}>
+                LOG OUT
+              </Link>
             )}
           </li>
           <li>
@@ -52,4 +54,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(Header);
+const mapDispatchToProps = {
+  Logout,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

@@ -91,4 +91,17 @@ router.get('/', verifyToken, async (req, res) => {
   }
 });
 
+router.get('/logout', verifyToken, async (req, res) => {
+  try {
+    return res
+      .clearCookie('auth', {
+        secure: true,
+        httpOnly: true,
+      })
+      .send({ status: 'logout' });
+  } catch (err) {
+    return res.status(500).send(err);
+  }
+});
+
 module.exports = router;

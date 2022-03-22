@@ -5,6 +5,7 @@ export const SignIn = (login, password) => {
   return createAction({
     endpoint: 'http://localhost:5000/users/login',
     method: 'POST',
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -30,6 +31,7 @@ export const Register = (login, password) => {
   return createAction({
     endpoint: 'http://localhost:5000/users/register',
     method: 'POST',
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -54,6 +56,28 @@ export const Register = (login, password) => {
 export const GetUser = () => {
   return createAction({
     endpoint: 'http://localhost:5000/users/',
+    method: 'GET',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    types: [
+      types.GET_USER_REQUEST,
+      {
+        type: types.GET_USER_SUCCESS,
+        payload: async (action, state, res) => {
+          const json = await res.json();
+          return json;
+        },
+      },
+      types.GET_USER_FAILURE,
+    ],
+  });
+};
+
+export const Logout = () => {
+  return createAction({
+    endpoint: 'http://localhost:5000/users/logout',
     method: 'GET',
     credentials: 'include',
     headers: {

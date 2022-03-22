@@ -14,6 +14,8 @@ export const userReducer = (state = {}, action) => {
       return action.payload;
     case types.GET_USER_FAILURE:
       return {};
+    case types.USER_LOGOUT_SUCCESS:
+      return {};
     default:
       return state;
   }
