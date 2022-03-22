@@ -1,9 +1,13 @@
 import walkieTalkie from '../walkie-talkie.png';
 import { Link } from 'react-router-dom';
+import { getUserFromState } from '../ducks/user/selector';
+import { connect } from 'react-redux';
+import * as _ from 'lodash';
 
-function Header() {
+function Header({ user }) {
   return (
     <header>
+      {console.log(user)}
       <div id='header-left-container'>
         <Link to='/'>
           {' '}
@@ -19,19 +23,22 @@ function Header() {
           </li>
           <li>
             {' '}
-            <a href=''> ABOUT </a>{' '}
+            <Link to='/'> ABOUT </Link>{' '}
           </li>
           <li>
             {' '}
-            <a href=''> CONTACT </a>{' '}
+            <Link to='/'> CONTACT </Link>{' '}
           </li>
           <li>
             {' '}
-            <Link to='/form/login'> SIGN IN </Link>{' '}
+            {!user.login ? (
+              <Link to='/form/login'> SIGN IN </Link>
+            ) : (
+              <a href='/'>LOG OUT</a>
+            )}
           </li>
           <li>
-            {' '}
-            <Link to='/form/register'> REGISTER </Link>{' '}
+            {!user.login ? <Link to='/form/register'> REGISTER </Link> : ''}
           </li>
         </ul>
       </nav>
@@ -39,4 +46,10 @@ function Header() {
   );
 }
 
-export default Header;
+const mapStateToProps = (state) => {
+  return {
+    user: getUserFromState(state),
+  };
+};
+
+export default connect(mapStateToProps, null)(Header);

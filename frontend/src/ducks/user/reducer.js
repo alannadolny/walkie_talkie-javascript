@@ -10,6 +10,10 @@ export const userReducer = (state = {}, action) => {
       return action.payload;
     case types.REGISTER_USER_FAILURE:
       return {};
+    case types.GET_USER_SUCCESS:
+      return action.payload;
+    case types.GET_USER_FAILURE:
+      return {};
     default:
       return state;
   }

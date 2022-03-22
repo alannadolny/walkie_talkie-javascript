@@ -3,15 +3,25 @@ import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as yup from 'yup';
 import { SignIn, Register } from '../ducks/user/operation';
+import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { getUserFromState } from '../ducks/user/selector';
+import { useNavigate } from 'react-router-dom';
 
-function UserForm({ SignIn, Register }) {
+function UserForm({ SignIn, Register, user }) {
   const { action } = useParams();
+  const navigate = useNavigate();
+
   const schema = yup.object().shape({
     login: yup.string('Login should be a string').required('Login is required'),
     password: yup
       .string('Password should be a string')
       .required('Password is required'),
   });
+
+  useEffect(() => {
+    if (user.login) navigate('/');
+  }, [user]);
 
   return (
     <div>
@@ -47,10 +57,10 @@ function UserForm({ SignIn, Register }) {
                 </div>
               </Form>
             </Formik>
-            <a id='help' href=''>
+            <Link id='help' to='/'>
               {' '}
               Do you need help? Contact us!{' '}
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -58,9 +68,15 @@ function UserForm({ SignIn, Register }) {
   );
 }
 
+const mapStateToProps = (state) => {
+  return {
+    user: getUserFromState(state),
+  };
+};
+
 const mapDispatchToProps = {
   SignIn,
   Register,
 };
 
-export default connect(null, mapDispatchToProps)(UserForm);
+export default connect(mapStateToProps, mapDispatchToProps)(UserForm);

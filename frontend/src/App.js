@@ -3,8 +3,15 @@ import Main from './ui/Main';
 import Header from './ui/Header';
 import UserForm from './ui/UserForm';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { GetUser } from './ducks/user/operation';
+import { useEffect } from 'react';
 
-function App() {
+function App({ GetUser }) {
+  useEffect(() => {
+    GetUser();
+  }, []);
+
   return (
     <div className='App'>
       <BrowserRouter>
@@ -19,4 +26,8 @@ function App() {
   );
 }
 
-export default App;
+const mapDispatchToProps = {
+  GetUser,
+};
+
+export default connect(null, mapDispatchToProps)(App);
