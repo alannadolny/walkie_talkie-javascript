@@ -3,7 +3,7 @@ import { createAction } from 'redux-api-middleware';
 
 export const SignIn = (login, password) => {
   return createAction({
-    endpoint: 'http://localhost:5000/user/login',
+    endpoint: 'http://localhost:5000/users/login',
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -13,15 +13,40 @@ export const SignIn = (login, password) => {
       password,
     }),
     types: [
-      types.GET_USER_REQUEST,
+      types.LOGIN_USER_REQUEST,
       {
-        type: types.GET_USER_SUCCESS,
+        type: types.LOGIN_USER_SUCCESS,
         payload: async (action, state, res) => {
           const json = await res.json();
-          return json;
+          return { login: json.login };
         },
       },
-      types.GET_USER_FAILURE,
+      types.LOGIN_USER_FAILURE,
+    ],
+  });
+};
+
+export const Register = (login, password) => {
+  return createAction({
+    endpoint: 'http://localhost:5000/users/register',
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      login,
+      password,
+    }),
+    types: [
+      types.REGISTER_USER_REQUEST,
+      {
+        type: types.REGISTER_USER_SUCCESS,
+        payload: async (action, state, res) => {
+          const json = await res.json();
+          return { login: json.login };
+        },
+      },
+      types.REGISTER_USER_FAILURE,
     ],
   });
 };
