@@ -14,7 +14,7 @@ function Header({ user, Logout }) {
           <img id='logo' alt='error' src={walkieTalkie} />{' '}
         </Link>
         <h1 id="header-text"> Walkie Talkie </h1>
-        <h1 id="header-text-after"> WK </h1>
+        <h1 id="header-text-after"> WT </h1>
       </div>
       <nav className='nav'>
         <ul>
@@ -30,19 +30,18 @@ function Header({ user, Logout }) {
             {' '}
             <Link to='/'> CONTACT </Link>{' '}
           </li>
+          {
+          !user.login ?
           <li>
             {' '}
-            {!user.login ? (
               <Link to='/form/login'> SIGN IN </Link>
-            ) : (
-              <Link to='/' onClick={() => Logout()}>
+          </li> : <li> <Link to='/' onClick={() => Logout()}>
                 LOG OUT
-              </Link>
-            )}
-          </li>
-          <li>
-            {!user.login ? <Link to='/form/register'> REGISTER </Link> : ''}
-          </li>
+              </Link> </li>
+          }
+          
+            {!user.login ? <li> <Link to='/form/register'> REGISTER </Link> </li>: ''}
+          
         </ul>
       </nav>
     </header>
