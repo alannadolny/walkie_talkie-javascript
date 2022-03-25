@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import { getUserFromState } from '../ducks/user/selector';
 import { useNavigate } from 'react-router-dom';
 
-function UserForm({ SignIn, Register, user }) {
+function UserForm({ SignIn, Register, user, visible }) {
   const { action } = useParams();
   const navigate = useNavigate();
 
@@ -19,12 +19,16 @@ function UserForm({ SignIn, Register, user }) {
       .required('Password is required'),
   });
 
+  const style = {
+    opacity: '70%'
+  }
+
   return (
     <div>
-      <div className='main-login'>
-        <div className='login-form'>
-          <div className='login-setting'>
-            <h1 id='login-title'>
+      <div className='main-login' style={visible ? style : {}}>
+        <div className='login-form' style={visible ? style : {}}>
+          <div className='login-setting' style={visible ? style : {}}>
+            <h1 id='login-title' style={visible ? style : {}}>
               {' '}
               {action === 'login' ? 'SIGN IN!' : 'REGISTER!'}{' '}
             </h1>

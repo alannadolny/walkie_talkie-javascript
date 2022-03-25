@@ -4,8 +4,10 @@ import { getUserFromState } from '../ducks/user/selector';
 import { connect } from 'react-redux';
 import * as _ from 'lodash';
 import { Logout } from '../ducks/user/operation';
+import DropList from './DropList';
+import ShowList from './DropList';
 
-function Header({ user, Logout }) {
+function Header({ user, Logout, visible, setVisible }) {
   return (
     <header>
       <div id='header-left-container'>
@@ -16,8 +18,11 @@ function Header({ user, Logout }) {
         <h1 id="header-text"> Walkie Talkie </h1>
         <h1 id="header-text-after"> WT </h1>
       </div>
+
+      <DropList visible = {visible} setVisible = {setVisible}/>
+
       <nav className='nav'>
-        <ul>
+        <ul onClick={() => console.log('XD')}>
           <li>
             {' '}
             <Link to='/'> HOME </Link>{' '}
@@ -39,9 +44,7 @@ function Header({ user, Logout }) {
                 LOG OUT
               </Link> </li>
           }
-          
             {!user.login ? <li> <Link to='/form/register'> REGISTER </Link> </li>: ''}
-          
         </ul>
       </nav>
     </header>
