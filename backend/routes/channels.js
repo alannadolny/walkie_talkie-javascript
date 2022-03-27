@@ -4,7 +4,22 @@ const router = express.Router({ mergeParams: true });
 const User = require('../models/User');
 const Channel = require('../models/Channel');
 
-router.post('/', async (req, res) => {
+require('dotenv').config();
+
+function verifyToken(req, res, next) {
+  const header = req.headers.cookie
+    ? req.headers.cookie.split('auth=')[1]
+    : undefined;
+  const token = header && header.split(';')[0];
+  if (token === undefined) return res.status(401).send('invalid token');
+  jwt.verify(token, process.env.TOKEN || 'token', (err, login) => {
+    if (err) return res.status(403);
+    req.body.login = login.login;
+    next();
+  });
+}
+
+router.post('/', verifyToken, async (req, res) => {
   try {
     const user = await User.findOne({ login: req.body.login });
     const channel = await Channel({
@@ -18,7 +33,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.get('/', async (req, res) => {
+router.get('/', verifyToken, async (req, res) => {
   try {
     const channels = await Channel.aggregate([
       {
@@ -56,7 +71,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.delete('/', async (req, res) => {
+router.delete('/', verifyToken, async (req, res) => {
   try {
     const user = await User.findOne({ login: req.body.login });
     const channel = await Channel.findOne({
@@ -70,7 +85,7 @@ router.delete('/', async (req, res) => {
   }
 });
 
-router.patch('/connect', async (req, res) => {
+router.patch('/connect', verifyToken, async (req, res) => {
   try {
     const user = await User.findOne({ login: req.body.login });
     await Channel.findOne({ name: req.body.name }).updateOne({
@@ -84,7 +99,7 @@ router.patch('/connect', async (req, res) => {
   }
 });
 
-router.patch('/disconnect', async (req, res) => {
+router.patch('/disconnect', verifyToken, async (req, res) => {
   try {
     const user = await User.findOne({ login: req.body.login });
     const editedChannel = await Channel.findOne({
