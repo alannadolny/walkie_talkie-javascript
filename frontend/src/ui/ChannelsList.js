@@ -1,5 +1,79 @@
-function ChannelsList() {
-  return <div>channels list</div>;
+import { connect } from 'react-redux';
+import { getChannelsFromState } from '../ducks/channels/selector';
+import { GetChannelList } from '../ducks/channels/operation';
+import { useEffect } from 'react';
+import * as _ from 'lodash';
+import { useNavigate } from 'react-router-dom';
+
+function ChannelsList({ channels, GetChannelList }) {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (_.isEmpty(channels)) GetChannelList();
+  }, []);
+
+  return (
+    <div>
+      <div style={{ display: 'flex' }}>
+        <h1>Channel List</h1>
+        <button
+          style={{ width: '200px', marginLeft: '10px' }}
+          onClick={() => navigate('/channel/form')}
+        >
+          Create new channel
+        </button>
+      </div>
+      <div>
+        {channels &&
+          channels.map((el) => {
+            return (
+              <div
+                key={el._id}
+                style={{
+                  border: '1px solid black',
+                  margin: '10px',
+                  padding: '10px',
+                }}
+              >
+                <strong>name: {el.name}</strong> <br />
+                <strong>owner: {el.owner[0].login}</strong>
+                {!_.isEmpty(el.activeUsers) ? (
+                  <div
+                    key={el.activeUsers}
+                    style={{
+                      border: '1px solid black',
+                      padding: '10px',
+                      width: '100px',
+                    }}
+                  >
+                    <strong>active users: </strong>
+                    {el.activeUsers.map((active) => {
+                      return (
+                        <div key={active}>
+                          <strong key={active}>{active.login}</strong>
+                        </div>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  ''
+                )}
+              </div>
+            );
+          })}
+      </div>
+    </div>
+  );
 }
 
-export default ChannelsList;
+const mapStateToProps = (state) => {
+  return {
+    channels: getChannelsFromState(state),
+  };
+};
+
+const mapDispatchToProps = {
+  GetChannelList,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChannelsList);

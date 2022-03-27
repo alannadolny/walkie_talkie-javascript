@@ -20,7 +20,36 @@ router.post('/', async (req, res) => {
 
 router.get('/', async (req, res) => {
   try {
-    const channels = await Channel.find({});
+    const channels = await Channel.aggregate([
+      {
+        $lookup: {
+          from: User.collection.name,
+          localField: 'owner',
+          foreignField: '_id',
+          as: 'owner',
+        },
+      },
+      {
+        $lookup: {
+          from: User.collection.name,
+          localField: 'activeUsers',
+          foreignField: '_id',
+          as: 'activeUsers',
+        },
+      },
+      {
+        $project: {
+          name: 1,
+          activeUsers: 1,
+          owner: {
+            login: 1,
+          },
+          activeUsers: {
+            login: 1,
+          },
+        },
+      },
+    ]);
     return res.status(200).send(channels);
   } catch (err) {
     return res.status(500).send(err);

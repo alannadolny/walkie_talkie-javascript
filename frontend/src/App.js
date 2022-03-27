@@ -10,6 +10,7 @@ import { useState } from 'react';
 import ChannelsList from './ui/ChannelsList';
 import { getUserFromState } from './ducks/user/selector';
 import Warning from './ui/Warning';
+import ChannelForm from './ui/ChannelForm';
 
 function App({ GetUser, user }) {
   const [visible, setVisible] = useState(false);
@@ -35,6 +36,10 @@ function App({ GetUser, user }) {
           <Route
             path='/channels'
             element={user.login ? <ChannelsList /> : <Warning />}
+          />
+          <Route
+            path='/channel/form'
+            element={user.login ? <ChannelForm /> : <Warning />}
           />
         </Routes>
       </BrowserRouter>
