@@ -2,12 +2,14 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const users = require('./routes/users');
+const channels = require('./routes/channels');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
 app.use(express.json());
 app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 app.use('/users', users);
+app.use('/channels', channels);
 app.use(cookieParser());
 
 require('dotenv').config();
