@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import * as _ from 'lodash';
 import { Logout } from '../ducks/user/operation';
 import DropList from './DropList';
-import ShowList from './DropList';
 
 function Header({ user, Logout, visible, setVisible }) {
   return (
@@ -22,7 +21,7 @@ function Header({ user, Logout, visible, setVisible }) {
       <DropList visible = {visible} setVisible = {setVisible}/>
 
       <nav className='nav'>
-        <ul onClick={() => console.log('XD')}>
+        <ul>
           <li>
             {' '}
             <Link to='/'> HOME </Link>{' '}
