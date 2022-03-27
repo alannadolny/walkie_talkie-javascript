@@ -22,3 +22,78 @@ export const GetChannelList = () => {
     ],
   });
 };
+
+export const CreateNewChannel = (name) => {
+  return createAction({
+    endpoint: 'http://localhost:5000/channels',
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      name,
+    }),
+    types: [
+      types.POST_CHANNEL_REQUEST,
+      {
+        type: types.POST_CHANNEL_SUCCESS,
+        payload: async (action, state, res) => {
+          const json = await res.json();
+          return json;
+        },
+      },
+      types.POST_CHANNEL_FAILURE,
+    ],
+  });
+};
+
+export const JoinChannel = (name) => {
+  return createAction({
+    endpoint: 'http://localhost:5000/channels/connect',
+    method: 'PATCH',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      name,
+    }),
+    types: [
+      types.CONNECT_CHANNEL_REQUEST,
+      {
+        type: types.CONNECT_CHANNEL_SUCCESS,
+        payload: async (action, state, res) => {
+          const json = await res.json();
+          return json;
+        },
+      },
+      types.CONNECT_CHANNEL_FAILURE,
+    ],
+  });
+};
+
+export const LeftChannel = (name) => {
+  return createAction({
+    endpoint: 'http://localhost:5000/channels/disconnect',
+    method: 'PATCH',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      name,
+    }),
+    types: [
+      types.DISCONNECT_CHANNEL_REQUEST,
+      {
+        type: types.DISCONNECT_CHANNEL_SUCCESS,
+        payload: async (action, state, res) => {
+          const json = await res.json();
+          return json;
+        },
+      },
+      types.DISCONNECT_CHANNEL_FAILURE,
+    ],
+  });
+};

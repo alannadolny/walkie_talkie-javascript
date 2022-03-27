@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router({ mergeParams: true });
 const User = require('../models/User');
 const Channel = require('../models/Channel');
+const jwt = require('jsonwebtoken');
 
 require('dotenv').config();
 
@@ -27,13 +28,15 @@ router.post('/', verifyToken, async (req, res) => {
       owner: user._id,
       activeUsers: [],
     }).save();
-    return res.status(200).send(channel);
+    return res
+      .status(200)
+      .send({ ...channel._doc, owner: [{ login: req.body.login }] });
   } catch (err) {
     return res.status(500).send(err);
   }
 });
 
-router.get('/', verifyToken, async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const channels = await Channel.aggregate([
       {
@@ -109,7 +112,7 @@ router.patch('/disconnect', verifyToken, async (req, res) => {
         activeUsers: user._id,
       },
     });
-    return res.status(200).send(editedChannel);
+    return res.status(200).send({ name: req.body.name, login: req.body.login });
   } catch (err) {
     return res.status(500).send(err);
   }

@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 import { getChannelsFromState } from '../ducks/channels/selector';
-import { GetChannelList } from '../ducks/channels/operation';
+import { GetChannelList, JoinChannel } from '../ducks/channels/operation';
 import { useEffect } from 'react';
 import * as _ from 'lodash';
 import { useNavigate } from 'react-router-dom';
 
-function ChannelsList({ channels, GetChannelList }) {
+function ChannelsList({ channels, GetChannelList, JoinChannel }) {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -36,6 +36,16 @@ function ChannelsList({ channels, GetChannelList }) {
                 }}
               >
                 <strong>name: {el.name}</strong> <br />
+                <button
+                  onClick={() => {
+                    JoinChannel(el.name);
+                    navigate(`/channel/details/${el._id}`);
+                  }}
+                  style={{ margin: '10px' }}
+                >
+                  {' '}
+                  Join this channel
+                </button>
                 <strong>owner: {el.owner[0].login}</strong>
                 {!_.isEmpty(el.activeUsers) ? (
                   <div
@@ -74,6 +84,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   GetChannelList,
+  JoinChannel,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChannelsList);

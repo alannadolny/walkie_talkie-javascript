@@ -1,8 +1,10 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { Link, useNavigate } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { CreateNewChannel } from '../ducks/channels/operation';
 
-function ChannelForm() {
+function ChannelForm({ CreateNewChannel }) {
   const navigate = useNavigate();
 
   const schema = yup.object().shape({
@@ -20,12 +22,12 @@ function ChannelForm() {
             <Formik
               validationSchema={schema}
               onSubmit={(values) => {
-                console.log(values);
+                CreateNewChannel(values.name);
+                navigate(-1);
               }}
               enableReinitialize={true}
               initialValues={{
-                login: '',
-                password: '',
+                name: '',
               }}
             >
               <Form>
@@ -49,4 +51,8 @@ function ChannelForm() {
   );
 }
 
-export default ChannelForm;
+const mapDispatchToProps = {
+  CreateNewChannel,
+};
+
+export default connect(null, mapDispatchToProps)(ChannelForm);
