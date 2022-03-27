@@ -14,11 +14,11 @@ function Header({ user, Logout, visible, setVisible }) {
           {' '}
           <img id='logo' alt='error' src={walkieTalkie} />{' '}
         </Link>
-        <h1 id="header-text"> Walkie Talkie </h1>
-        <h1 id="header-text-after"> WT </h1>
+        <h1 id='header-text'> Walkie Talkie </h1>
+        <h1 id='header-text-after'> WT </h1>
       </div>
 
-      <DropList visible = {visible} setVisible = {setVisible}/>
+      <DropList visible={visible} setVisible={setVisible} />
 
       <nav className='nav'>
         <ul>
@@ -34,16 +34,27 @@ function Header({ user, Logout, visible, setVisible }) {
             {' '}
             <Link to='/'> CONTACT </Link>{' '}
           </li>
-          {
-          !user.login ?
-          <li>
-            {' '}
+          {!user.login ? (
+            <li>
+              {' '}
               <Link to='/form/login'> SIGN IN </Link>
-          </li> : <li> <Link to='/' onClick={() => Logout()}>
+            </li>
+          ) : (
+            <li>
+              {' '}
+              <Link to='/' onClick={() => Logout()}>
                 LOG OUT
-              </Link> </li>
-          }
-            {!user.login ? <li> <Link to='/form/register'> REGISTER </Link> </li>: ''}
+              </Link>{' '}
+            </li>
+          )}
+          {!user.login ? (
+            <li>
+              {' '}
+              <Link to='/form/register'> REGISTER </Link>{' '}
+            </li>
+          ) : (
+            ''
+          )}
         </ul>
       </nav>
     </header>

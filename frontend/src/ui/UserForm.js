@@ -20,8 +20,8 @@ function UserForm({ SignIn, Register, user, visible }) {
   });
 
   const style = {
-    opacity: '70%'
-  }
+    opacity: '70%',
+  };
 
   return (
     <div>
