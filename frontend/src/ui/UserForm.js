@@ -38,7 +38,7 @@ function UserForm({ SignIn, Register, user, visible }) {
                 action === 'login'
                   ? SignIn(values.login, values.password)
                   : Register(values.login, values.password);
-                navigate('/');
+                navigate('/channels');
               }}
               enableReinitialize={true}
               initialValues={{
