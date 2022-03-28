@@ -4,7 +4,7 @@
   box-sizing: border-box;
   margin: 0 auto;
   padding: 0px;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 header{
@@ -408,7 +408,7 @@ button:hover{
 
 .home-page{
   width: 100vw;
-  height: 85vh;
+  height: 86vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -598,4 +598,138 @@ button:hover{
 #dialogue-button button a{
   text-decoration: none;
   color: black;
+}
+
+@media (max-width: 1500px){
+  #dialogue-text p{
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 1410px){
+  #dialogue-text p{
+    font-size: 13.5px;
+    margin: 10px;
+  }
+}
+
+@media (max-width: 1150px){
+  #dialogue-text p{
+    font-size: 12.5px;
+  }
+  #dialogue-button button{
+    width: 150px;
+    height: 60px;
+    font-size: 16px;
+  }
+}
+
+
+@media (max-width: 1000px){
+  #dialogue-text p{
+    font-size: 11.5px;
+  }
+
+  #home-page-image{
+    width: 400px;
+    height: 500px;
+    right: -90px;
+    bottom: -200px;
+  }
+}
+
+@media (max-width: 900px){
+  .dialogue-container{
+    width: 60vw;
+  }
+}
+
+@media (max-width: 725px){
+  .dialogue-container{
+    width: 65vw;
+  }
+
+  #home-page-animation{
+    left: -320px;
+  }
+
+  #home-page-image{
+    width: 350px;
+    height: 500px;
+    right: -90px;
+    bottom: -200px;
+  }
+}
+
+@media (max-width: 650px){
+  .dialogue-container{
+    width: 70vw;
+    height: 65vh;
+  }
+
+  .dialogue-container::before{
+    width: 10px;
+    height: 10px;
+  }
+
+  .dialogue-container::after{
+    width: 10px;
+    height: 10px;
+  }
+
+  #dialogue-text p{
+    font-size: 10px;
+  }
+
+  #dialogue-button::before{
+    width: 15%;
+  }
+  
+  #dialogue-button::after{
+    width: 15%;
+  }
+}
+
+@media (max-width: 550px){
+  .dialogue-container{
+    width: 75vw;
+  }
+
+  #home-page-image{
+    display: none;
+  }
+
+  #home-page-animation{
+    height: 20%;
+    left: -340px;
+  }
+
+  #first-profile{
+    transform: rotate(15deg);
+  }
+  
+  #second-profile{
+    transform: rotate(-15deg);
+  }
+}
+
+@media (max-width: 500px){
+  .dialogue-container{
+    width: 80vw;
+    height: 70vh;
+  }
+
+  #home-page-animation{
+    display: none;
+  }
+}
+
+@media (max-width: 430px){
+  .dialogue-container{
+    width: 100vw;
+    border: none;
+    border-top: 5px solid rgb(80, 80, 80);
+    border-bottom: 5px solid rgb(80, 80, 80);
+    border-radius: 0%;
+  }
 }
