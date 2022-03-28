@@ -4,6 +4,7 @@
   box-sizing: border-box;
   margin: 0 auto;
   padding: 0px;
+  overflow-x: hidden;
 }
 
 header{
@@ -98,7 +99,7 @@ li{
   background-color: transparent;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  transition: height 0.4s linear;
+  transition: height 0.3s linear;
 }
 
 .nav a:hover::after{
@@ -284,7 +285,7 @@ li{
 
 .main-login{
   width: 100vw;
-  height: 85vh;
+  min-height: 600px;
   margin: 0 auto;
   padding: 0px;
   display: flex;
@@ -401,4 +402,200 @@ button:hover{
     border-left: 0px;
     border-radius: 0;
   }
+}
+
+/* home page */
+
+.home-page{
+  width: 100vw;
+  height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+#home-page-animation{
+  position: absolute;
+  left: -280px;
+  width: 700px;
+  height: 25%;
+  transform: rotateY(0deg);
+  transform: rotateZ(90deg);
+  background-color: black;
+  opacity: 15%;
+  animation: freq-animation 10s ease-in-out infinite;
+}
+
+@keyframes freq-animation{
+  0%,100%{
+    clip-path: polygon(0% 47%, 2% 43%, 4% 39%, 7% 35%, 10% 32%, 12% 30%, 14% 29%, 16% 28%, 19% 27%, 22% 28%, 25% 30%, 27% 32%, 29% 35%, 31% 38%, 34% 41%, 36% 43%, 39% 46%, 42% 47%, 44% 47%, 47% 46%, 50% 43%, 52% 40%, 54% 37%, 56% 34%, 58% 31%, 60% 28%, 63% 25%, 65% 23%, 68% 21%, 70% 21%, 73% 21%, 76% 23%, 78% 25%, 80% 28%, 82% 31%, 84% 34%, 86% 37%, 87% 39%, 89% 41%, 91% 43%, 94% 44%, 96% 43%, 98% 41%, 100% 39%, 100% 100%, 0% 100%);
+  }
+  10%{
+    clip-path: polygon(0% 47%, 2% 51%, 4% 54%, 7% 59%, 9% 62%, 11% 65%, 13% 67%, 15% 69%, 18% 70%, 21% 69%, 24% 67%, 26% 64%, 29% 60%, 31% 56%, 33% 51%, 35% 47%, 37% 42%, 39% 38%, 41% 35%, 43% 32%, 46% 29%, 48% 27%, 50% 26%, 53% 25%, 56% 25%, 58% 26%, 61% 28%, 63% 30%, 65% 33%, 67% 37%, 69% 41%, 71% 46%, 73% 51%, 75% 55%, 77% 58%, 80% 60%, 83% 60%, 87% 59%, 90% 56%, 92% 53%, 94% 49%, 96% 45%, 98% 42%, 100% 39%, 100% 100%, 0% 100%);
+  }
+  20%{
+    clip-path: polygon(0% 47%, 2% 43%, 4% 39%, 7% 35%, 10% 32%, 12% 30%, 14% 29%, 16% 28%, 19% 27%, 22% 28%, 25% 30%, 27% 32%, 29% 35%, 31% 38%, 34% 41%, 36% 43%, 39% 46%, 42% 47%, 44% 47%, 47% 46%, 50% 43%, 52% 40%, 54% 37%, 56% 34%, 58% 31%, 60% 28%, 63% 25%, 65% 23%, 68% 21%, 70% 21%, 73% 21%, 76% 23%, 78% 25%, 80% 28%, 82% 31%, 84% 34%, 86% 37%, 87% 39%, 89% 41%, 91% 43%, 94% 44%, 96% 43%, 98% 41%, 100% 39%, 100% 100%, 0% 100%);
+  }
+  30%{
+    clip-path: polygon(0% 47%, 2% 51%, 4% 54%, 7% 59%, 9% 62%, 11% 65%, 13% 67%, 15% 69%, 18% 70%, 21% 69%, 24% 67%, 26% 64%, 29% 60%, 31% 56%, 33% 51%, 35% 47%, 37% 42%, 39% 38%, 41% 35%, 43% 32%, 46% 29%, 48% 27%, 50% 26%, 53% 25%, 56% 25%, 58% 26%, 61% 28%, 63% 30%, 65% 33%, 67% 37%, 69% 41%, 71% 46%, 73% 51%, 75% 55%, 77% 58%, 80% 60%, 83% 60%, 87% 59%, 90% 56%, 92% 53%, 94% 49%, 96% 45%, 98% 42%, 100% 39%, 100% 100%, 0% 100%);
+  }
+  40%{
+    clip-path: polygon(0% 47%, 2% 43%, 4% 39%, 7% 35%, 10% 32%, 12% 30%, 14% 29%, 16% 28%, 19% 27%, 22% 28%, 25% 30%, 27% 32%, 29% 35%, 31% 38%, 34% 41%, 36% 43%, 39% 46%, 42% 47%, 44% 47%, 47% 46%, 50% 43%, 52% 40%, 54% 37%, 56% 34%, 58% 31%, 60% 28%, 63% 25%, 65% 23%, 68% 21%, 70% 21%, 73% 21%, 76% 23%, 78% 25%, 80% 28%, 82% 31%, 84% 34%, 86% 37%, 87% 39%, 89% 41%, 91% 43%, 94% 44%, 96% 43%, 98% 41%, 100% 39%, 100% 100%, 0% 100%);
+  }
+  50%{
+    clip-path: polygon(0% 47%, 2% 51%, 4% 54%, 7% 59%, 9% 62%, 11% 65%, 13% 67%, 15% 69%, 18% 70%, 21% 69%, 24% 67%, 26% 64%, 29% 60%, 31% 56%, 33% 51%, 35% 47%, 37% 42%, 39% 38%, 41% 35%, 43% 32%, 46% 29%, 48% 27%, 50% 26%, 53% 25%, 56% 25%, 58% 26%, 61% 28%, 63% 30%, 65% 33%, 67% 37%, 69% 41%, 71% 46%, 73% 51%, 75% 55%, 77% 58%, 80% 60%, 83% 60%, 87% 59%, 90% 56%, 92% 53%, 94% 49%, 96% 45%, 98% 42%, 100% 39%, 100% 100%, 0% 100%);
+  }
+  60%{
+    clip-path: polygon(0% 47%, 2% 43%, 4% 39%, 7% 35%, 10% 32%, 12% 30%, 14% 29%, 16% 28%, 19% 27%, 22% 28%, 25% 30%, 27% 32%, 29% 35%, 31% 38%, 34% 41%, 36% 43%, 39% 46%, 42% 47%, 44% 47%, 47% 46%, 50% 43%, 52% 40%, 54% 37%, 56% 34%, 58% 31%, 60% 28%, 63% 25%, 65% 23%, 68% 21%, 70% 21%, 73% 21%, 76% 23%, 78% 25%, 80% 28%, 82% 31%, 84% 34%, 86% 37%, 87% 39%, 89% 41%, 91% 43%, 94% 44%, 96% 43%, 98% 41%, 100% 39%, 100% 100%, 0% 100%);
+  }
+  70%{
+    clip-path: polygon(0% 47%, 2% 51%, 4% 54%, 7% 59%, 9% 62%, 11% 65%, 13% 67%, 15% 69%, 18% 70%, 21% 69%, 24% 67%, 26% 64%, 29% 60%, 31% 56%, 33% 51%, 35% 47%, 37% 42%, 39% 38%, 41% 35%, 43% 32%, 46% 29%, 48% 27%, 50% 26%, 53% 25%, 56% 25%, 58% 26%, 61% 28%, 63% 30%, 65% 33%, 67% 37%, 69% 41%, 71% 46%, 73% 51%, 75% 55%, 77% 58%, 80% 60%, 83% 60%, 87% 59%, 90% 56%, 92% 53%, 94% 49%, 96% 45%, 98% 42%, 100% 39%, 100% 100%, 0% 100%);
+  }
+  80%{
+    clip-path: polygon(0% 47%, 2% 43%, 4% 39%, 7% 35%, 10% 32%, 12% 30%, 14% 29%, 16% 28%, 19% 27%, 22% 28%, 25% 30%, 27% 32%, 29% 35%, 31% 38%, 34% 41%, 36% 43%, 39% 46%, 42% 47%, 44% 47%, 47% 46%, 50% 43%, 52% 40%, 54% 37%, 56% 34%, 58% 31%, 60% 28%, 63% 25%, 65% 23%, 68% 21%, 70% 21%, 73% 21%, 76% 23%, 78% 25%, 80% 28%, 82% 31%, 84% 34%, 86% 37%, 87% 39%, 89% 41%, 91% 43%, 94% 44%, 96% 43%, 98% 41%, 100% 39%, 100% 100%, 0% 100%);
+  }
+  90%{
+    clip-path: polygon(0% 47%, 2% 51%, 4% 54%, 7% 59%, 9% 62%, 11% 65%, 13% 67%, 15% 69%, 18% 70%, 21% 69%, 24% 67%, 26% 64%, 29% 60%, 31% 56%, 33% 51%, 35% 47%, 37% 42%, 39% 38%, 41% 35%, 43% 32%, 46% 29%, 48% 27%, 50% 26%, 53% 25%, 56% 25%, 58% 26%, 61% 28%, 63% 30%, 65% 33%, 67% 37%, 69% 41%, 71% 46%, 73% 51%, 75% 55%, 77% 58%, 80% 60%, 83% 60%, 87% 59%, 90% 56%, 92% 53%, 94% 49%, 96% 45%, 98% 42%, 100% 39%, 100% 100%, 0% 100%);
+  }
+}
+
+#home-page-image{
+  width: 500px;
+  height: 500px;
+  position: absolute;
+  right: -100px;
+  bottom: -200px;
+  opacity: 15%;
+  transform: rotateY(180deg);
+}
+
+.dialogue-container{
+  width: 55vw;
+  height: 70vh;
+  border: 5px solid rgb(80, 80, 80);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  background-color: rgb(89, 192, 41);
+  position: relative;
+}
+
+.dialogue-container::before{
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border: 5px solid rgb(80, 80, 80);
+  border-radius: 50%;
+  background-color: white;
+  top: 10px;
+  right: 10px;
+}
+
+.dialogue-container::after{
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border: 5px solid rgb(80, 80, 80);
+  border-radius: 50%;
+  background-color: white;
+  bottom: 10px;
+  left: 10px;
+}
+
+.dialogue-element{
+  width: 100%;
+  height: 25%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+#dialogue-text{
+  width: 60%;
+  height: 100%;
+  border: 5px solid rgb(80, 80, 80);
+  border-radius: 10px;
+  background-color:  rgb(225,225,225);
+}
+
+#dialogue-text p{
+  margin: 20px;
+  font-size: 15px;
+  font-family: 'Consolas';
+  font-weight: 600;
+  text-align: justify;
+  line-height: 1.2;
+}
+
+#dialogue-profile{
+  width: 20%;
+  height: 100%;
+  border: 5px solid rgb(80, 80, 80);
+  border-radius: 10px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#dialogue-profile img{
+  width: 65%;
+  height: 65%;
+  border-radius: 5px;
+}
+
+#first-profile{
+  transform: rotate(25deg);
+}
+
+#second-profile{
+  transform: rotate(-25deg);
+}
+
+
+#dialogue-button{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+#dialogue-button::before{
+  content: "";
+  position: absolute;
+  width: 20%;
+  height: 5px;
+  top: 50%;
+  left: 10%;
+  background-color: rgb(80, 80, 80);
+}
+
+#dialogue-button::after{
+  content: "";
+  position: absolute;
+  width: 20%;
+  height: 5px;
+  top: 50%;
+  right: 10%;
+  background-color: rgb(80, 80, 80);
+}
+
+#dialogue-button button{
+  width: 200px;
+  height: 80px;
+  margin: 0px;
+  border: 5px solid rgb(80, 80, 80);
+  font-size: 20px;
+  font-weight: 800;
+}
+
+#dialogue-button button a{
+  text-decoration: none;
+  color: black;
 }

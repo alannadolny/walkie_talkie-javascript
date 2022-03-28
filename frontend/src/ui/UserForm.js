@@ -24,7 +24,6 @@ function UserForm({ SignIn, Register, user, visible }) {
   };
 
   return (
-    <div>
       <div className='main-login' style={visible ? style : {}}>
         <div className='login-form' style={visible ? style : {}}>
           <div className='login-setting' style={visible ? style : {}}>
@@ -65,7 +64,6 @@ function UserForm({ SignIn, Register, user, visible }) {
           </div>
         </div>
       </div>
-    </div>
   );
 }
 
