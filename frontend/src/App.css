@@ -418,8 +418,8 @@ button:hover{
 
 #home-page-animation{
   position: absolute;
-  left: -280px;
-  width: 700px;
+  left: -700px;
+  width: 100%;
   height: 25%;
   transform: rotateY(0deg);
   transform: rotateZ(90deg);
@@ -514,6 +514,7 @@ button:hover{
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  align-items: center;
 }
 
 #dialogue-text{
@@ -611,6 +612,22 @@ button:hover{
     font-size: 13.5px;
     margin: 10px;
   }
+
+  #home-page-animation{
+    left: -650px;
+  }
+}
+
+@media (max-width: 1350px){
+  #home-page-animation{
+    left: -600px;
+  }
+}
+
+@media (max-width: 1250px){
+  #home-page-animation{
+    left: -550px;
+  }
 }
 
 @media (max-width: 1150px){
@@ -621,6 +638,10 @@ button:hover{
     width: 150px;
     height: 60px;
     font-size: 16px;
+  }
+
+  #home-page-animation{
+    left: -500px;
   }
 }
 
@@ -636,11 +657,25 @@ button:hover{
     right: -90px;
     bottom: -200px;
   }
+
+  #home-page-animation{
+    left: -450px;
+  }
 }
 
 @media (max-width: 900px){
   .dialogue-container{
     width: 60vw;
+  }
+
+  #home-page-animation{
+    left: -400px;
+  }
+}
+
+@media (max-width: 820px){
+  #home-page-animation{
+    left: -350px;
   }
 }
 
@@ -650,7 +685,7 @@ button:hover{
   }
 
   #home-page-animation{
-    left: -320px;
+    left: -300px;
   }
 
   #home-page-image{
@@ -701,7 +736,7 @@ button:hover{
 
   #home-page-animation{
     height: 20%;
-    left: -340px;
+    left: -700px;
   }
 
   #first-profile{
@@ -722,6 +757,21 @@ button:hover{
   #home-page-animation{
     display: none;
   }
+
+  #dialogue-profile{
+    width: 15%;
+    height: 50%;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #dialogue-profile img{
+    width: 65%;
+    height: 65%;
+    border-radius: 50%;
+  }
 }
 
 @media (max-width: 430px){
@@ -732,4 +782,32 @@ button:hover{
     border-bottom: 5px solid rgb(80, 80, 80);
     border-radius: 0%;
   }
+}
+
+@media (max-width: 650px) and (min-height: 700px){
+  #dialogue-text p{
+    font-size: 12px;
+  }
+}
+
+/* Contact */
+
+.contact-main{
+  width: 100vw;
+  height: 85vh;
+  margin: 0 auto;
+  padding: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-container{
+  width: 60%;
+  height: 70%;
+  margin: 0px;
+  padding: 0px;
+  border: 5px solid rgb(80, 80, 80);
+  border-radius: 20px;
+  background-color: rgb(89, 192, 41);
 }

@@ -25,7 +25,7 @@ function App({ GetUser, user }) {
       <BrowserRouter>
         <Header visible={visible} setVisible={setVisible} />
         <Routes>
-          <Route path='/' element={<Main />} />
+          <Route path='/' element={<Main visible={visible} setVisible={setVisible}/>} />
           <Route
             path='/form/:action'
             element={<UserForm visible={visible} />}

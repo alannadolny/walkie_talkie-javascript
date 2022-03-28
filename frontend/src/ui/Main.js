@@ -2,8 +2,12 @@ import { Link } from 'react-router-dom';
 import walkieTalkie from '../walkie-talkie.png';
 import HomePageAvatar from '../home-page-avatar.png';
 
-function Main() {
-  return <div className="home-page">
+function Main({visible}) {
+  const style = {
+    opacity: '40%',
+  };
+
+  return <div className="home-page" style={visible ? style : {}}>
 
     <div id="home-page-animation"> </div>
 
