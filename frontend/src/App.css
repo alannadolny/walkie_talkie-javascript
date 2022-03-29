@@ -396,11 +396,21 @@ button:hover{
 }
 
 @media (max-width: 450px){
+  .App{
+    overflow: auto;
+  }
+
   .login-form{
     width: 100%;
     border-right: 0px;
     border-left: 0px;
     border-radius: 0;
+  }
+}
+
+@media (orientation: landscape) {
+  .App{
+    overflow: auto;
   }
 }
 
