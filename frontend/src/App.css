@@ -9,7 +9,7 @@
 
 header{
   width: 100%;
-  height: 100px;
+  min-height: 100px;
   background-color: rgb(89, 192, 41);
   border-bottom: 5px solid rgb(80, 80, 80);
   display: inline-flex;
@@ -180,7 +180,7 @@ li{
 }
 
 
-@media (max-width: 1100px){
+@media (max-width: 1120px){
   #header-text{
     font-size: 40px;
   }
@@ -201,7 +201,7 @@ li{
 
 @media (max-width: 850px){
   header{
-    justify-content: space-around;
+    justify-content: space-evenly;
   }
 
   #header-text-after{
@@ -232,9 +232,11 @@ li{
 
 @media (max-width: 650px){
   .nav a{
-    font-size: 16px;
+    font-size: 18px;
   }
 }
+
+
 
 @media (max-width: 500px){
   #header-left-container{
@@ -281,7 +283,392 @@ li{
   }
 }
 
-/* formularz logowania */
+/* home page */
+
+.home-page{
+  width: 100vw;
+  min-height: 650px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+#home-page-animation{
+  position: absolute;
+  left: -700px;
+  width: 100%;
+  height: 25%;
+  transform: rotateY(0deg);
+  transform: rotateZ(90deg);
+  background-color: black;
+  opacity: 15%;
+  animation: freq-animation 10s ease-in-out infinite;
+}
+
+@keyframes freq-animation{
+  0%,100%{
+    clip-path: polygon(0% 47%, 2% 43%, 4% 39%, 7% 35%, 10% 32%, 12% 30%, 14% 29%, 16% 28%, 19% 27%, 22% 28%, 25% 30%, 27% 32%, 29% 35%, 31% 38%, 34% 41%, 36% 43%, 39% 46%, 42% 47%, 44% 47%, 47% 46%, 50% 43%, 52% 40%, 54% 37%, 56% 34%, 58% 31%, 60% 28%, 63% 25%, 65% 23%, 68% 21%, 70% 21%, 73% 21%, 76% 23%, 78% 25%, 80% 28%, 82% 31%, 84% 34%, 86% 37%, 87% 39%, 89% 41%, 91% 43%, 94% 44%, 96% 43%, 98% 41%, 100% 39%, 100% 100%, 0% 100%);
+  }
+  10%{
+    clip-path: polygon(0% 47%, 2% 51%, 4% 54%, 7% 59%, 9% 62%, 11% 65%, 13% 67%, 15% 69%, 18% 70%, 21% 69%, 24% 67%, 26% 64%, 29% 60%, 31% 56%, 33% 51%, 35% 47%, 37% 42%, 39% 38%, 41% 35%, 43% 32%, 46% 29%, 48% 27%, 50% 26%, 53% 25%, 56% 25%, 58% 26%, 61% 28%, 63% 30%, 65% 33%, 67% 37%, 69% 41%, 71% 46%, 73% 51%, 75% 55%, 77% 58%, 80% 60%, 83% 60%, 87% 59%, 90% 56%, 92% 53%, 94% 49%, 96% 45%, 98% 42%, 100% 39%, 100% 100%, 0% 100%);
+  }
+  20%{
+    clip-path: polygon(0% 47%, 2% 43%, 4% 39%, 7% 35%, 10% 32%, 12% 30%, 14% 29%, 16% 28%, 19% 27%, 22% 28%, 25% 30%, 27% 32%, 29% 35%, 31% 38%, 34% 41%, 36% 43%, 39% 46%, 42% 47%, 44% 47%, 47% 46%, 50% 43%, 52% 40%, 54% 37%, 56% 34%, 58% 31%, 60% 28%, 63% 25%, 65% 23%, 68% 21%, 70% 21%, 73% 21%, 76% 23%, 78% 25%, 80% 28%, 82% 31%, 84% 34%, 86% 37%, 87% 39%, 89% 41%, 91% 43%, 94% 44%, 96% 43%, 98% 41%, 100% 39%, 100% 100%, 0% 100%);
+  }
+  30%{
+    clip-path: polygon(0% 47%, 2% 51%, 4% 54%, 7% 59%, 9% 62%, 11% 65%, 13% 67%, 15% 69%, 18% 70%, 21% 69%, 24% 67%, 26% 64%, 29% 60%, 31% 56%, 33% 51%, 35% 47%, 37% 42%, 39% 38%, 41% 35%, 43% 32%, 46% 29%, 48% 27%, 50% 26%, 53% 25%, 56% 25%, 58% 26%, 61% 28%, 63% 30%, 65% 33%, 67% 37%, 69% 41%, 71% 46%, 73% 51%, 75% 55%, 77% 58%, 80% 60%, 83% 60%, 87% 59%, 90% 56%, 92% 53%, 94% 49%, 96% 45%, 98% 42%, 100% 39%, 100% 100%, 0% 100%);
+  }
+  40%{
+    clip-path: polygon(0% 47%, 2% 43%, 4% 39%, 7% 35%, 10% 32%, 12% 30%, 14% 29%, 16% 28%, 19% 27%, 22% 28%, 25% 30%, 27% 32%, 29% 35%, 31% 38%, 34% 41%, 36% 43%, 39% 46%, 42% 47%, 44% 47%, 47% 46%, 50% 43%, 52% 40%, 54% 37%, 56% 34%, 58% 31%, 60% 28%, 63% 25%, 65% 23%, 68% 21%, 70% 21%, 73% 21%, 76% 23%, 78% 25%, 80% 28%, 82% 31%, 84% 34%, 86% 37%, 87% 39%, 89% 41%, 91% 43%, 94% 44%, 96% 43%, 98% 41%, 100% 39%, 100% 100%, 0% 100%);
+  }
+  50%{
+    clip-path: polygon(0% 47%, 2% 51%, 4% 54%, 7% 59%, 9% 62%, 11% 65%, 13% 67%, 15% 69%, 18% 70%, 21% 69%, 24% 67%, 26% 64%, 29% 60%, 31% 56%, 33% 51%, 35% 47%, 37% 42%, 39% 38%, 41% 35%, 43% 32%, 46% 29%, 48% 27%, 50% 26%, 53% 25%, 56% 25%, 58% 26%, 61% 28%, 63% 30%, 65% 33%, 67% 37%, 69% 41%, 71% 46%, 73% 51%, 75% 55%, 77% 58%, 80% 60%, 83% 60%, 87% 59%, 90% 56%, 92% 53%, 94% 49%, 96% 45%, 98% 42%, 100% 39%, 100% 100%, 0% 100%);
+  }
+  60%{
+    clip-path: polygon(0% 47%, 2% 43%, 4% 39%, 7% 35%, 10% 32%, 12% 30%, 14% 29%, 16% 28%, 19% 27%, 22% 28%, 25% 30%, 27% 32%, 29% 35%, 31% 38%, 34% 41%, 36% 43%, 39% 46%, 42% 47%, 44% 47%, 47% 46%, 50% 43%, 52% 40%, 54% 37%, 56% 34%, 58% 31%, 60% 28%, 63% 25%, 65% 23%, 68% 21%, 70% 21%, 73% 21%, 76% 23%, 78% 25%, 80% 28%, 82% 31%, 84% 34%, 86% 37%, 87% 39%, 89% 41%, 91% 43%, 94% 44%, 96% 43%, 98% 41%, 100% 39%, 100% 100%, 0% 100%);
+  }
+  70%{
+    clip-path: polygon(0% 47%, 2% 51%, 4% 54%, 7% 59%, 9% 62%, 11% 65%, 13% 67%, 15% 69%, 18% 70%, 21% 69%, 24% 67%, 26% 64%, 29% 60%, 31% 56%, 33% 51%, 35% 47%, 37% 42%, 39% 38%, 41% 35%, 43% 32%, 46% 29%, 48% 27%, 50% 26%, 53% 25%, 56% 25%, 58% 26%, 61% 28%, 63% 30%, 65% 33%, 67% 37%, 69% 41%, 71% 46%, 73% 51%, 75% 55%, 77% 58%, 80% 60%, 83% 60%, 87% 59%, 90% 56%, 92% 53%, 94% 49%, 96% 45%, 98% 42%, 100% 39%, 100% 100%, 0% 100%);
+  }
+  80%{
+    clip-path: polygon(0% 47%, 2% 43%, 4% 39%, 7% 35%, 10% 32%, 12% 30%, 14% 29%, 16% 28%, 19% 27%, 22% 28%, 25% 30%, 27% 32%, 29% 35%, 31% 38%, 34% 41%, 36% 43%, 39% 46%, 42% 47%, 44% 47%, 47% 46%, 50% 43%, 52% 40%, 54% 37%, 56% 34%, 58% 31%, 60% 28%, 63% 25%, 65% 23%, 68% 21%, 70% 21%, 73% 21%, 76% 23%, 78% 25%, 80% 28%, 82% 31%, 84% 34%, 86% 37%, 87% 39%, 89% 41%, 91% 43%, 94% 44%, 96% 43%, 98% 41%, 100% 39%, 100% 100%, 0% 100%);
+  }
+  90%{
+    clip-path: polygon(0% 47%, 2% 51%, 4% 54%, 7% 59%, 9% 62%, 11% 65%, 13% 67%, 15% 69%, 18% 70%, 21% 69%, 24% 67%, 26% 64%, 29% 60%, 31% 56%, 33% 51%, 35% 47%, 37% 42%, 39% 38%, 41% 35%, 43% 32%, 46% 29%, 48% 27%, 50% 26%, 53% 25%, 56% 25%, 58% 26%, 61% 28%, 63% 30%, 65% 33%, 67% 37%, 69% 41%, 71% 46%, 73% 51%, 75% 55%, 77% 58%, 80% 60%, 83% 60%, 87% 59%, 90% 56%, 92% 53%, 94% 49%, 96% 45%, 98% 42%, 100% 39%, 100% 100%, 0% 100%);
+  }
+}
+
+#home-page-image{
+  width: 500px;
+  height: 500px;
+  position: absolute;
+  right: -100px;
+  bottom: -200px;
+  opacity: 15%;
+  transform: rotateY(180deg);
+}
+
+.dialogue-container{
+  min-width: 500px;
+  min-height: 500px;
+  margin: 50px;
+  padding: 20px;
+  border: 5px solid rgb(80, 80, 80);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: rgba(89, 192, 41, 0.8);
+  position: relative;
+}
+
+.dialogue-container::before{
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border: 5px solid rgb(80, 80, 80);
+  border-radius: 50%;
+  background-color: white;
+  top: 10px;
+  right: 10px;
+}
+
+.dialogue-container::after{
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border: 5px solid rgb(80, 80, 80);
+  border-radius: 50%;
+  background-color: white;
+  bottom: 10px;
+  left: 10px;
+}
+
+#dialogue-container-title{
+  width: 80%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+#dialogue-container-title img{
+  width: 48px;
+  height: 48px;
+  margin-right: 10px;
+}
+
+#dialogue-container-title span{
+  font-size: 40px;
+  font-weight: 700;
+  color: white;
+  -webkit-text-stroke: 1px rgb(80, 80, 80);
+}
+
+.dialogue-element{
+  min-width: 100%;
+  min-height: 25%;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#dialogue-text{
+  max-width: 60%;
+  height: 100%;
+  border: 5px solid rgb(80, 80, 80);
+  border-radius: 10px;
+  background-color:  rgb(225,225,225);
+}
+
+#dialogue-text p{
+  margin: 20px;
+  font-size: 15px;
+  font-family: 'Consolas';
+  font-weight: 600;
+  text-align: justify;
+  line-height: 1.2;
+}
+
+#dialogue-profile{
+  min-width: 20%;
+  height: 100%;
+  border: 5px solid rgb(80, 80, 80);
+  border-radius: 10px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#dialogue-profile img{
+  width: 115px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#dialogue-container-icons{
+  width: 80%;
+  height: 50px;
+  margin-top: 20px;
+  display: none;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#dialogue-container-icons img{
+  width: 40px;
+  height: 40px;
+}
+
+#wt-logo{
+  animation: spin_around 3s linear infinite;
+}
+
+@keyframes spin_around{
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
+
+#dialogue-button{
+  width: 100%;
+  margin: 20px 0px 20px 0px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+#dialogue-button::before{
+  content: "";
+  position: absolute;
+  width: 20%;
+  height: 5px;
+  top: 50%;
+  left: 10%;
+  background-color: rgb(80, 80, 80);
+}
+
+#dialogue-button::after{
+  content: "";
+  position: absolute;
+  width: 20%;
+  height: 5px;
+  top: 50%;
+  right: 10%;
+  background-color: rgb(80, 80, 80);
+}
+
+#dialogue-button button{
+  width: 200px;
+  height: 80px;
+  margin: 0px;
+  border: 5px solid rgb(80, 80, 80);
+  font-size: 20px;
+  font-weight: 800;
+}
+
+#dialogue-button button a{
+  text-decoration: none;
+  color: black;
+}
+
+@media (max-width: 1450px){
+  #home-page-animation{
+    left: -650px;
+  }
+}
+
+@media (max-width: 1350px){
+  #home-page-animation{
+    left: -600px;
+  }
+}
+
+@media (max-width: 1250px){
+  #home-page-animation{
+    left: -550px;
+  }
+}
+
+@media (max-width: 1150px){
+  #home-page-animation{
+    left: -520px;
+  }
+  #home-page-image{
+    right: -130px;
+  }
+}
+
+@media (max-width: 1100px){
+  #home-page-image{
+    display: none;
+  }
+}
+
+@media (max-width: 1050px){
+  #home-page-animation{
+    left: -500px;
+  }
+}
+
+@media (max-width: 1000px){
+  #home-page-animation{
+    display: none;
+  }
+}
+
+@media (min-width: 800px) and (min-height: 750px){
+  .home-page{
+    height: 750px;
+  }
+  #home-page-animation{
+    display: block;
+    top: 650px;
+    left: 0px;
+    transform: none;
+  }
+  #home-page-image{
+    display: none;
+  }
+}
+
+@media (max-width: 725px){
+  .dialogue-container{
+    width: 100vw;
+    margin: 50px 0px 50px 0px;
+    border-right: none;
+    border-left: none;
+    border-radius: 0;
+  }
+  .dialogue-container::after{
+    display: none;
+  }
+  .dialogue-container::before{
+    display: none;
+  }
+  #dialogue-profile{
+    display: none;
+  }
+  #dialogue-text{
+    max-width: 80%;
+  }
+  #dialogue-container-title{
+    display: inline-flex;
+  }
+  #dialogue-container-icons{
+    display: inline-flex;
+  }
+  #dialogue-button::before{
+    width: 15%;
+  }
+  #dialogue-button::after{
+    width: 15%;
+  }
+}
+
+@media (max-width: 650px){
+  .App{
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+
+@media (max-width: 500px){
+  #dialogue-container-title{
+    display: none;
+  }
+}
+
+@media (max-width: 430px){
+  .dialogue-container{
+    min-width: 400px;
+  }
+  #dialogue-button::after{
+    width: 10%;
+  }
+  #dialogue-button::before{
+    width: 10%;
+  }
+}
+
+@media (min-height: 850px) and (min-width: 725px){
+  .home-page{
+    height: 800px;
+  }
+  .dialogue-container{
+    min-width: 700px;
+  }
+}
+
+@media (min-width: 725px) and (min-height: 800px){
+  .home-page{
+    height: 800px;
+  }
+  .dialogue-container{
+    transform: translateY(-50px);
+  }
+  #home-page-animation{
+    display: block;
+    top: 600px;
+    left: 0px;
+    transform: none;
+  }
+}
+
+/* login form */
 
 .main-login{
   width: 100vw;
@@ -396,10 +783,6 @@ button:hover{
 }
 
 @media (max-width: 450px){
-  .App{
-    overflow: auto;
-  }
-
   .login-form{
     width: 100%;
     border-right: 0px;
@@ -410,393 +793,8 @@ button:hover{
 
 @media (orientation: landscape) {
   .App{
-    overflow: auto;
-  }
-}
-
-/* home page */
-
-.home-page{
-  width: 100vw;
-  height: 86vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  position: relative;
-}
-
-#home-page-animation{
-  position: absolute;
-  left: -700px;
-  width: 100%;
-  height: 25%;
-  transform: rotateY(0deg);
-  transform: rotateZ(90deg);
-  background-color: black;
-  opacity: 15%;
-  animation: freq-animation 10s ease-in-out infinite;
-}
-
-@keyframes freq-animation{
-  0%,100%{
-    clip-path: polygon(0% 47%, 2% 43%, 4% 39%, 7% 35%, 10% 32%, 12% 30%, 14% 29%, 16% 28%, 19% 27%, 22% 28%, 25% 30%, 27% 32%, 29% 35%, 31% 38%, 34% 41%, 36% 43%, 39% 46%, 42% 47%, 44% 47%, 47% 46%, 50% 43%, 52% 40%, 54% 37%, 56% 34%, 58% 31%, 60% 28%, 63% 25%, 65% 23%, 68% 21%, 70% 21%, 73% 21%, 76% 23%, 78% 25%, 80% 28%, 82% 31%, 84% 34%, 86% 37%, 87% 39%, 89% 41%, 91% 43%, 94% 44%, 96% 43%, 98% 41%, 100% 39%, 100% 100%, 0% 100%);
-  }
-  10%{
-    clip-path: polygon(0% 47%, 2% 51%, 4% 54%, 7% 59%, 9% 62%, 11% 65%, 13% 67%, 15% 69%, 18% 70%, 21% 69%, 24% 67%, 26% 64%, 29% 60%, 31% 56%, 33% 51%, 35% 47%, 37% 42%, 39% 38%, 41% 35%, 43% 32%, 46% 29%, 48% 27%, 50% 26%, 53% 25%, 56% 25%, 58% 26%, 61% 28%, 63% 30%, 65% 33%, 67% 37%, 69% 41%, 71% 46%, 73% 51%, 75% 55%, 77% 58%, 80% 60%, 83% 60%, 87% 59%, 90% 56%, 92% 53%, 94% 49%, 96% 45%, 98% 42%, 100% 39%, 100% 100%, 0% 100%);
-  }
-  20%{
-    clip-path: polygon(0% 47%, 2% 43%, 4% 39%, 7% 35%, 10% 32%, 12% 30%, 14% 29%, 16% 28%, 19% 27%, 22% 28%, 25% 30%, 27% 32%, 29% 35%, 31% 38%, 34% 41%, 36% 43%, 39% 46%, 42% 47%, 44% 47%, 47% 46%, 50% 43%, 52% 40%, 54% 37%, 56% 34%, 58% 31%, 60% 28%, 63% 25%, 65% 23%, 68% 21%, 70% 21%, 73% 21%, 76% 23%, 78% 25%, 80% 28%, 82% 31%, 84% 34%, 86% 37%, 87% 39%, 89% 41%, 91% 43%, 94% 44%, 96% 43%, 98% 41%, 100% 39%, 100% 100%, 0% 100%);
-  }
-  30%{
-    clip-path: polygon(0% 47%, 2% 51%, 4% 54%, 7% 59%, 9% 62%, 11% 65%, 13% 67%, 15% 69%, 18% 70%, 21% 69%, 24% 67%, 26% 64%, 29% 60%, 31% 56%, 33% 51%, 35% 47%, 37% 42%, 39% 38%, 41% 35%, 43% 32%, 46% 29%, 48% 27%, 50% 26%, 53% 25%, 56% 25%, 58% 26%, 61% 28%, 63% 30%, 65% 33%, 67% 37%, 69% 41%, 71% 46%, 73% 51%, 75% 55%, 77% 58%, 80% 60%, 83% 60%, 87% 59%, 90% 56%, 92% 53%, 94% 49%, 96% 45%, 98% 42%, 100% 39%, 100% 100%, 0% 100%);
-  }
-  40%{
-    clip-path: polygon(0% 47%, 2% 43%, 4% 39%, 7% 35%, 10% 32%, 12% 30%, 14% 29%, 16% 28%, 19% 27%, 22% 28%, 25% 30%, 27% 32%, 29% 35%, 31% 38%, 34% 41%, 36% 43%, 39% 46%, 42% 47%, 44% 47%, 47% 46%, 50% 43%, 52% 40%, 54% 37%, 56% 34%, 58% 31%, 60% 28%, 63% 25%, 65% 23%, 68% 21%, 70% 21%, 73% 21%, 76% 23%, 78% 25%, 80% 28%, 82% 31%, 84% 34%, 86% 37%, 87% 39%, 89% 41%, 91% 43%, 94% 44%, 96% 43%, 98% 41%, 100% 39%, 100% 100%, 0% 100%);
-  }
-  50%{
-    clip-path: polygon(0% 47%, 2% 51%, 4% 54%, 7% 59%, 9% 62%, 11% 65%, 13% 67%, 15% 69%, 18% 70%, 21% 69%, 24% 67%, 26% 64%, 29% 60%, 31% 56%, 33% 51%, 35% 47%, 37% 42%, 39% 38%, 41% 35%, 43% 32%, 46% 29%, 48% 27%, 50% 26%, 53% 25%, 56% 25%, 58% 26%, 61% 28%, 63% 30%, 65% 33%, 67% 37%, 69% 41%, 71% 46%, 73% 51%, 75% 55%, 77% 58%, 80% 60%, 83% 60%, 87% 59%, 90% 56%, 92% 53%, 94% 49%, 96% 45%, 98% 42%, 100% 39%, 100% 100%, 0% 100%);
-  }
-  60%{
-    clip-path: polygon(0% 47%, 2% 43%, 4% 39%, 7% 35%, 10% 32%, 12% 30%, 14% 29%, 16% 28%, 19% 27%, 22% 28%, 25% 30%, 27% 32%, 29% 35%, 31% 38%, 34% 41%, 36% 43%, 39% 46%, 42% 47%, 44% 47%, 47% 46%, 50% 43%, 52% 40%, 54% 37%, 56% 34%, 58% 31%, 60% 28%, 63% 25%, 65% 23%, 68% 21%, 70% 21%, 73% 21%, 76% 23%, 78% 25%, 80% 28%, 82% 31%, 84% 34%, 86% 37%, 87% 39%, 89% 41%, 91% 43%, 94% 44%, 96% 43%, 98% 41%, 100% 39%, 100% 100%, 0% 100%);
-  }
-  70%{
-    clip-path: polygon(0% 47%, 2% 51%, 4% 54%, 7% 59%, 9% 62%, 11% 65%, 13% 67%, 15% 69%, 18% 70%, 21% 69%, 24% 67%, 26% 64%, 29% 60%, 31% 56%, 33% 51%, 35% 47%, 37% 42%, 39% 38%, 41% 35%, 43% 32%, 46% 29%, 48% 27%, 50% 26%, 53% 25%, 56% 25%, 58% 26%, 61% 28%, 63% 30%, 65% 33%, 67% 37%, 69% 41%, 71% 46%, 73% 51%, 75% 55%, 77% 58%, 80% 60%, 83% 60%, 87% 59%, 90% 56%, 92% 53%, 94% 49%, 96% 45%, 98% 42%, 100% 39%, 100% 100%, 0% 100%);
-  }
-  80%{
-    clip-path: polygon(0% 47%, 2% 43%, 4% 39%, 7% 35%, 10% 32%, 12% 30%, 14% 29%, 16% 28%, 19% 27%, 22% 28%, 25% 30%, 27% 32%, 29% 35%, 31% 38%, 34% 41%, 36% 43%, 39% 46%, 42% 47%, 44% 47%, 47% 46%, 50% 43%, 52% 40%, 54% 37%, 56% 34%, 58% 31%, 60% 28%, 63% 25%, 65% 23%, 68% 21%, 70% 21%, 73% 21%, 76% 23%, 78% 25%, 80% 28%, 82% 31%, 84% 34%, 86% 37%, 87% 39%, 89% 41%, 91% 43%, 94% 44%, 96% 43%, 98% 41%, 100% 39%, 100% 100%, 0% 100%);
-  }
-  90%{
-    clip-path: polygon(0% 47%, 2% 51%, 4% 54%, 7% 59%, 9% 62%, 11% 65%, 13% 67%, 15% 69%, 18% 70%, 21% 69%, 24% 67%, 26% 64%, 29% 60%, 31% 56%, 33% 51%, 35% 47%, 37% 42%, 39% 38%, 41% 35%, 43% 32%, 46% 29%, 48% 27%, 50% 26%, 53% 25%, 56% 25%, 58% 26%, 61% 28%, 63% 30%, 65% 33%, 67% 37%, 69% 41%, 71% 46%, 73% 51%, 75% 55%, 77% 58%, 80% 60%, 83% 60%, 87% 59%, 90% 56%, 92% 53%, 94% 49%, 96% 45%, 98% 42%, 100% 39%, 100% 100%, 0% 100%);
-  }
-}
-
-#home-page-image{
-  width: 500px;
-  height: 500px;
-  position: absolute;
-  right: -100px;
-  bottom: -200px;
-  opacity: 15%;
-  transform: rotateY(180deg);
-}
-
-.dialogue-container{
-  width: 55vw;
-  height: 70vh;
-  border: 5px solid rgb(80, 80, 80);
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: space-evenly;
-  background-color: rgb(89, 192, 41);
-  position: relative;
-}
-
-.dialogue-container::before{
-  content: "";
-  position: absolute;
-  width: 15px;
-  height: 15px;
-  border: 5px solid rgb(80, 80, 80);
-  border-radius: 50%;
-  background-color: white;
-  top: 10px;
-  right: 10px;
-}
-
-.dialogue-container::after{
-  content: "";
-  position: absolute;
-  width: 15px;
-  height: 15px;
-  border: 5px solid rgb(80, 80, 80);
-  border-radius: 50%;
-  background-color: white;
-  bottom: 10px;
-  left: 10px;
-}
-
-.dialogue-element{
-  width: 100%;
-  height: 25%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
-#dialogue-text{
-  width: 60%;
-  height: 100%;
-  border: 5px solid rgb(80, 80, 80);
-  border-radius: 10px;
-  background-color:  rgb(225,225,225);
-}
-
-#dialogue-text p{
-  margin: 20px;
-  font-size: 15px;
-  font-family: 'Consolas';
-  font-weight: 600;
-  text-align: justify;
-  line-height: 1.2;
-}
-
-#dialogue-profile{
-  width: 20%;
-  height: 100%;
-  border: 5px solid rgb(80, 80, 80);
-  border-radius: 10px;
-  background-color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#dialogue-profile img{
-  width: 65%;
-  height: 65%;
-  border-radius: 5px;
-}
-
-#first-profile{
-  transform: rotate(25deg);
-}
-
-#second-profile{
-  transform: rotate(-25deg);
-}
-
-
-#dialogue-button{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  position: relative;
-}
-
-#dialogue-button::before{
-  content: "";
-  position: absolute;
-  width: 20%;
-  height: 5px;
-  top: 50%;
-  left: 10%;
-  background-color: rgb(80, 80, 80);
-}
-
-#dialogue-button::after{
-  content: "";
-  position: absolute;
-  width: 20%;
-  height: 5px;
-  top: 50%;
-  right: 10%;
-  background-color: rgb(80, 80, 80);
-}
-
-#dialogue-button button{
-  width: 200px;
-  height: 80px;
-  margin: 0px;
-  border: 5px solid rgb(80, 80, 80);
-  font-size: 20px;
-  font-weight: 800;
-}
-
-#dialogue-button button a{
-  text-decoration: none;
-  color: black;
-}
-
-@media (max-width: 1500px){
-  #dialogue-text p{
-    font-size: 14px;
-  }
-}
-
-@media (max-width: 1410px){
-  #dialogue-text p{
-    font-size: 13.5px;
-    margin: 10px;
-  }
-
-  #home-page-animation{
-    left: -650px;
-  }
-}
-
-@media (max-width: 1350px){
-  #home-page-animation{
-    left: -600px;
-  }
-}
-
-@media (max-width: 1250px){
-  #home-page-animation{
-    left: -550px;
-  }
-}
-
-@media (max-width: 1150px){
-  #dialogue-text p{
-    font-size: 12.5px;
-  }
-  #dialogue-button button{
-    width: 150px;
-    height: 60px;
-    font-size: 16px;
-  }
-
-  #home-page-animation{
-    left: -500px;
-  }
-}
-
-
-@media (max-width: 1000px){
-  #dialogue-text p{
-    font-size: 11.5px;
-  }
-
-  #home-page-image{
-    width: 400px;
-    height: 500px;
-    right: -90px;
-    bottom: -200px;
-  }
-
-  #home-page-animation{
-    left: -450px;
-  }
-}
-
-@media (max-width: 900px){
-  .dialogue-container{
-    width: 60vw;
-  }
-
-  #home-page-animation{
-    left: -400px;
-  }
-}
-
-@media (max-width: 820px){
-  #home-page-animation{
-    left: -350px;
-  }
-}
-
-@media (max-width: 725px){
-  .dialogue-container{
-    width: 65vw;
-  }
-
-  #home-page-animation{
-    left: -300px;
-  }
-
-  #home-page-image{
-    width: 350px;
-    height: 500px;
-    right: -90px;
-    bottom: -200px;
-  }
-}
-
-@media (max-width: 650px){
-  .dialogue-container{
-    width: 70vw;
-    height: 65vh;
-  }
-
-  .dialogue-container::before{
-    width: 10px;
-    height: 10px;
-  }
-
-  .dialogue-container::after{
-    width: 10px;
-    height: 10px;
-  }
-
-  #dialogue-text p{
-    font-size: 10px;
-  }
-
-  #dialogue-button::before{
-    width: 15%;
-  }
-  
-  #dialogue-button::after{
-    width: 15%;
-  }
-}
-
-@media (max-width: 550px){
-  .dialogue-container{
-    width: 75vw;
-  }
-
-  #home-page-image{
-    display: none;
-  }
-
-  #home-page-animation{
-    height: 20%;
-    left: -700px;
-  }
-
-  #first-profile{
-    transform: rotate(15deg);
-  }
-  
-  #second-profile{
-    transform: rotate(-15deg);
-  }
-}
-
-@media (max-width: 500px){
-  .dialogue-container{
-    width: 80vw;
-    height: 70vh;
-  }
-
-  #home-page-animation{
-    display: none;
-  }
-
-  #dialogue-profile{
-    width: 15%;
-    height: 50%;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  #dialogue-profile img{
-    width: 65%;
-    height: 65%;
-    border-radius: 50%;
-  }
-}
-
-@media (max-width: 430px){
-  .dialogue-container{
-    width: 100vw;
-    border: none;
-    border-top: 5px solid rgb(80, 80, 80);
-    border-bottom: 5px solid rgb(80, 80, 80);
-    border-radius: 0%;
-  }
-}
-
-@media (max-width: 650px) and (min-height: 700px){
-  #dialogue-text p{
-    font-size: 12px;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 }
 

@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom';
 import walkieTalkie from '../walkie-talkie.png';
 import HomePageAvatar from '../home-page-avatar.png';
+import man from '../man.png';
+import gamepad from '../gamepad.png';
+import briefcase from '../case.png';
+import woman from '../women.png';
 
 function Main({visible}) {
   const style = {
@@ -9,11 +13,16 @@ function Main({visible}) {
 
   return <div className="home-page" style={visible ? style : {}}>
 
-    <div id="home-page-animation"> </div>
+    <div id="home-page-animation"></div>
 
     <img id="home-page-image" alt='error' src={walkieTalkie}/>
 
     <div className="dialogue-container">
+
+      <div id="dialogue-container-title">
+        <img alt='error' src={walkieTalkie}/> 
+        <span> Walkie Talkie </span>
+      </div>
 
       <div className="dialogue-element">
         <div id="dialogue-profile">
@@ -24,6 +33,14 @@ function Main({visible}) {
               Are you looking for the best app to conversation with wide range of funcionality? <br></br>
               <b> <u> Just check the possibilities of Walkie Talkie. You won`t regret! </u> </b> </p>
         </div>
+      </div>
+
+      <div id="dialogue-container-icons">
+        <img alt='error' src={man}/>
+        <img alt='error' src={gamepad}/>
+        <img id="wt-logo" alt='error' src={walkieTalkie}/>
+        <img alt='error' src={briefcase}/>
+        <img alt='error' src={woman}/>
       </div>
 
       <div className="dialogue-element">
