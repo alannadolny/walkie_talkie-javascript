@@ -28,11 +28,11 @@ function Header({ user, Logout, visible, setVisible }) {
           </li>
           <li>
             {' '}
-            <Link to='/'> ABOUT </Link>{' '}
+            <Link to='/about'> ABOUT </Link>{' '}
           </li>
           <li>
             {' '}
-            <Link to='/'> CONTACT </Link>{' '}
+            <Link to='/contact'> CONTACT </Link>{' '}
           </li>
           {!user.login ? (
             <li>

@@ -20,14 +20,14 @@ function UserForm({ SignIn, Register, user, visible }) {
   });
 
   const style = {
-    opacity: '70%',
+    opacity: '40%',
   };
 
   return (
       <div className='main-login' style={visible ? style : {}}>
-        <div className='login-form' style={visible ? style : {}}>
-          <div className='login-setting' style={visible ? style : {}}>
-            <h1 id='login-title' style={visible ? style : {}}>
+        <div className='login-form'>
+          <div className='login-setting'>
+            <h1 id='login-title'>
               {' '}
               {action === 'login' ? 'SIGN IN!' : 'REGISTER!'}{' '}
             </h1>
@@ -45,11 +45,11 @@ function UserForm({ SignIn, Register, user, visible }) {
                 password: '',
               }}
             >
-              <Form>
-                <label>Login: </label>
+              <Form className='login-formik'>
+                <label id="login-label">Login: </label>
                 <ErrorMessage id='error' name='login' component='div' />
                 <Field name='login' />
-                <label>Password: </label>
+                <label id="login-label">Password: </label>
                 <ErrorMessage id='error' name='password' component='div' />
                 <Field name='password' type='password' />
                 <div id='button-container'>
