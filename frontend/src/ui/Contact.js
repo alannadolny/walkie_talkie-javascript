@@ -29,11 +29,12 @@ function Contact({ visible }) {
         </div>
         <Formik
           validationSchema={schema}
-          onSubmit={(values) => {
+          onSubmit={(values, { resetForm }) => {
             axios
               .post('http://localhost:5000/mail', values)
               .then((_) => {
                 setSend(true);
+                resetForm();
               })
               .catch((_) => {
                 setSend(false);

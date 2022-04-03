@@ -22,10 +22,14 @@ function Header({ user, Logout, visible, setVisible }) {
 
       <nav className='nav'>
         <ul>
-          <li>
-            {' '}
-            <Link to='/'> HOME </Link>{' '}
-          </li>
+          {!user.login ? (
+            <li>
+              {' '}
+              <Link to='/'> HOME </Link>{' '}
+            </li>
+          ) : (
+            ''
+          )}
           <li>
             {' '}
             <Link to='/about'> ABOUT </Link>{' '}
