@@ -23,13 +23,21 @@ function App({ GetUser, user }) {
 
   return (
     <div className='App'>
-      {console.log(user)}
       <BrowserRouter>
         <Header visible={visible} setVisible={setVisible} />
         <Routes>
-          <Route path='/' element={<Main visible={visible} setVisible={setVisible}/>} />
-          <Route path='/about' element={<About visible={visible} setVisible={setVisible}/>} />
-          <Route path='/contact' element={<Contact visible={visible} setVisible={setVisible}/>} />
+          <Route
+            path='/'
+            element={<Main visible={visible} setVisible={setVisible} />}
+          />
+          <Route
+            path='/about'
+            element={<About visible={visible} setVisible={setVisible} />}
+          />
+          <Route
+            path='/contact'
+            element={<Contact visible={visible} setVisible={setVisible} />}
+          />
           <Route
             path='/form/:action'
             element={<UserForm visible={visible} />}

@@ -5,11 +5,13 @@ const users = require('./routes/users');
 const channels = require('./routes/channels');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+const mailing = require('./mails/mailing');
 
 app.use(express.json());
 app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 app.use('/users', users);
 app.use('/channels', channels);
+app.use('/mail', mailing);
 app.use(cookieParser());
 
 require('dotenv').config();
