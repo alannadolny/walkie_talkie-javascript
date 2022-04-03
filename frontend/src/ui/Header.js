@@ -1,4 +1,4 @@
-import walkieTalkie from '../walkie-talkie.png';
+import walkieTalkie from '../images/walkie-talkie.png';
 import { Link } from 'react-router-dom';
 import { getUserFromState } from '../ducks/user/selector';
 import { connect } from 'react-redux';

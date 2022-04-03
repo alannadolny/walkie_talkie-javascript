@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import * as _ from 'lodash';
 import { Logout } from '../ducks/user/operation';
 import { useState } from 'react';
-import list from '../list.png';
+import list from '../images/list.png';
 import { getUserFromState } from '../ducks/user/selector';
 import { connect } from 'react-redux';
 
