@@ -97,3 +97,28 @@ export const LeftChannel = (name) => {
     ],
   });
 };
+
+export const DeleteChannel = (name) => {
+  return createAction({
+    endpoint: 'http://localhost:5000/channels/',
+    method: 'DELETE',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      name,
+    }),
+    types: [
+      types.DELETE_CHANNEL_REQUEST,
+      {
+        type: types.DELETE_CHANNEL_SUCCESS,
+        payload: async (action, state, res) => {
+          const json = await res.json();
+          return json;
+        },
+      },
+      types.DISCONNECT_CHANNEL_FAILURE,
+    ],
+  });
+};

@@ -38,6 +38,8 @@ export const channelsReducer = (state = [], action) => {
           }
         }),
       ];
+    case types.DELETE_CHANNEL_SUCCESS:
+      return [...state.filter((el) => el.name != action.payload.name)];
     default:
       return state;
   }

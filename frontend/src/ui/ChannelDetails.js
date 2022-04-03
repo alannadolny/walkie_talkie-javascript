@@ -4,6 +4,7 @@ import { GetChannelList, LeftChannel } from '../ducks/channels/operation';
 import { useEffect } from 'react';
 import * as _ from 'lodash';
 import { useNavigate, useParams } from 'react-router-dom';
+import ChannelMessages from './ChannelMessages';
 
 function ChannelDetails({ GetChannelList, LeftChannel }) {
   const navigate = useNavigate();
@@ -19,27 +20,30 @@ function ChannelDetails({ GetChannelList, LeftChannel }) {
       {channel && (
         <div>
           <div>
-            <h1>{channel.name}</h1>
+            <div>
+              <h1>{channel.name}</h1>
+            </div>
+            <div>owner: {channel.owner[0].login}</div>
+            <div>
+              active users:{' '}
+              {channel.activeUsers.map((el) => {
+                return (
+                  <div key={el}>
+                    <strong>{el.login}</strong>
+                  </div>
+                );
+              })}
+            </div>
+            <button
+              onClick={() => {
+                LeftChannel(channel.name);
+                navigate('/channels');
+              }}
+            >
+              Left this channel
+            </button>
           </div>
-          <div>owner: {channel.owner[0].login}</div>
-          <div>
-            active users:{' '}
-            {channel.activeUsers.map((el) => {
-              return (
-                <div key={el}>
-                  <strong>{el.login}</strong>
-                </div>
-              );
-            })}
-          </div>
-          <button
-            onClick={() => {
-              LeftChannel(channel.name);
-              navigate('/channels');
-            }}
-          >
-            Left this channel
-          </button>
+          <ChannelMessages name={channel.name} />
         </div>
       )}
     </div>

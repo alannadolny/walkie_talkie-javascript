@@ -3,6 +3,5 @@ export const getChannelsFromState = (state) => {
 };
 
 export const getChannelDetails = (state, id) => {
-  console.log(state.channels);
   return state.channels.find((el) => el._id === id);
 };

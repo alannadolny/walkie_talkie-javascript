@@ -1,11 +1,22 @@
 import { connect } from 'react-redux';
 import { getChannelsFromState } from '../ducks/channels/selector';
-import { GetChannelList, JoinChannel } from '../ducks/channels/operation';
+import {
+  GetChannelList,
+  JoinChannel,
+  DeleteChannel,
+} from '../ducks/channels/operation';
 import { useEffect } from 'react';
 import * as _ from 'lodash';
 import { useNavigate } from 'react-router-dom';
+import { getUserFromState } from '../ducks/user/selector';
 
-function ChannelsList({ channels, GetChannelList, JoinChannel }) {
+function ChannelsList({
+  channels,
+  GetChannelList,
+  JoinChannel,
+  user,
+  DeleteChannel,
+}) {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -68,6 +79,11 @@ function ChannelsList({ channels, GetChannelList, JoinChannel }) {
                 ) : (
                   ''
                 )}
+                {user.login === el.owner[0].login && (
+                  <button onClick={() => DeleteChannel(el.name)}>
+                    Delete channel
+                  </button>
+                )}
               </div>
             );
           })}
@@ -79,12 +95,14 @@ function ChannelsList({ channels, GetChannelList, JoinChannel }) {
 const mapStateToProps = (state) => {
   return {
     channels: getChannelsFromState(state),
+    user: getUserFromState(state),
   };
 };
 
 const mapDispatchToProps = {
   GetChannelList,
   JoinChannel,
+  DeleteChannel,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChannelsList);
