@@ -29,18 +29,15 @@ function Main({ visible }) {
           </div>
           <div id='home-page-text'>
             <p>
-              {' '}
               Do you like playing games with friends all day long? <br></br>
               Are you looking for the best app to conversation with wide range
               of funcionality? <br></br>
               <b>
-                {' '}
                 <u>
-                  {' '}
                   Just check the possibilities of Walkie Talkie. You won`t
-                  regret!{' '}
-                </u>{' '}
-              </b>{' '}
+                  regret!
+                </u>
+              </b>
             </p>
           </div>
         </div>
@@ -64,8 +61,8 @@ function Main({ visible }) {
                 {' '}
                 <u>
                   {' '}
-                  Just check the possibiliteis of Walkie Talkie. You won`t
-                  regret!{' '}
+                  <b> Just check the possibiliteis of Walkie Talkie. You won`t
+                  regret! </b>{' '}
                 </u>{' '}
               </b>{' '}
             </p>

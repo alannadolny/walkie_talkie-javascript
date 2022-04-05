@@ -58,7 +58,7 @@ function Contact({ visible }) {
 
             <label id='contact-label'> Your message: </label>
             <ErrorMessage id='error' name='message' component='div' />
-            <Field
+            <Field as='textarea'
               id='contact-message'
               name='message'
               type='text'

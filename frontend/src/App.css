@@ -1,3 +1,20 @@
+*::-webkit-scrollbar{
+  width: 15px;
+  height: 100%;
+  background-color: rgba(80, 80, 80,0.8);
+}
+
+*::-webkit-scrollbar-thumb{
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.5);
+  background-color: rgba(225,225,225,0.5);
+}
+
+*::-webkit-scrollbar-thumb:hover{
+  cursor: pointer;
+  background-color: rgba(225,225,225,0.7);
+}
+
 .App{
   width: 100vw;
   height: 100vh;
@@ -99,7 +116,7 @@ li{
   background-color: transparent;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  transition: height 0.3s linear;
+  transition: height 0.25s linear;
 }
 
 .nav a:hover::after{
@@ -123,7 +140,7 @@ li{
   position: absolute;
   width: 150px;
   height: 200px;
-  background-color: rgba(89, 192, 41, 0.8);
+  background-color: rgb(89, 192, 41);
   border: 2px solid rgb(80, 80, 80);
   top: 80px;
   right: 0px;
@@ -516,8 +533,14 @@ li{
   height: 80px;
   margin: 0px;
   border: 5px solid rgb(80, 80, 80);
+  background-color: transparent;
   font-size: 20px;
   font-weight: 800;
+  cursor: pointer;
+}
+
+#home-page-button button:hover{
+  background-color: white;
 }
 
 #home-page-button button a{
@@ -637,10 +660,10 @@ li{
     min-width: 400px;
   }
   #home-page-button::after{
-    width: 10%;
+    display: none;
   }
   #home-page-button::before{
-    width: 10%;
+    display: none;
   }
 }
 
@@ -807,6 +830,9 @@ button:hover{
     border-left: 0px;
     border-radius: 0;
   }
+  .login-setting::after{
+    display: none;
+  }
 }
 
 @media (orientation: landscape) {
@@ -909,6 +935,8 @@ button:hover{
   padding: 10px;
   font-family: Arial;
   font-size: 14px;
+  line-height: 1.5;
+  resize: none;
 }
 
 #contact-button{
@@ -960,4 +988,133 @@ button:hover{
   height: 85vh;
   margin: 0 auto;
   padding: 0;
+}
+
+/* Warning */
+
+.warning-main{
+  width: 100vw;
+  min-height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.warning-container{
+  min-width: 400px;
+  min-height: 500px;
+  margin: 50px;
+  padding: 20px;
+  border: 5px solid rgb(80,80,80);
+  border-radius: 20px;
+  background-color: rgba(89, 192, 41, 0.8);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  position: relative;
+}
+
+.warning-container::after{
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 5px solid rgb(80,80,80);
+  border-radius: 50%;
+  background-color: white;
+  top: 10px;
+  right: 10px;
+}
+
+#warning-container-header{
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#warning-container-header h1{
+  font-size: 60px;
+  color: red;
+  letter-spacing: 2px;
+  -webkit-text-stroke: 2px black;
+  position: relative;
+}
+
+#warning-container-header h1::after{
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  background-color: red;
+  border: 2px solid black;
+  bottom: 0px;
+  left: 0px;
+}
+
+#warning-container-text{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+}
+
+#warning-container-login{
+  width: 100%;
+  text-align: center;
+  font-size: 22px;
+}
+
+#warning-container-login a{
+  color: black;
+}
+
+#warning-container-login a:hover{
+  color: rgba(250,250,250,0.6);
+}
+
+#warning-container-register{
+  width: 100%;
+  text-align: center;
+  font-size: 22px;
+}
+
+#warning-container-register a{
+  text-decoration: none;
+  color: black;
+}
+
+#warning-container-register button{
+  width: 150px;
+  height: 50px;
+  margin-top: 30px;
+  border: 2px solid black;
+  background-color: transparent;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+#warning-container-register button:hover{
+  background-color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 500px){
+  .warning-container{
+    width: 100%;
+    padding: 20px;
+    border-right: none;
+    border-left: none;
+    border-radius: 0%;
+    margin-right: 0px;
+    margin-left: 0px;
+  }
+
+  .warning-container::after{
+    display: none;
+  }
 }
