@@ -852,6 +852,58 @@ button:hover{
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow-y: hidden;
+  position: relative;
+}
+
+#email{
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  opacity: 15%;
+  bottom: 250px;
+  right: 100px;
+  animation: email-animation 6s ease;
+}
+
+@keyframes email-animation{
+  from{
+    bottom: -200px;
+    width: 0px;
+    height: 0px;
+    transform: rotate(0deg);
+  }
+  to{
+    bottom: 250px;
+    width: 200px;
+    height: 200px;
+    transform: rotate(360deg);
+  }
+}
+
+#delivery{
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  opacity: 15%;
+  top: 180px;
+  left: 100px;
+  animation: delivery-animation 6s ease;
+}
+
+@keyframes delivery-animation{
+  from{
+    top: -200px;
+    width: 0px;
+    height: 0px;
+    transform: rotate(0deg);
+  }
+  to{
+    top: 180px;
+    width: 200px;
+    height: 200px;
+    transform: rotate(360deg);
+  }
 }
 
 .contact-container{
@@ -959,6 +1011,148 @@ button:hover{
 
 .contact-container button:hover{
   background-color: white;
+}
+
+@media (max-width: 1300px){
+  #email{
+    right: 70px;
+  }
+
+  #delivery{
+    left: 70px;
+  }
+}
+
+@media (max-width: 1250px){
+  #email{
+    width: 150px;
+    height: 150px;
+    bottom: 300px;
+  }
+  @keyframes email-animation{
+    from{
+      bottom: -350px;
+      width: 0px;
+      height: 0px;
+      transform: rotate(0deg);
+    }
+    to{
+      width: 150px;
+      height: 150px;
+      transform: rotate(360deg);
+    }
+  }
+  #delivery{
+    width: 150px;
+    height: 150px;
+  }
+  @keyframes delivery-animation{
+    from{
+      top: -350px;
+      width: 0px;
+      height: 0px;
+      transform: rotate(0deg);
+    }
+    to{
+      width: 150px;
+      height: 150px;
+      transform: rotate(360deg);
+    }
+  }
+}
+
+@media (max-width: 1100px){
+  #email{
+    width: 125px;
+    height: 125px;
+    bottom: 325px;
+  }
+  @keyframes email-animation{
+    from{
+      bottom: -350px;
+      width: 0px;
+      height: 0px;
+      transform: rotate(0deg);
+    }
+    to{
+      width: 125px;
+      height: 125px;
+      transform: rotate(360deg);
+    }
+  }
+  #delivery{
+    width: 125px;
+    height: 125px;
+  }
+  @keyframes delivery-animation{
+    from{
+      top: -350px;
+      width: 0px;
+      height: 0px;
+      transform: rotate(0deg);
+    }
+    to{
+      width: 125px;
+      height: 125px;
+      transform: rotate(360deg);
+    }
+  }
+}
+
+@media (max-width: 1050px){
+  #email{
+    right: 50px;
+  }
+  #delivery{
+    left: 50px;
+  }
+}
+
+@media (max-width: 1000px){
+  #email{
+    width: 100px;
+    height: 100px;
+    bottom: 350px;
+  }
+  @keyframes email-animation{
+    from{
+      bottom: -350px;
+      width: 0px;
+      height: 0px;
+      transform: rotate(0deg);
+    }
+    to{
+      width: 100px;
+      height: 100px;
+      transform: rotate(360deg);
+    }
+  }
+  #delivery{
+    width: 100px;
+    height: 100px;
+  }
+  @keyframes delivery-animation{
+    from{
+      top: -350px;
+      width: 0px;
+      height: 0px;
+      transform: rotate(0deg);
+    }
+    to{
+      width: 100px;
+      height: 100px;
+      transform: rotate(360deg);
+    }
+  }
+}
+
+@media (max-width: 900px){
+  #email{
+    display: none;
+  }
+  #delivery{
+    display: none;
+  }
 }
 
 @media (max-width: 500px){

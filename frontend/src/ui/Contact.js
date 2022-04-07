@@ -2,6 +2,8 @@ import { Form, Formik, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import axios from 'axios';
 import { useState } from 'react';
+import email from '../images/email.png';
+import delivery from '../images/delivery.png';
 
 function Contact({ visible }) {
   const style = {
@@ -23,6 +25,8 @@ function Contact({ visible }) {
 
   return (
     <div className='contact-main' style={visible ? style : {}}>
+      <img id='email' src={email} alt='error'></img>
+      <img id='delivery' src={delivery} alt='error'></img>
       <div className='contact-container'>
         <div id='contact-title'>
           <h1> Lets contact us! </h1>

@@ -57,7 +57,7 @@ function UserForm({ SignIn, Register, user, visible }) {
                 </div>
               </Form>
             </Formik>
-            <Link id='help' to='/'>
+            <Link id='help' to='/contact'>
               {' '}
               Do you need help? Contact us!{' '}
             </Link>
