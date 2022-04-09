@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { CreateNewChannel } from '../ducks/channels/operation';
 
-function ChannelForm({ CreateNewChannel }) {
+function ChannelForm({ CreateNewChannel, visible}) {
   const navigate = useNavigate();
 
   const schema = yup.object().shape({
@@ -13,12 +13,15 @@ function ChannelForm({ CreateNewChannel }) {
       .required('channel name is required'),
   });
 
+  const style = {
+    opacity: '40%',
+  };
+
   return (
-    <div>
-      <div className='main-login'>
+      <div className='main-login' style={visible ? style : {}}>
         <div className='login-form'>
           <div className='login-setting'>
-            <h1 id='login-title'>Create new channel</h1>
+            <h1 id='channelform-title'>Create channel!</h1>
             <Formik
               validationSchema={schema}
               onSubmit={(values) => {
@@ -30,24 +33,22 @@ function ChannelForm({ CreateNewChannel }) {
                 name: '',
               }}
             >
-              <Form>
-                <label>channel name: </label>
+              <Form className='login-formik'>
+                <label id="channelform-label"> Channel name: </label>
                 <ErrorMessage id='error' name='name' component='div' />
-                <Field name='name' />
-                <div id='button-container'>
+                <Field id='channelform-input' name='name' placeholder='Name:'/>
+                <div id='buttons-container'>
                   <button type='submit'> SUBMIT </button>
                   <button onClick={() => navigate(-1)}> UNDO </button>
                 </div>
               </Form>
             </Formik>
-            <Link id='help' to='/'>
-              {' '}
-              Do you need help? Contact us!{' '}
+            <Link id='help' to='/contact'>
+              Do you need help? Contact us!
             </Link>
           </div>
         </div>
       </div>
-    </div>
   );
 }
 

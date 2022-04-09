@@ -48,11 +48,11 @@ function App({ GetUser, user }) {
           />
           <Route
             path='/channels'
-            element={user.login ? <ChannelsList/> : <Warning visible={visible} setVisible={setVisible}/>}
+            element={user.login ? <ChannelsList visible={visible} setVisible={setVisible}/> : <Warning/>}
           />
           <Route
             path='/channel/form'
-            element={user.login ? <ChannelForm /> : <Warning />}
+            element={user.login ? <ChannelForm visible={visible} setVisible={setVisible}/> : <Warning/>}
           />
           <Route
             path='/channel/details/:id'

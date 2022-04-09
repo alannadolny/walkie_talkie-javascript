@@ -33,6 +33,7 @@ header{
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0px 0px 15px black;
 }
 
 #header-left-container{
@@ -380,6 +381,7 @@ li{
   justify-content: space-evenly;
   align-items: center;
   background-color: rgba(89, 192, 41, 0.8);
+  box-shadow: 0px 0px 15px black;
   position: relative;
 }
 
@@ -729,6 +731,7 @@ li{
   border: 5px solid rgb(80, 80, 80);
   border-radius: 20px;
   background-color: rgba(89, 192, 41, 0.8);
+  box-shadow: 0px 0px 15px black;
 }
 
 .login-setting{
@@ -737,6 +740,7 @@ li{
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-evenly;
   flex-wrap: nowrap;
   position: relative;
 }
@@ -754,8 +758,8 @@ li{
 }
 
 #login-title{
-  margin-top: 20px;
   font-size: 45px;
+  margin: 0px;
   position: relative;
 }
 
@@ -777,7 +781,7 @@ li{
 
 #login-label{
   font-size: 22px;
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: 2px;
   color: white;
   -webkit-text-stroke: 0.5px black;
@@ -805,7 +809,7 @@ li{
 .login-formik button{
   width: 100px;
   height: 40px;
-  margin-top: 30px;
+  margin-top: 20px;
   border: 2px solid rgb(80, 80, 80);
   background-color: transparent;
   color: black;
@@ -817,10 +821,6 @@ li{
 button:hover{
   background-color: white;
   text-decoration: underline;
-}
-
-#help{
-  margin-top: 30px;
 }
 
 @media (max-width: 450px){
@@ -921,6 +921,7 @@ button:hover{
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;
+  box-shadow: 0px 0px 15px black;
 }
 
 #contact-title{
@@ -966,8 +967,8 @@ button:hover{
 }
 
 #contact-label{
-  font-size: 22px;
-  font-weight: 500;
+  font-size: 24px;
+  font-weight: 700;
   letter-spacing: 2px;
   color: white;
   -webkit-text-stroke: 0.5px black;
@@ -1311,4 +1312,205 @@ button:hover{
   .warning-container::after{
     display: none;
   }
+}
+
+/* channel form */
+#channelform-title{
+  margin: 0px;
+  font-size: 38px;
+  position: relative;
+}
+#channelform-title::after{
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  background-color: rgb(80, 80, 80);
+  bottom: 0px;
+  left: 0px;
+}
+
+#channelform-label{
+  margin-bottom: 10px;
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 2px;
+  -webkit-text-stroke: 0.5px black;
+}
+
+#channelform-input{
+  width: 250px;
+  height: 40px;
+  font-size: 16px;
+}
+
+#buttons-container{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#buttons-container button{
+  width: 100px;
+  height: 40px;
+  border: 2px solid black;
+  background-color: transparent;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+#buttons-container button:hover{
+  cursor: pointer;
+  background-color: white;
+}
+
+/* channels */
+
+.channels-main{
+  margin: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.channels-left-container{
+  width: 600px;
+  padding: 20px;
+  background-color: rgba(89, 192, 41, 0.8);
+  border: 5px solid rgb(80, 80, 80);
+  border-radius: 20px;
+  box-shadow: 0 0 10px black;
+}
+
+#channels-left-container-header{
+  height: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+
+#channels-left-container-header h1{
+  margin: 0px;
+  font-size: 36px;
+  font-weight: 700;
+  color: white;
+  -webkit-text-stroke: 0.5px black;
+}
+
+#new-channel-button{
+  width: 150px;
+  height: 80%;
+  font-size: 14px;
+  font-weight: 600;
+  border: 2px solid rgb(80, 80, 80);
+  background-color: transparent;
+}
+
+#new-channel-button:hover{
+  cursor: pointer;
+  background-color: white;
+}
+
+#channels-container{
+  width: calc(100% - 10px);
+  height: 350px;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+}
+
+#channel-container{
+  width: 90%;
+  border: 2px solid black;
+  margin-bottom: 20px;
+  padding: 12px;
+  position: relative;
+}
+
+#channel-container::after{
+  content: '';
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border: 2px solid black;
+  border-radius: 50%;
+  background-color: white;
+  top: 5px;
+  left: 5px
+}
+
+#channel-container-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-top: 5px;
+}
+
+#delete-channel-button{
+  width: 16px;
+  height: 16px;
+  border: none;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+#delete-channel-button img{
+  width: 16px;
+  height: 16px;
+}
+
+#channel-container-status{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#join-channel-button{
+  background-color: transparent;
+  border: 2px solid black;
+  font-weight: 600;
+}
+
+#join-channel-button:hover{
+  cursor: pointer;
+  background-color: white;
+}
+
+#channel-container-activeusers{
+  display: flex;
+  overflow-x: hidden;
+}
+
+.channels-right-container{
+  width: 200px;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border: 5px solid rgb(80, 80, 80);
+  border-radius: 20px;
+  box-shadow: 0 0 10px black;
+}
+
+#profile{
+  width: 100px;
+  height: 100px;
+  border: 5px solid rgb(80, 80, 80);
+  border-radius: 50%;
+  box-shadow: 0px 3px 10px rgb(58, 58, 58);
 }

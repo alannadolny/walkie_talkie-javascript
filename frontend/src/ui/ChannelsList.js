@@ -9,6 +9,8 @@ import { useEffect } from 'react';
 import * as _ from 'lodash';
 import { useNavigate } from 'react-router-dom';
 import { getUserFromState } from '../ducks/user/selector';
+import cross from '../images/cross.png';
+import UserProfile from './UserProfile';
 
 function ChannelsList({
   channels,
@@ -24,70 +26,76 @@ function ChannelsList({
   }, []);
 
   return (
-    <div>
-      <div style={{ display: 'flex' }}>
-        <h1>Channel List</h1>
-        <button
-          style={{ width: '200px', marginLeft: '10px' }}
-          onClick={() => navigate('/channel/form')}
-        >
-          Create new channel
-        </button>
-      </div>
-      <div>
-        {channels &&
-          channels.map((el) => {
-            return (
-              <div
-                key={el._id}
-                style={{
-                  border: '1px solid black',
-                  margin: '10px',
-                  padding: '10px',
-                }}
-              >
-                <strong>name: {el.name}</strong> <br />
-                <button
-                  onClick={() => {
-                    JoinChannel(el.name);
-                    navigate(`/channel/details/${el._id}`);
-                  }}
-                  style={{ margin: '10px' }}
-                >
-                  {' '}
-                  Join this channel
-                </button>
-                <strong>owner: {el.owner[0].login}</strong>
-                {!_.isEmpty(el.activeUsers) ? (
-                  <div
-                    key={el.activeUsers}
-                    style={{
-                      border: '1px solid black',
-                      padding: '10px',
-                      width: '100px',
-                    }}
-                  >
-                    <strong>active users: </strong>
-                    {el.activeUsers.map((active) => {
-                      return (
-                        <div key={active}>
-                          <strong key={active}>{active.login}</strong>
-                        </div>
-                      );
-                    })}
+    <div className='channels-main'>
+
+      <div className='channels-left-container'>
+        <div id='channels-left-container-header'>
+          <h1> Channel List: </h1>
+
+          <button id='new-channel-button' onClick={() => navigate('/channel/form')}>
+            Create new channel
+          </button>
+        </div>
+
+        <div id='channels-container'>
+          {channels &&
+            channels.map((el) => {
+              return (
+                <div id='channel-container' key={el._id}>
+                  <div id='channel-container-header'>
+                    <strong> Name: {el.name}</strong> <br />
+                    {user.login === el.owner[0].login && (
+                      <button id='delete-channel-button' onClick={() => DeleteChannel(el.name)}>
+                        <img src={cross} alt='error'></img>
+                      </button>
+                    )}
                   </div>
-                ) : (
-                  ''
-                )}
-                {user.login === el.owner[0].login && (
-                  <button onClick={() => DeleteChannel(el.name)}>
-                    Delete channel
-                  </button>
-                )}
-              </div>
-            );
-          })}
+
+                  <div id='channel-container-status'>
+                    <strong>Owner: {el.owner[0].login}</strong>
+                    <button id='join-channel-button'
+                      onClick={() => {
+                        JoinChannel(el.name);
+                        navigate(`/channel/details/${el._id}`);
+                      }}
+                    >
+                      Join channel
+                    </button>
+                    <span> <strong> Active user: {el.activeUsers.length} </strong> </span>
+                  </div>
+
+                  {!_.isEmpty(el.activeUsers) ? (
+                    <div id='channel-container-activeusers' key={el.activeUsers}>
+                      <strong> Users: </strong>
+                      {el.activeUsers.map((active,index) => {
+                          if(index === el.activeUsers.length-1){
+                            return(
+                              <div key={active}>
+                              <span key={active}> &nbsp; {active.login} </span>
+                              </div>
+                            )
+                          }else{
+                            return(
+                              <div key={active}>
+                                <span key={active}> &nbsp; {active.login}, </span>
+                              </div>
+                            )
+                          }
+                      })}
+                    </div>
+                  ) : (
+                    ''
+                  )}
+                </div>
+
+              );
+            })}
+        </div>
+
       </div>
+
+      <UserProfile/>
+
     </div>
   );
 }
