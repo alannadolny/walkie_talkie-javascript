@@ -1207,6 +1207,7 @@ button:hover{
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: space-around;
+  box-shadow: 0px 0px 15px black;
   position: relative;
 }
 
