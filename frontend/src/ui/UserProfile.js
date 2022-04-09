@@ -1,13 +1,31 @@
-function UserProfile(){
+import { getUserFromState } from '../ducks/user/selector';
+import { connect } from 'react-redux';
 
-    return(
-        <div className='channels-right-container'>
-            <div id='profile'>
-
-            </div>
-            <span id='nickname'> XDDDDD </span>
-        </div>
-    )
+function UserProfile({ user }) {
+  return (
+    <div className='channels-right-container'>
+      {console.log(user)}
+      <div
+        id='profile'
+        style={{
+          alignItems: 'center',
+          display: 'flex',
+          justifyContent: 'center',
+          fontWeight: 'bolder',
+          fontSize: '40px',
+        }}
+      >
+        {user.login[0]}
+      </div>
+      <span id='nickname'> {user.login} </span>
+    </div>
+  );
 }
 
-export default UserProfile
+const mapStateToProps = (state) => {
+  return {
+    user: getUserFromState(state),
+  };
+};
+
+export default connect(mapStateToProps, null)(UserProfile);

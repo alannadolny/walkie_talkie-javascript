@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import { getUserFromState } from '../ducks/user/selector';
 import cross from '../images/cross.png';
 import UserProfile from './UserProfile';
+import ChannelFilters from './ChannelFilters';
 
 function ChannelsList({
   channels,
@@ -27,12 +28,15 @@ function ChannelsList({
 
   return (
     <div className='channels-main'>
-
+      <ChannelFilters />
       <div className='channels-left-container'>
         <div id='channels-left-container-header'>
           <h1> Channel List: </h1>
 
-          <button id='new-channel-button' onClick={() => navigate('/channel/form')}>
+          <button
+            id='new-channel-button'
+            onClick={() => navigate('/channel/form')}
+          >
             Create new channel
           </button>
         </div>
@@ -45,7 +49,10 @@ function ChannelsList({
                   <div id='channel-container-header'>
                     <strong> Name: {el.name}</strong> <br />
                     {user.login === el.owner[0].login && (
-                      <button id='delete-channel-button' onClick={() => DeleteChannel(el.name)}>
+                      <button
+                        id='delete-channel-button'
+                        onClick={() => DeleteChannel(el.name)}
+                      >
                         <img src={cross} alt='error'></img>
                       </button>
                     )}
@@ -53,7 +60,8 @@ function ChannelsList({
 
                   <div id='channel-container-status'>
                     <strong>Owner: {el.owner[0].login}</strong>
-                    <button id='join-channel-button'
+                    <button
+                      id='join-channel-button'
                       onClick={() => {
                         JoinChannel(el.name);
                         navigate(`/channel/details/${el._id}`);
@@ -61,41 +69,47 @@ function ChannelsList({
                     >
                       Join channel
                     </button>
-                    <span> <strong> Active user: {el.activeUsers.length} </strong> </span>
+                    <span>
+                      {' '}
+                      <strong>
+                        {' '}
+                        Active user: {el.activeUsers.length}{' '}
+                      </strong>{' '}
+                    </span>
                   </div>
 
                   {!_.isEmpty(el.activeUsers) ? (
-                    <div id='channel-container-activeusers' key={el.activeUsers}>
+                    <div
+                      id='channel-container-activeusers'
+                      key={el.activeUsers}
+                    >
                       <strong> Users: </strong>
-                      {el.activeUsers.map((active,index) => {
-                          if(index === el.activeUsers.length-1){
-                            return(
-                              <div key={active}>
+                      {el.activeUsers.map((active, index) => {
+                        if (index === el.activeUsers.length - 1) {
+                          return (
+                            <div key={active}>
                               <span key={active}> &nbsp; {active.login} </span>
-                              </div>
-                            )
-                          }else{
-                            return(
-                              <div key={active}>
-                                <span key={active}> &nbsp; {active.login}, </span>
-                              </div>
-                            )
-                          }
+                            </div>
+                          );
+                        } else {
+                          return (
+                            <div key={active}>
+                              <span key={active}> &nbsp; {active.login}, </span>
+                            </div>
+                          );
+                        }
                       })}
                     </div>
                   ) : (
                     ''
                   )}
                 </div>
-
               );
             })}
         </div>
-
       </div>
 
-      <UserProfile/>
-
+      <UserProfile />
     </div>
   );
 }
