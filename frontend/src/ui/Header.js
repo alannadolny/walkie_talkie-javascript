@@ -10,7 +10,7 @@ function Header({ user, Logout, visible, setVisible }) {
   return (
     <header>
       <div id='header-left-container'>
-        <Link to='/'>
+        <Link to={user.login ? '/channels' : '/'}>
           {' '}
           <img id='logo' alt='error' src={walkieTalkie} />{' '}
         </Link>
