@@ -6,7 +6,7 @@
 
 *::-webkit-scrollbar-thumb{
   border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.5);
+  box-shadow: inset 0 0 3px rgba(0,0,0,0.5);
   background-color: rgba(225,225,225,0.5);
 }
 
@@ -1430,6 +1430,13 @@ button:hover{
   overflow-y: auto;
 }
 
+#channels-container::-webkit-scrollbar{
+  width: 15px;
+  height: 100%;
+  background-color: rgba(80, 80, 80,0.8);
+  border-radius: 10px;
+}
+
 #channel-container{
   width: 90%;
   border: 2px solid black;
@@ -1492,8 +1499,16 @@ button:hover{
 }
 
 #channel-container-activeusers{
-  display: flex;
-  overflow-x: hidden;
+  width: 100%;
+  margin-top: 10px;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+#channel-container-activeusers span{
+  text-indent: 5px;
 }
 
 .channels-right-container{

@@ -118,15 +118,11 @@ function ChannelsList({
                       {el.activeUsers.map((active, index) => {
                         if (index === el.activeUsers.length - 1) {
                           return (
-                            <div key={index}>
-                              <span key={index}> &nbsp; {active.login} </span>
-                            </div>
+                              <span key={active}> {active.login} </span>
                           );
                         } else {
                           return (
-                            <div key={index}>
-                              <span key={index}> &nbsp; {active.login}, </span>
-                            </div>
+                              <span key={active}> {active.login}, </span>
                           );
                         }
                       })}
