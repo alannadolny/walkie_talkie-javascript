@@ -12,6 +12,11 @@ import { getUserFromState } from '../ducks/user/selector';
 import cross from '../images/cross.png';
 import UserProfile from './UserProfile';
 import ChannelFilters from './ChannelFilters';
+import mqtt from 'mqtt/dist/mqtt';
+import {
+  JoinChannelAction,
+  LeaveChannelAction,
+} from '../ducks/channels/actions';
 
 function ChannelsList({
   channels,
@@ -19,8 +24,34 @@ function ChannelsList({
   JoinChannel,
   user,
   DeleteChannel,
+  JoinChannelAction,
+  LeaveChannelAction,
 }) {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const client = mqtt.connect('mqtt://localhost:8000/mqtt');
+    client.subscribe(`channel/join`, () => {
+      client.on('message', (_, message) => {
+        JoinChannelAction(JSON.parse(message.toString()));
+      });
+    });
+    return () => {
+      client.end();
+    };
+  });
+
+  useEffect(() => {
+    const client = mqtt.connect('mqtt://localhost:8000/mqtt');
+    client.subscribe(`channel/leave`, () => {
+      client.on('message', (_, message) => {
+        LeaveChannelAction(JSON.parse(message.toString()));
+      });
+    });
+    return () => {
+      client.end();
+    };
+  });
 
   useEffect(() => {
     if (_.isEmpty(channels)) GetChannelList();
@@ -87,14 +118,14 @@ function ChannelsList({
                       {el.activeUsers.map((active, index) => {
                         if (index === el.activeUsers.length - 1) {
                           return (
-                            <div key={active}>
-                              <span key={active}> &nbsp; {active.login} </span>
+                            <div key={index}>
+                              <span key={index}> &nbsp; {active.login} </span>
                             </div>
                           );
                         } else {
                           return (
-                            <div key={active}>
-                              <span key={active}> &nbsp; {active.login}, </span>
+                            <div key={index}>
+                              <span key={index}> &nbsp; {active.login}, </span>
                             </div>
                           );
                         }
@@ -125,6 +156,8 @@ const mapDispatchToProps = {
   GetChannelList,
   JoinChannel,
   DeleteChannel,
+  JoinChannelAction,
+  LeaveChannelAction,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChannelsList);
