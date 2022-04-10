@@ -28,7 +28,13 @@ function App({ GetUser, user }) {
         <Routes>
           <Route
             path='/'
-            element={<Main visible={visible} setVisible={setVisible} />}
+            element={
+              !user.login ? (
+                <Main visible={visible} setVisible={setVisible} />
+              ) : (
+                <ChannelsList visible={visible} setVisible={setVisible} />
+              )
+            }
           />
           <Route
             path='/about'
@@ -69,7 +75,6 @@ function App({ GetUser, user }) {
           <Route
             path='/channel/details/:id'
             element={user.login ? <ChannelDetails /> : <Warning />}
-            onLeave={() => console.log('xd')}
           />
         </Routes>
       </BrowserRouter>

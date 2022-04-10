@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import * as _ from 'lodash';
 import { useNavigate, useParams } from 'react-router-dom';
 import ChannelMessages from './ChannelMessages';
+import { useBeforeunload } from 'react-beforeunload';
 
 function ChannelDetails({ GetChannelList, LeftChannel }) {
   const navigate = useNavigate();
@@ -14,6 +15,8 @@ function ChannelDetails({ GetChannelList, LeftChannel }) {
   useEffect(() => {
     if (!channel) GetChannelList();
   }, []);
+
+  useBeforeunload(() => LeftChannel(channel.name));
 
   return (
     <div>
