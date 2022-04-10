@@ -16,7 +16,9 @@ function ChannelDetails({ GetChannelList, LeftChannel }) {
     if (!channel) GetChannelList();
   }, []);
 
-  useBeforeunload(() => LeftChannel(channel.name));
+  useBeforeunload(() => {
+    return 'Are you sure you want to leave?';
+  });
 
   return (
     <div>
