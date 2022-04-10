@@ -6,8 +6,10 @@ import * as _ from 'lodash';
 import { useNavigate, useParams } from 'react-router-dom';
 import ChannelMessages from './ChannelMessages';
 import { useBeforeunload } from 'react-beforeunload';
+import mqtt from 'mqtt/dist/mqtt';
+import { getUserFromState } from '../ducks/user/selector';
 
-function ChannelDetails({ GetChannelList, LeftChannel }) {
+function ChannelDetails({ GetChannelList, LeftChannel, user }) {
   const navigate = useNavigate();
   const { id } = useParams();
   const channel = useSelector((state) => getChannelDetails(state, id));
@@ -16,8 +18,18 @@ function ChannelDetails({ GetChannelList, LeftChannel }) {
     if (!channel) GetChannelList();
   }, []);
 
-  useBeforeunload(() => {
-    return 'Are you sure you want to leave?';
+  useBeforeunload((e) => {
+    navigate('/channels');
+    LeftChannel(channel.name);
+    const client = mqtt.connect('mqtt://localhost:8000/mqtt');
+    client.publish(
+      '/disconnect',
+      JSON.stringify({
+        channel: channel.name,
+        user: user.login,
+      })
+    );
+    return 'Are you sure you want to disconnect?';
   });
 
   return (
@@ -33,7 +45,7 @@ function ChannelDetails({ GetChannelList, LeftChannel }) {
               active users:{' '}
               {channel.activeUsers.map((el) => {
                 return (
-                  <div key={el}>
+                  <div key={el.login}>
                     <strong>{el.login}</strong>
                   </div>
                 );
@@ -55,9 +67,15 @@ function ChannelDetails({ GetChannelList, LeftChannel }) {
   );
 }
 
+const mapStateToProps = (state) => {
+  return {
+    user: getUserFromState(state),
+  };
+};
+
 const mapDispatchToProps = {
   GetChannelList,
   LeftChannel,
 };
 
-export default connect(null, mapDispatchToProps)(ChannelDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(ChannelDetails);
