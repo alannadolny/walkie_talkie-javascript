@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { CreateNewChannel } from '../ducks/channels/operation';
 
-function ChannelForm({ CreateNewChannel, visible}) {
+function ChannelForm({ CreateNewChannel, visible }) {
   const navigate = useNavigate();
 
   const schema = yup.object().shape({
@@ -18,37 +18,37 @@ function ChannelForm({ CreateNewChannel, visible}) {
   };
 
   return (
-      <div className='main-login' style={visible ? style : {}}>
-        <div className='login-form'>
-          <div className='login-setting'>
-            <h1 id='channelform-title'>Create channel!</h1>
-            <Formik
-              validationSchema={schema}
-              onSubmit={(values) => {
-                CreateNewChannel(values.name);
-                navigate(-1);
-              }}
-              enableReinitialize={true}
-              initialValues={{
-                name: '',
-              }}
-            >
-              <Form className='login-formik'>
-                <label id="channelform-label"> Channel name: </label>
-                <ErrorMessage id='error' name='name' component='div' />
-                <Field id='channelform-input' name='name' placeholder='Name:'/>
-                <div id='buttons-container'>
-                  <button type='submit'> SUBMIT </button>
-                  <button onClick={() => navigate(-1)}> UNDO </button>
-                </div>
-              </Form>
-            </Formik>
-            <Link id='help' to='/contact'>
-              Do you need help? Contact us!
-            </Link>
-          </div>
+    <div className='main-login' style={visible ? style : {}}>
+      <div className='login-form'>
+        <div className='login-setting'>
+          <h1 id='channelform-title'>Create channel!</h1>
+          <Formik
+            validationSchema={schema}
+            onSubmit={(values) => {
+              CreateNewChannel(values.name);
+              navigate(-1);
+            }}
+            enableReinitialize={true}
+            initialValues={{
+              name: '',
+            }}
+          >
+            <Form className='login-formik'>
+              <label id='channelform-label'> Channel name: </label>
+              <ErrorMessage id='error' name='name' component='div' />
+              <Field id='channelform-input' name='name' placeholder='Name:' />
+              <div id='buttons-container'>
+                <button type='submit'> SUBMIT </button>
+                <button onClick={() => navigate(-1)}> UNDO </button>
+              </div>
+            </Form>
+          </Formik>
+          <Link id='help' to='/contact'>
+            Do you need help? Contact us!
+          </Link>
         </div>
       </div>
+    </div>
   );
 }
 

@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 function UserProfile({ user }) {
   return (
     <div className='channels-right-container'>
-      {console.log(user)}
       <div
         id='profile'
         style={{

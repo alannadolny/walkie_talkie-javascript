@@ -61,8 +61,11 @@ function Main({ visible }) {
                 {' '}
                 <u>
                   {' '}
-                  <b> Just check the possibiliteis of Walkie Talkie. You won`t
-                  regret! </b>{' '}
+                  <b>
+                    {' '}
+                    Just check the possibiliteis of Walkie Talkie. You won`t
+                    regret!{' '}
+                  </b>{' '}
                 </u>{' '}
               </b>{' '}
             </p>

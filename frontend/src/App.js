@@ -48,15 +48,28 @@ function App({ GetUser, user }) {
           />
           <Route
             path='/channels'
-            element={user.login ? <ChannelsList visible={visible} setVisible={setVisible}/> : <Warning/>}
+            element={
+              user.login ? (
+                <ChannelsList visible={visible} setVisible={setVisible} />
+              ) : (
+                <Warning />
+              )
+            }
           />
           <Route
             path='/channel/form'
-            element={user.login ? <ChannelForm visible={visible} setVisible={setVisible}/> : <Warning/>}
+            element={
+              user.login ? (
+                <ChannelForm visible={visible} setVisible={setVisible} />
+              ) : (
+                <Warning />
+              )
+            }
           />
           <Route
             path='/channel/details/:id'
             element={user.login ? <ChannelDetails /> : <Warning />}
+            onLeave={() => console.log('xd')}
           />
         </Routes>
       </BrowserRouter>
