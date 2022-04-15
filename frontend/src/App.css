@@ -1987,6 +1987,7 @@ button:hover {
   justify-content: space-around;
   border: 5px solid rgb(80, 80, 80);
   border-radius: 20px;
+  background-color: rgba(200, 200, 200, 0.5);
   box-shadow: 0 0 10px black;
 }
 
@@ -1995,5 +1996,73 @@ button:hover {
   height: 100px;
   border: 5px solid rgb(80, 80, 80);
   border-radius: 50%;
+  background-color: white;
   box-shadow: 0px 3px 10px rgb(58, 58, 58);
+}
+
+/* channel filters */
+
+.channel-filters-container{
+  width: 160px;
+  padding: 20px;
+  border: 5px solid rgb(80, 80, 80);
+  border-radius: 20px;
+  background-color: rgba(89, 192, 41, 0.8);
+  box-shadow: 0 0 10px black;
+  display: flex;
+  flex-direction: column;
+}
+
+#channel-filters-container-title{
+  margin: 0px;
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.5px;
+  -webkit-text-stroke: 0.5px black;
+  text-align: center;
+}
+
+#channel-filters-form{
+  display: flex;
+  flex-direction: column;
+}
+
+#channel-filters-input{
+  height: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#channel-filters-label{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.filters, .sort{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.filters input, .sort input{
+  cursor: pointer;
+}
+
+#filter-button{
+  width: 100px;
+  height: 30px;
+  margin: auto;
+  border: 2px solid black;
+  background-color: transparent;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+#filter-button:hover{
+  background-color: white;
+  cursor: pointer;
 }
