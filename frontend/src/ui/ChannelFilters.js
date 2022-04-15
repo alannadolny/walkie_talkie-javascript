@@ -18,6 +18,8 @@ function ChannelFilters({ filteredChannels, setFilteredChannels }) {
   //tutaj pomocny bedzie ten spread operator (...) zeby nie przepisywac calego jsona
   // jesli napiszesz {...jakas_nazwa_pooprzedniego_json, channelName: true} to wszystkie wartości które miał tamten json
   // zostaną wrzucone do tego nowego obiektu, a channelName zostanie nadpisany na true
+  //a no i nie uzywaj querySelectorów, na każdym polu mozesz dodać jakiś atrybut, który go obsłuży, jesli bys nie wiedzial jak cos zrobic
+  // to tego jest pelno w necie
   let prevf = 0;
   let currf = 0;
   let currs = 0;
