@@ -3,8 +3,9 @@ import { getChannelsFromState } from '../ducks/channels/selector';
 import { GetChannelList } from '../ducks/channels/operation';
 import { useEffect, useState } from 'react';
 import * as _ from 'lodash';
+import { filter } from 'lodash';
 
-function ChannelFilters({ channels, GetChannelList }) {
+function ChannelFilters({ channels, activeUsers, GetChannelList }) {
   const [filters, setFilters] = useState({
     channelName: [],
     ownerName: [],
@@ -18,75 +19,70 @@ function ChannelFilters({ channels, GetChannelList }) {
     activeUser: false,
   });
 
+  let ownerList = [];
+  let activeUserList = [];
+  channels.forEach(element => {
+    ownerList.push(element.owner[0].login);
+    element.activeUsers.forEach(element2 => {
+      activeUserList.push(element2.login);
+    })
+  })
+  ownerList = [... new Set(ownerList)];
+  activeUserList = [... new Set(activeUserList)];
+
   return (
     <div className='channel-filters-container'>
-      {console.log(filters)}
       <label id='channel-filters-container-title'> Find channel: </label>
-      <input
-        id='channel-filters-input'
-        name='channel'
-        type='text'
-        placeholder='Write channel name:'
-      />
+      <input id='channel-filters-input' name='channel' type='text' placeholder='Write channel name:'/>
       <label id='channel-filters-label'> Filters: </label>
       <div className='filters'>
-        <div>
-          <input
-            type='checkbox'
-            onClick={() =>
-              setShowFilters({
-                ...showFilters,
-                channelName: !showFilters.channelName,
-              })
-            }
-          />
-          Channel name
-          {showFilters.channelName && (
-            <div>
-              {channels.map((el) => {
-                return (
-                  <div style={{ marginLeft: '5px' }}>
-                    <input
-                      type='checkbox'
-                      onClick={() =>
-                        !filters.channelName.includes(el.name)
-                          ? setFilters({
-                              ...filters,
-                              channelName: [...filters.channelName, el.name],
-                            })
-                          : setFilters({
-                              ...filters,
-                              channelName: [
-                                ...filters.channelName.filter(
-                                  (el2) => el2 !== el.name
-                                ),
-                              ],
-                            })
-                      }
-                    />
-                    {el.name}
+        <div> <input type='checkbox'/>Channel name </div>
+
+        <div> <input type='checkbox' onClick={() => setShowFilters(
+          { ...showFilters, ownerName: !showFilters.ownerName })}/>
+          Owner name 
+
+          {showFilters.ownerName && (
+            <div className='filter-list'>
+              {ownerList.map((element) => {
+                return(
+                  <div id='filter-list-container'>
+                    <input type='checkbox' onClick={() => 
+                      !filters.ownerName.includes(element)
+                      ? setFilters({...filters, ownerName: [...filters.ownerName, element]})
+                      : setFilters({...filters, ownerName: [...filters.ownerName.filter((el) => el !== element),]})
+                    }/>
+                    {element}
                   </div>
                 );
               })}
             </div>
           )}
         </div>
-        <div>
-          <input
-            type='checkbox'
-            onClick={() => setShowFilters({ ...showFilters, ownerName: true })}
-          />
-          Owner name
-        </div>
-        <div id='owner-name-list'> </div>
-        <div>
-          <input
-            type='checkbox'
-            onClick={() => setShowFilters({ ...showFilters, activeUser: true })}
-          />
+
+        <div> <input type='checkbox' onClick={() => setShowFilters(
+          { ...showFilters, activeUser: !showFilters.activeUser })}/>
           Active user
+          {showFilters.activeUser && (
+            <div className='filter-list'>
+              {activeUserList.map((element) => {
+                return(
+                  <div id='filter-list-container'>
+                    <input type='checkbox' onClick={() => 
+                        !filters.activeUser.includes(element)
+                        ? setFilters({...filters, activeUser: [...filters.activeUser, element]})
+                        : setFilters({...filters, activeUser: [...filters.activeUser.filter((el) => el !== element),]})
+                      }/>
+                    {element}
+                  </div>
+                );
+              })}
+            </div>
+            )}
         </div>
       </div>
+      
+      
       <div className='sort'>
         <label id='channel-filters-label'> Sort: </label>
         {/* <div> <input type='checkbox' onClick={SortSetCheckboxes} /> Increasing </div>
