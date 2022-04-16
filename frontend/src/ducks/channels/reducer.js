@@ -56,6 +56,7 @@ export const channelsReducer = (state = [], action) => {
         }),
       ];
     case types.LEAVE_CHANNEL:
+      console.log(action.payload);
       return [
         ...state.map((el) => {
           if (el.name === action.payload.name)

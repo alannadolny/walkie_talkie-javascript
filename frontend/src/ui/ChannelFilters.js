@@ -50,10 +50,10 @@ function ChannelFilters({channels,GetChannelList}) {
     }
   }
 
-  function SortSetCheckboxes(){
-    prevs=currs;
-    for(let i=4; i<6; i++){
-      if(checkboxlist[i].checked===true && i!==prevs){
+  function SortSetCheckboxes() {
+    prevs = currs;
+    for (let i = 4; i < 6; i++) {
+      if (checkboxlist[i].checked === true && i !== prevs) {
         currs = i;
       }
     }
@@ -81,19 +81,16 @@ function ChannelFilters({channels,GetChannelList}) {
           <div id='owner-name-list'> 
           
           </div>
-          <div> <input type='checkbox' onClick={FiltersSetCheckboxes}/> Active user </div>
+          <div> <input type='checkbox' onClick={SortSetCheckboxes}/> Active user </div>
         </div>
-        <label id='channel-filters-label'> Sort: </label> 
-        <div className='sort'>
-          <div> <input type='checkbox' onClick={SortSetCheckboxes}/> Increasing </div>
-          <div> <input type='checkbox' onClick={SortSetCheckboxes}/> Decreasing </div>
+        <div>
+          {' '}
+          <input type='checkbox' onClick={SortSetCheckboxes} /> Owner name{' '}
         </div>
         <button id='filter-button' type='submit' onClick={SortingChannelList}> Submit </button>
     </div>
   );
 }
-
-//export default ChannelFilters;
 
 
 const mapStateToProps = (state) => {

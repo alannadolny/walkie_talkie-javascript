@@ -5,7 +5,7 @@ import {
   JoinChannel,
   DeleteChannel,
 } from '../ducks/channels/operation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import * as _ from 'lodash';
 import { useNavigate } from 'react-router-dom';
 import { getUserFromState } from '../ducks/user/selector';
@@ -28,6 +28,8 @@ function ChannelsList({
   LeaveChannelAction,
 }) {
   const navigate = useNavigate();
+
+  const [filteredChannels, setFilteredChannels] = useState(channels);
 
   useEffect(() => {
     const client = mqtt.connect('mqtt://localhost:8000/mqtt');
@@ -54,12 +56,21 @@ function ChannelsList({
   });
 
   useEffect(() => {
-    if (_.isEmpty(channels)) GetChannelList();
+    if (_.isEmpty(channels)) {
+      GetChannelList();
+    }
   }, []);
+
+  useEffect(() => {
+    setFilteredChannels(channels);
+  }, [channels]);
 
   return (
     <div className='channels-main'>
-      <ChannelFilters />
+      <ChannelFilters
+        filteredChannels={filteredChannels}
+        setFilteredChannels={setFilteredChannels}
+      />
       <div className='channels-left-container'>
         <div id='channels-left-container-header'>
           <h1> Channel List: </h1>
@@ -74,7 +85,7 @@ function ChannelsList({
 
         <div id='channels-container'>
           {channels &&
-            channels.map((el) => {
+            filteredChannels.map((el) => {
               return (
                 <div id='channel-container' key={el._id}>
                   <div id='channel-container-header'>

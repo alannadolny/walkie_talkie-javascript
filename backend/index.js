@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const mailing = require('./mails/mailing');
 const messages = require('./routes/messages');
+const disconnectUser = require('./mqtt/disconnectUser');
 
 app.use(express.json());
 app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
