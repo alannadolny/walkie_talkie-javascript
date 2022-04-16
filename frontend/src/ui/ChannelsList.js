@@ -115,7 +115,7 @@ function ChannelsList({
                       {' '}
                       <strong>
                         {' '}
-                        Active user: {el.activeUsers.length}{' '}
+                        Active users: {el.activeUsers.length}{' '}
                       </strong>{' '}
                     </span>
                   </div>

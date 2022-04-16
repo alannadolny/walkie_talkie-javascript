@@ -1,104 +1,101 @@
 import { connect } from 'react-redux';
 import { getChannelsFromState } from '../ducks/channels/selector';
-import {GetChannelList} from '../ducks/channels/operation';
-import { useEffect , useState} from 'react';
+import { GetChannelList } from '../ducks/channels/operation';
+import { useEffect, useState } from 'react';
 import * as _ from 'lodash';
 
-function ChannelFilters({channels,GetChannelList}) {
-   const [prevf , setPrevf] = useState(0);
-   const [currf , setCurrf] = useState(0);
-   const [currs , setCurrs] = useState(0);
-   const [prevs , setPrevs] = useState(0);
-  //let prevf = 0;
-  //let currf = 0;
-  //let currs = 0;
-  //let prevs = 0;
-  let checkboxlist = [...document.querySelectorAll('input')];
-  let getOwnerList = document.getElementById('owner-name-list');
-  let ownerList = [];
-
-  useEffect(() => {
-    if (_.isEmpty(channels)) GetChannelList();
-  }, []);
-  
-  function SetOwnerList(){
-    getOwnerList.style.display = 'flex';
-
-    channels.forEach(element => {
-      ownerList.push(element.owner[0].login);
-    })
-    ownerList = [...new Set(ownerList)];
-
-    ownerList.forEach(element => {
-      getOwnerList.innerHTML += `<div id='owner-name'> <input type='checkbox'/> <span> ${element} </span> </div>`;
-    })
-  } 
-
-  function FiltersSetCheckboxes(){
-    //prevf = currf;
-    setPrevf(currf);
-    for(let i=1; i<4; i++){
-      if(checkboxlist[i].checked===true && i!==prevf){
-        //currf = i;
-        setCurrf(i);
-      }
-    }
-    for(let j=1; j<4; j++){
-      if(j !== currf){
-        checkboxlist[j].checked = false;
-      }
-    }
-    if(checkboxlist[2].checked === true){
-      SetOwnerList();
-    }else{
-      getOwnerList.style.display = 'none';
-      ownerList = ownerList.shift(0,ownerList.length);
-    }
-  }
-
-  function SortSetCheckboxes() {
-    //prevs = currs;
-    setPrevs(currs);
-    for (let i = 4; i < 6; i++) {
-      if (checkboxlist[i].checked === true && i !== prevs) {
-        //currs = i;
-        setCurrs(i);
-      }
-    }
-    for(let j=4; j<6; j++){
-      if(j !== currs){
-        checkboxlist[j].checked = false;
-      }
-    }
-  }
-
-  function SortingChannelList(){
-    if(checkboxlist[1].checked === true){
-      
-    }
-  }
+function ChannelFilters({ channels, GetChannelList }) {
+  const [filters, setFilters] = useState({
+    channelName: [],
+    ownerName: [],
+    activeUser: [],
+    sort: 0, // powiedzmy ze 0 to increase, a 1 to decrease
+  }); //to bedzie obiekt zawierajacy tablice, w ktorych beda elementy po ktorych chcemy filtrowac
+  // jesli tablice beda puste to nie filtrujemy po danym elemencie
+  const [showFilters, setShowFilters] = useState({
+    channelName: false,
+    ownerName: false,
+    activeUser: false,
+  });
 
   return (
     <div className='channel-filters-container'>
-        <label id='channel-filters-container-title'> Find channel: </label>
-        <input id='channel-filters-input' name='channel' type='text' placeholder='Write channel name:'/>
-        <label id='channel-filters-label'> Filters: </label>
-        <div className='filters'>
-          <div> <input type='checkbox' onClick={FiltersSetCheckboxes}/> Channel name </div>
-          <div> <input type='checkbox' onClick={FiltersSetCheckboxes}/> Owner name </div>
-          <div id='owner-name-list'> </div>
-          <div> <input type='checkbox' onClick={FiltersSetCheckboxes}/> Active user </div>
+      {console.log(filters)}
+      <label id='channel-filters-container-title'> Find channel: </label>
+      <input
+        id='channel-filters-input'
+        name='channel'
+        type='text'
+        placeholder='Write channel name:'
+      />
+      <label id='channel-filters-label'> Filters: </label>
+      <div className='filters'>
+        <div>
+          <input
+            type='checkbox'
+            onClick={() =>
+              setShowFilters({
+                ...showFilters,
+                channelName: !showFilters.channelName,
+              })
+            }
+          />
+          Channel name
+          {showFilters.channelName && (
+            <div>
+              {channels.map((el) => {
+                return (
+                  <div style={{ marginLeft: '5px' }}>
+                    <input
+                      type='checkbox'
+                      onClick={() =>
+                        !filters.channelName.includes(el.name)
+                          ? setFilters({
+                              ...filters,
+                              channelName: [...filters.channelName, el.name],
+                            })
+                          : setFilters({
+                              ...filters,
+                              channelName: [
+                                ...filters.channelName.filter(
+                                  (el2) => el2 !== el.name
+                                ),
+                              ],
+                            })
+                      }
+                    />
+                    {el.name}
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </div>
-        <div className='sort'>
-          <label id='channel-filters-label'> Sort: </label> 
-          <div> <input type='checkbox' onClick={SortSetCheckboxes} /> Increasing </div>
-          <div> <input type='checkbox' onClick={SortSetCheckboxes} /> Decreasing </div>
+        <div>
+          <input
+            type='checkbox'
+            onClick={() => setShowFilters({ ...showFilters, ownerName: true })}
+          />
+          Owner name
         </div>
-        <button id='filter-button' type='submit' onClick={SortingChannelList}> Submit </button>
+        <div id='owner-name-list'> </div>
+        <div>
+          <input
+            type='checkbox'
+            onClick={() => setShowFilters({ ...showFilters, activeUser: true })}
+          />
+          Active user
+        </div>
+      </div>
+      <div className='sort'>
+        <label id='channel-filters-label'> Sort: </label>
+        {/* <div> <input type='checkbox' onClick={SortSetCheckboxes} /> Increasing </div>
+          <div> <input type='checkbox' onClick={SortSetCheckboxes} /> Decreasing </div> */}
+      </div>
+      {/* <button id='filter-button' type='submit' onClick={SortingChannelList}> Submit </button> */}
     </div>
   );
 }
-
 
 const mapStateToProps = (state) => {
   return {
@@ -107,7 +104,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  GetChannelList
+  GetChannelList,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChannelFilters);
