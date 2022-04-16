@@ -2052,6 +2052,46 @@ button:hover {
   cursor: pointer;
 }
 
+#owner-name-list{
+  width: 100%;
+  max-height: 75px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  display: none;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  overflow-y: auto;
+}
+
+#owner-name-list::-webkit-scrollbar {
+  width: 10px;
+  height: 100%;
+  background-color: rgba(80, 80, 80, 0.8);
+  border-radius: 10px;
+}
+
+#owner-name{
+  width: 90%;
+  margin-top: 5px;
+  margin-left: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 14px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+#owner-name input{
+  margin: 0px 5px 0px 0px;
+}
+
+#owner-name span{
+  overflow-x: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 #filter-button{
   width: 100px;
   height: 30px;
