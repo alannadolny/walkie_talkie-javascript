@@ -1,14 +1,18 @@
 import { connect } from 'react-redux';
 import { getChannelsFromState } from '../ducks/channels/selector';
 import {GetChannelList} from '../ducks/channels/operation';
-import { useEffect } from 'react';
+import { useEffect , useState} from 'react';
 import * as _ from 'lodash';
 
 function ChannelFilters({channels,GetChannelList}) {
-  let prevf = 0;
-  let currf = 0;
-  let currs = 0;
-  let prevs = 0;
+   const [prevf , setPrevf] = useState(0);
+   const [currf , setCurrf] = useState(0);
+   const [currs , setCurrs] = useState(0);
+   const [prevs , setPrevs] = useState(0);
+  //let prevf = 0;
+  //let currf = 0;
+  //let currs = 0;
+  //let prevs = 0;
   let checkboxlist = [...document.querySelectorAll('input')];
   let getOwnerList = document.getElementById('owner-name-list');
   let ownerList = [];
@@ -31,10 +35,12 @@ function ChannelFilters({channels,GetChannelList}) {
   } 
 
   function FiltersSetCheckboxes(){
-    prevf=currf;
+    //prevf = currf;
+    setPrevf(currf);
     for(let i=1; i<4; i++){
       if(checkboxlist[i].checked===true && i!==prevf){
-        currf = i;
+        //currf = i;
+        setCurrf(i);
       }
     }
     for(let j=1; j<4; j++){
@@ -51,10 +57,12 @@ function ChannelFilters({channels,GetChannelList}) {
   }
 
   function SortSetCheckboxes() {
-    prevs = currs;
+    //prevs = currs;
+    setPrevs(currs);
     for (let i = 4; i < 6; i++) {
       if (checkboxlist[i].checked === true && i !== prevs) {
-        currs = i;
+        //currs = i;
+        setCurrs(i);
       }
     }
     for(let j=4; j<6; j++){
@@ -78,14 +86,13 @@ function ChannelFilters({channels,GetChannelList}) {
         <div className='filters'>
           <div> <input type='checkbox' onClick={FiltersSetCheckboxes}/> Channel name </div>
           <div> <input type='checkbox' onClick={FiltersSetCheckboxes}/> Owner name </div>
-          <div id='owner-name-list'> 
-          
-          </div>
-          <div> <input type='checkbox' onClick={SortSetCheckboxes}/> Active user </div>
+          <div id='owner-name-list'> </div>
+          <div> <input type='checkbox' onClick={FiltersSetCheckboxes}/> Active user </div>
         </div>
-        <div>
-          {' '}
-          <input type='checkbox' onClick={SortSetCheckboxes} /> Owner name{' '}
+        <div className='sort'>
+          <label id='channel-filters-label'> Sort: </label> 
+          <div> <input type='checkbox' onClick={SortSetCheckboxes} /> Increasing </div>
+          <div> <input type='checkbox' onClick={SortSetCheckboxes} /> Decreasing </div>
         </div>
         <button id='filter-button' type='submit' onClick={SortingChannelList}> Submit </button>
     </div>
