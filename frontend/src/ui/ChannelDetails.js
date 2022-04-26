@@ -8,6 +8,7 @@ import ChannelMessages from './ChannelMessages';
 import { useBeforeunload } from 'react-beforeunload';
 import mqtt from 'mqtt/dist/mqtt';
 import { getUserFromState } from '../ducks/user/selector';
+import ChannelMedia from './ChannelMedia';
 
 function ChannelDetails({ GetChannelList, LeftChannel, user }) {
   const navigate = useNavigate();
@@ -60,6 +61,7 @@ function ChannelDetails({ GetChannelList, LeftChannel, user }) {
               Left this channel
             </button>
           </div>
+          <ChannelMedia />
           <ChannelMessages name={channel.name} />
         </div>
       )}
