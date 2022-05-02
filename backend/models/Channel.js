@@ -19,6 +19,12 @@ const channelSchema = new Schema({
       unique: false,
     },
   ],
+  currentIds: [
+    {
+      type: String,
+      unique: true,
+    },
+  ],
 });
 
 module.exports = model('Channel', channelSchema);

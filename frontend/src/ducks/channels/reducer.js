@@ -56,7 +56,6 @@ export const channelsReducer = (state = [], action) => {
         }),
       ];
     case types.LEAVE_CHANNEL:
-      console.log(action.payload);
       return [
         ...state.map((el) => {
           if (el.name === action.payload.name)
@@ -69,6 +68,19 @@ export const channelsReducer = (state = [], action) => {
               ],
             };
           else return el;
+        }),
+      ];
+    case types.CONNECT_TO_VOICE_CHANNEL_SUCCESS:
+      return [
+        ...state.map((el) => {
+          if (el.name === action.payload.name) {
+            return {
+              ...el,
+              currentIds: [...el.currentIds, action.payload.id],
+            };
+          } else {
+            return el;
+          }
         }),
       ];
     default:

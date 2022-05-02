@@ -27,6 +27,7 @@ router.post('/', verifyToken, async (req, res) => {
       name: req.body.name,
       owner: user._id,
       activeUsers: [],
+      currentIds: [],
     }).save();
     return res
       .status(200)
@@ -59,6 +60,7 @@ router.get('/', async (req, res) => {
         $project: {
           name: 1,
           activeUsers: 1,
+          currentIds: 1,
           owner: {
             login: 1,
           },
@@ -113,6 +115,21 @@ router.patch('/disconnect', verifyToken, async (req, res) => {
       },
     });
     return res.status(200).send({ name: req.body.name, login: req.body.login });
+  } catch (err) {
+    return res.status(500).send(err);
+  }
+});
+
+router.patch('/connect/voice', verifyToken, async (req, res) => {
+  try {
+    const channel = await Channel.findOne({
+      name: req.body.name,
+    }).updateOne({
+      $push: {
+        currentIds: [req.body.id],
+      },
+    });
+    return res.status(200).send({ name: req.body.name, id: req.body.id });
   } catch (err) {
     return res.status(500).send(err);
   }

@@ -122,3 +122,29 @@ export const DeleteChannel = (name) => {
     ],
   });
 };
+
+export const ConnectToVoiceChannel = (name, id) => {
+  return createAction({
+    endpoint: 'http://localhost:5000/channels/connect/voice',
+    method: 'PATCH',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      name,
+      id,
+    }),
+    types: [
+      types.CONNECT_TO_VOICE_CHANNEL_REQUEST,
+      {
+        type: types.CONNECT_TO_VOICE_CHANNEL_SUCCESS,
+        payload: async (action, state, res) => {
+          const json = await res.json();
+          return json;
+        },
+      },
+      types.CONNECT_TO_VOICE_CHANNEL_FAILURE,
+    ],
+  });
+};

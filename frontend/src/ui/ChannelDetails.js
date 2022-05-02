@@ -61,7 +61,7 @@ function ChannelDetails({ GetChannelList, LeftChannel, user }) {
               Left this channel
             </button>
           </div>
-          <ChannelMedia />
+          <ChannelMedia channel={channel} user={user} />
           <ChannelMessages name={channel.name} />
         </div>
       )}
