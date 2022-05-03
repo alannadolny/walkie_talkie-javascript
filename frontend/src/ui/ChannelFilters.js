@@ -82,7 +82,7 @@ function ChannelFilters({ channels, activeUsers, GetChannelList }) {
                             })
                       }
                     />
-                    {element}
+                    <span> {element} </span>
                   </div>
                 );
               })}
@@ -125,7 +125,7 @@ function ChannelFilters({ channels, activeUsers, GetChannelList }) {
                             })
                       }
                     />
-                    {element}
+                    <span> {element} </span>
                   </div>
                 );
               })}

@@ -66,19 +66,16 @@ const ChannelMedia = ({ user, channel, ConnectToVoiceChannel, channels }) => {
   }, [channel]);
 
   return (
-    <div style={{ border: '1px solid black' }}>
-      You:
+    <div className='channel-details-media'>
       <video
         ref={videoRef}
         autoPlay
-        style={{ width: '300px', height: '300px' }}
       />
-      Remote:
       <video
         ref={remoteVideoRef}
         autoPlay
-        style={{ width: '300px', height: '300px' }}
       />
+      
     </div>
   );
 };

@@ -2078,15 +2078,9 @@ button:hover {
   flex-direction: row;
   align-items: center;
   font-size: 14px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 
-#owner-name input{
-  margin: 0px 5px 0px 0px;
-}
-
-#owner-name span{
+#filter-list-container span{
   overflow-x: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -2105,4 +2099,218 @@ button:hover {
 #filter-button:hover{
   background-color: white;
   cursor: pointer;
+}
+
+/* Channel details */
+
+#channel-details-title{
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#channel-details-title h1{
+  margin: 0px;
+}
+
+.channel-details-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.channel-details-left{
+  width: 160px;
+  height: 400px;
+  padding: 20px;
+  border: 5px solid rgb(80, 80, 80);
+  border-radius: 20px;
+  background-color: rgba(89, 192, 41, 0.8);
+  box-shadow: 0 0 10px black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.channel-details-left strong{
+  font-size: 18px;
+}
+
+#name{
+  margin-bottom: 5px;
+}
+
+#channel-details-left-owner, #channel-details-left-users{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#channel-details-left-owner{
+  font-size: 17px;
+}
+
+#channel-details-left-users-list{
+  width: 100%;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  overflow: hidden;
+  overflow-y: auto;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 17px;
+}
+
+#active-user{
+  display: flex;
+  align-items: center;
+}
+
+#point{
+  min-width: 3px;
+  min-height: 3px;
+  margin-right: 5px;
+  border: 2px solid black;
+  border-radius: 50%;
+  background-color: white;
+}
+
+#active-user span{
+  overflow-x: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+#channel-details-left-users-list::-webkit-scrollbar{
+ width: 10px; 
+ height: 100%;
+ background-color: rgba(80, 80, 80, 0.8);
+ border-radius: 10px;
+}
+
+#leave-channel-button{
+  width: 150px;
+  height: 40px;
+  border: 2px solid black;
+  font-size: 15px;
+  font-weight: 600;
+  background-color: transparent;
+}
+
+#leave-channel-button:hover{
+  cursor: pointer;
+  background-color: white;
+  text-decoration: underline 2px;
+}
+
+.channel-details-messages{
+  width: 160px;
+  height: 400px;
+  padding: 20px;
+  border: 5px solid rgb(80, 80, 80);
+  border-radius: 20px;
+  background-color: rgba(89, 192, 41, 0.8);
+  box-shadow: 0 0 10px black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#channel-details-messages-title{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#channel-details-messages-title h1{
+   margin: 0px;
+   font-size: 22px;
+}
+
+.channel-details-messages-container{
+  width: 100%;
+  height: 250px;
+  overflow-y: auto;
+}
+
+.channel-details-messages-container::-webkit-scrollbar{
+  width: 10px;
+  height: 100%;
+  border-radius: 10px;
+}
+
+#message{
+  margin-bottom: 5px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#sender{
+  overflow-x: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-right: 5px;
+}
+
+.channel-details-message-settings{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#channel-details-message-input{
+  width: 100%;
+  height: 30px;
+  border: 2px solid black;
+}
+
+#channel-details-message-send-button{
+  width: 100px;
+  height: 30px;
+  margin-top: 10px;
+  border: 2px solid black;
+  background-color: transparent;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+#channel-details-message-send-button:hover{
+  cursor: pointer;
+  background-color: white;
+  text-decoration: underline;
+}
+
+.channel-details-media{
+  width: 600px;
+  height: 400px;
+  padding: 20px;
+  border: 5px solid rgb(80, 80, 80);
+  border-radius: 20px;
+  background-color: rgba(89, 192, 41, 0.8);
+  box-shadow: 0 0 10px black;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+video{
+  width: 30%;
+  height: 30%;
+}
+
+#camera{
+  width: 30%;
+  height: 30%;
+  border: 2px solid rgb(80,80,80);
 }

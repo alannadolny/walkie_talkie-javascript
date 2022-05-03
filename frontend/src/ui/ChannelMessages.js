@@ -51,30 +51,38 @@ function ChannelMessages({
   }, []);
 
   return (
-    <div style={{ border: '1px solid black' }}>
-      <div>
-        <h3>Messages:</h3>
+    <div className='channel-details-messages'>
+      
+      <div id='channel-details-messages-title'>
+        <h1> Messages: </h1>
+      </div>  
+
+      <div className='channel-details-messages-container'>
         {!_.isEmpty(messages) &&
           messages.map((el) => {
             return (
-              <div key={el._id}>
-                <strong>{el.sender[0].login}:</strong> {el.text}
+              <div id='message' key={el._id}>
+                <span id='sender'> <strong>{el.sender[0].login}: </strong> </span>
+                {el.text}
               </div>
             );
           })}
       </div>
-      <input
-        type='text'
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-      />
-      <button
-        onClick={() => {
-          newMessage();
-        }}
-      >
-        send
-      </button>
+        
+      <div className='channel-details-message-settings'>
+        <input id='channel-details-message-input'
+          type='text'
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+        />
+        <button id='channel-details-message-send-button'
+          onClick={() => {
+            newMessage();
+          }}
+        >
+          SEND
+        </button>
+      </div>
     </div>
   );
 }
