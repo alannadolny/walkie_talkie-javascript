@@ -18,6 +18,7 @@ import {
   JoinChannelAction,
   LeaveChannelAction,
   CreateChannelAction,
+  DeleteChannelAction,
 } from '../ducks/channels/actions';
 
 function ChannelsList({
@@ -29,6 +30,7 @@ function ChannelsList({
   JoinChannelAction,
   LeaveChannelAction,
   CreateChannelAction,
+  DeleteChannelAction,
 }) {
   const navigate = useNavigate();
 
@@ -49,6 +51,10 @@ function ChannelsList({
 
     socket.current.on('channel', (mess) => {
       if (mess.owner[0].login !== user.login) CreateChannelAction(mess);
+    });
+
+    socket.current.on('deleteChannel', (mess) => {
+      if (mess.owner[0].login !== user.login) DeleteChannelAction(mess);
     });
 
     socket.current.on('leaveChannel', (mess) => {
@@ -163,6 +169,7 @@ const mapDispatchToProps = {
   JoinChannelAction,
   LeaveChannelAction,
   CreateChannelAction,
+  DeleteChannelAction,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChannelsList);

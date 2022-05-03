@@ -9,7 +9,7 @@ export const channelsReducer = (state = [], action) => {
     case types.GET_CHANNEL_LIST_FAILURE:
       return [];
     case types.POST_CHANNEL_SUCCESS:
-      const socket = io(`http://${window.location.hostname}:5000`);
+      var socket = io(`http://${window.location.hostname}:5000`);
       socket.emit('newChannel', action.payload);
       socket.emit('end');
       return [...state, action.payload];
@@ -44,6 +44,9 @@ export const channelsReducer = (state = [], action) => {
         }),
       ];
     case types.DELETE_CHANNEL_SUCCESS:
+      var socket = io(`http://${window.location.hostname}:5000`);
+      socket.emit('newDeleteChannel', action.payload);
+      socket.emit('end');
       return [...state.filter((el) => el.name !== action.payload.name)];
     case types.JOIN_CHANNEL:
       console.log(action.payload);
@@ -87,6 +90,8 @@ export const channelsReducer = (state = [], action) => {
       ];
     case types.CREATE_CHANNEL:
       return [...state, action.payload];
+    case types.DELETE_CHANNEL:
+      return [...state.filter((el) => el.name !== action.payload.name)];
     default:
       return state;
   }

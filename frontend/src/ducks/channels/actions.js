@@ -14,3 +14,8 @@ export const CreateChannelAction = (payload) => ({
   type: types.CREATE_CHANNEL,
   payload,
 });
+
+export const DeleteChannelAction = (payload) => ({
+  type: types.DELETE_CHANNEL,
+  payload,
+});
