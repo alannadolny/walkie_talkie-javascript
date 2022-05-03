@@ -27,11 +27,10 @@ function ChannelDetails({ GetChannelList, LeftChannel, user }) {
   useEffect(() => {
     socket.current = io(`http://${window.location.hostname}:5000`);
     socket.current.on('leaveChannel', (mess) => {
-      LeaveChannelAction({ name: mess.name, login: mess.user });
+      GetChannelList();
     });
     socket.current.on('joinChannel', (mess) => {
-      if (mess.user !== user.login)
-        JoinChannelAction({ name: mess.name, login: mess.user });
+      GetChannelList();
     });
     return () => socket.current.emit('end');
   }, []);

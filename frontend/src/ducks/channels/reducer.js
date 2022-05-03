@@ -11,6 +11,7 @@ export const channelsReducer = (state = [], action) => {
     case types.POST_CHANNEL_SUCCESS:
       const socket = io(`http://${window.location.hostname}:5000`);
       socket.emit('newChannel', action.payload);
+      socket.emit('end');
       return [...state, action.payload];
     case types.CONNECT_CHANNEL_SUCCESS:
       return [
