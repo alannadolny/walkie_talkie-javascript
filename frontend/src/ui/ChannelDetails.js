@@ -9,7 +9,10 @@ import { getUserFromState } from '../ducks/user/selector';
 import ChannelMedia from './ChannelMedia';
 import { io } from 'socket.io-client';
 
-import { LeaveChannelAction } from '../ducks/channels/actions';
+import {
+  LeaveChannelAction,
+  JoinChannelAction,
+} from '../ducks/channels/actions';
 
 function ChannelDetails({ GetChannelList, LeftChannel, user }) {
   const navigate = useNavigate();
@@ -18,7 +21,7 @@ function ChannelDetails({ GetChannelList, LeftChannel, user }) {
   const socket = useRef(null);
 
   useEffect(() => {
-    if (!channel) GetChannelList();
+    GetChannelList();
   }, []);
 
   useEffect(() => {
@@ -26,7 +29,11 @@ function ChannelDetails({ GetChannelList, LeftChannel, user }) {
     socket.current.on('leaveChannel', (mess) => {
       LeaveChannelAction({ name: mess.name, login: mess.user });
     });
-    return () => socket.current.close();
+    socket.current.on('joinChannel', (mess) => {
+      if (mess.user !== user.login)
+        JoinChannelAction({ name: mess.name, login: mess.user });
+    });
+    return () => socket.current.emit('end');
   }, []);
 
   return (
@@ -84,6 +91,7 @@ const mapDispatchToProps = {
   GetChannelList,
   LeftChannel,
   LeaveChannelAction,
+  JoinChannelAction,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChannelDetails);

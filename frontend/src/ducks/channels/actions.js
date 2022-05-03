@@ -9,3 +9,8 @@ export const LeaveChannelAction = (payload) => ({
   type: types.LEAVE_CHANNEL,
   payload,
 });
+
+export const CreateChannelAction = (payload) => ({
+  type: types.CREATE_CHANNEL,
+  payload,
+});

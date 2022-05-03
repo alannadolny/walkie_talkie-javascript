@@ -17,6 +17,7 @@ import { io } from 'socket.io-client';
 import {
   JoinChannelAction,
   LeaveChannelAction,
+  CreateChannelAction,
 } from '../ducks/channels/actions';
 
 function ChannelsList({
@@ -27,6 +28,7 @@ function ChannelsList({
   DeleteChannel,
   JoinChannelAction,
   LeaveChannelAction,
+  CreateChannelAction,
 }) {
   const navigate = useNavigate();
 
@@ -34,16 +36,19 @@ function ChannelsList({
   const socket = useRef(null);
 
   useEffect(() => {
-    if (_.isEmpty(channels)) {
-      GetChannelList();
-    }
+    GetChannelList();
   }, []);
 
   useEffect(() => {
     socket.current = io(`http://${window.location.hostname}:5000`);
 
     socket.current.on('joinChannel', (mess) => {
-      JoinChannelAction({ name: mess.name, login: mess.user });
+      if (mess.user !== user.login)
+        JoinChannelAction({ name: mess.name, login: mess.user });
+    });
+
+    socket.current.on('channel', (mess) => {
+      if (mess.owner[0].login !== user.login) CreateChannelAction(mess);
     });
 
     socket.current.on('leaveChannel', (mess) => {
@@ -157,6 +162,7 @@ const mapDispatchToProps = {
   DeleteChannel,
   JoinChannelAction,
   LeaveChannelAction,
+  CreateChannelAction,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChannelsList);

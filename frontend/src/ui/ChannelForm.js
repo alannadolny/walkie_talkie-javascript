@@ -3,8 +3,9 @@ import * as yup from 'yup';
 import { Link, useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { CreateNewChannel } from '../ducks/channels/operation';
+import { getUserFromState } from '../ducks/user/selector';
 
-function ChannelForm({ CreateNewChannel, visible }) {
+function ChannelForm({ CreateNewChannel, visible, user }) {
   const navigate = useNavigate();
 
   const schema = yup.object().shape({
@@ -52,8 +53,14 @@ function ChannelForm({ CreateNewChannel, visible }) {
   );
 }
 
+const mapStateToProps = (state) => {
+  return {
+    user: getUserFromState(state),
+  };
+};
+
 const mapDispatchToProps = {
   CreateNewChannel,
 };
 
-export default connect(null, mapDispatchToProps)(ChannelForm);
+export default connect(mapStateToProps, mapDispatchToProps)(ChannelForm);

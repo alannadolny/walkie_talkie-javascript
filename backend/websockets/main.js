@@ -12,6 +12,9 @@ const websocketsEvents = (io) => {
     socket.on('end', () => {
       socket.disconnect(0);
     });
+    socket.on('newChannel', (mess) => {
+      io.emit('channel', mess);
+    });
   });
 };
 

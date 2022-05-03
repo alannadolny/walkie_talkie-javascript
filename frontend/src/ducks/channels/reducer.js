@@ -1,4 +1,6 @@
 import types from './types';
+import { io } from 'socket.io-client';
+import * as _ from 'lodash';
 
 export const channelsReducer = (state = [], action) => {
   switch (action.type) {
@@ -7,6 +9,8 @@ export const channelsReducer = (state = [], action) => {
     case types.GET_CHANNEL_LIST_FAILURE:
       return [];
     case types.POST_CHANNEL_SUCCESS:
+      const socket = io(`http://${window.location.hostname}:5000`);
+      socket.emit('newChannel', action.payload);
       return [...state, action.payload];
     case types.CONNECT_CHANNEL_SUCCESS:
       return [
@@ -80,6 +84,8 @@ export const channelsReducer = (state = [], action) => {
           }
         }),
       ];
+    case types.CREATE_CHANNEL:
+      return [...state, action.payload];
     default:
       return state;
   }
