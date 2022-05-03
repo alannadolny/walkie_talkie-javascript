@@ -5,14 +5,15 @@ import {
   JoinChannel,
   DeleteChannel,
 } from '../ducks/channels/operation';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as _ from 'lodash';
 import { useNavigate } from 'react-router-dom';
 import { getUserFromState } from '../ducks/user/selector';
 import cross from '../images/cross.png';
 import UserProfile from './UserProfile';
 import ChannelFilters from './ChannelFilters';
-import mqtt from 'mqtt/dist/mqtt';
+import { io } from 'socket.io-client';
+
 import {
   JoinChannelAction,
   LeaveChannelAction,
@@ -30,36 +31,28 @@ function ChannelsList({
   const navigate = useNavigate();
 
   const [filteredChannels, setFilteredChannels] = useState(channels);
-
-  useEffect(() => {
-    const client = mqtt.connect('mqtt://localhost:8000/mqtt');
-    client.subscribe(`channel/join`, () => {
-      client.on('message', (_, message) => {
-        JoinChannelAction(JSON.parse(message.toString()));
-      });
-    });
-    return () => {
-      client.end();
-    };
-  });
-
-  useEffect(() => {
-    const client = mqtt.connect('mqtt://localhost:8000/mqtt');
-    client.subscribe(`channel/leave`, () => {
-      client.on('message', (_, message) => {
-        LeaveChannelAction(JSON.parse(message.toString()));
-      });
-    });
-    return () => {
-      client.end();
-    };
-  });
+  const socket = useRef(null);
 
   useEffect(() => {
     if (_.isEmpty(channels)) {
       GetChannelList();
     }
   }, []);
+
+  useEffect(() => {
+    socket.current = io(`http://${window.location.hostname}:5000`);
+
+    socket.current.on('joinChannel', (mess) => {
+      JoinChannelAction({ name: mess.name, login: mess.user });
+    });
+
+    socket.current.on('leaveChannel', (mess) => {
+      console.log('got signal');
+      LeaveChannelAction({ name: mess.name, login: mess.user });
+    });
+
+    return () => socket.current.close();
+  });
 
   useEffect(() => {
     setFilteredChannels(channels);
@@ -107,6 +100,10 @@ function ChannelsList({
                       onClick={() => {
                         JoinChannel(el.name);
                         navigate(`/channel/details/${el._id}`);
+                        socket.current.emit('joinChannel', {
+                          name: el.name,
+                          user: user.login,
+                        });
                       }}
                     >
                       Join channel

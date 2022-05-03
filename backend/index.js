@@ -7,7 +7,9 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const mailing = require('./mails/mailing');
 const messages = require('./routes/messages');
-const disconnectUser = require('./mqtt/disconnectUser');
+const socket = require('socket.io');
+const websocketsEvents = require('./websockets/main');
+//require('./websockets/main');
 
 app.use(express.json());
 app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
@@ -36,8 +38,14 @@ mongoose
       `Connected to MongoDB. Database name: "${response.connections[0].name}"`
     );
     const port = process.env.PORT || 5000;
-    app.listen(port, () => {
+    const server = app.listen(port, () => {
       console.log(`API server listening at http://localhost:${port}`);
     });
+    const io = socket(server, {
+      cors: {
+        origin: '*',
+      },
+    });
+    websocketsEvents(io);
   })
   .catch((error) => console.error('Error connecting to MongoDB', error));

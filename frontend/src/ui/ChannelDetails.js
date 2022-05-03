@@ -1,36 +1,35 @@
 import { useSelector, connect } from 'react-redux';
 import { getChannelDetails } from '../ducks/channels/selector';
 import { GetChannelList, LeftChannel } from '../ducks/channels/operation';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import * as _ from 'lodash';
 import { useNavigate, useParams } from 'react-router-dom';
 import ChannelMessages from './ChannelMessages';
-import { useBeforeunload } from 'react-beforeunload';
-import mqtt from 'mqtt/dist/mqtt';
 import { getUserFromState } from '../ducks/user/selector';
 import ChannelMedia from './ChannelMedia';
+import { io } from 'socket.io-client';
+
+import { LeaveChannelAction } from '../ducks/channels/actions';
 
 function ChannelDetails({ GetChannelList, LeftChannel, user }) {
   const navigate = useNavigate();
   const { id } = useParams();
   const channel = useSelector((state) => getChannelDetails(state, id));
+  const socket = useRef(null);
 
   useEffect(() => {
     if (!channel) GetChannelList();
   }, []);
 
-  useBeforeunload((e) => {
-    navigate('/channels');
-    LeftChannel(channel.name);
-    const client = mqtt.connect('mqtt://localhost:8000/mqtt');
-    client.publish(
-      '/disconnect',
-      JSON.stringify({
-        channel: channel.name,
-        user: user.login,
-      })
-    );
-    return 'Are you sure you want to disconnect?';
+  useEffect(() => {
+    socket.current = io(`http://${window.location.hostname}:5000`);
+
+    socket.current.on('leaveChannel', (mess) => {
+      console.log('got signal');
+      LeaveChannelAction({ name: mess.name, login: mess.user });
+    });
+
+    return () => socket.current.close();
   });
 
   return (
@@ -55,6 +54,11 @@ function ChannelDetails({ GetChannelList, LeftChannel, user }) {
             <button
               onClick={() => {
                 LeftChannel(channel.name);
+                console.log('clicked');
+                socket.current.emit('leaveChannel', {
+                  name: channel.name,
+                  user: user.login,
+                });
                 navigate('/channels');
               }}
             >
@@ -78,6 +82,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   GetChannelList,
   LeftChannel,
+  LeaveChannelAction,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChannelDetails);

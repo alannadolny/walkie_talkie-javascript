@@ -1,8 +1,6 @@
 import types from './types';
-import mqtt from 'mqtt/dist/mqtt';
 
 export const channelsReducer = (state = [], action) => {
-  const client = mqtt.connect('mqtt://localhost:8000/mqtt');
   switch (action.type) {
     case types.GET_CHANNEL_LIST_SUCCESS:
       return action.payload;
@@ -11,7 +9,6 @@ export const channelsReducer = (state = [], action) => {
     case types.POST_CHANNEL_SUCCESS:
       return [...state, action.payload];
     case types.CONNECT_CHANNEL_SUCCESS:
-      client.publish(`channel/join`, JSON.stringify(action.payload));
       return [
         ...state.map((el) => {
           if (el.name === action.payload.name) {
@@ -25,7 +22,6 @@ export const channelsReducer = (state = [], action) => {
         }),
       ];
     case types.DISCONNECT_CHANNEL_SUCCESS:
-      client.publish(`channel/leave`, JSON.stringify(action.payload));
       return [
         ...state.map((el) => {
           if (el.name === action.payload.name) {
@@ -45,6 +41,7 @@ export const channelsReducer = (state = [], action) => {
     case types.DELETE_CHANNEL_SUCCESS:
       return [...state.filter((el) => el.name !== action.payload.name)];
     case types.JOIN_CHANNEL:
+      console.log(action.payload);
       return [
         ...state.map((el) => {
           if (el.name === action.payload.name)

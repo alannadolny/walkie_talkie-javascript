@@ -4,7 +4,6 @@ import { GetMessages } from '../ducks/messages/operation';
 import * as _ from 'lodash';
 import { useEffect, useState } from 'react';
 import { SendMessage } from '../ducks/messages/operation';
-import * as mqtt from 'mqtt/dist/mqtt';
 import { AddNewMessage } from '../ducks/messages/actions';
 
 function ChannelMessages({
@@ -15,18 +14,6 @@ function ChannelMessages({
   AddNewMessage,
 }) {
   const [message, setMessage] = useState('');
-
-  useEffect(() => {
-    const client = mqtt.connect('mqtt://localhost:8000/mqtt');
-    client.subscribe(`message/${name}`, () => {
-      client.on('message', (_, message) => {
-        AddNewMessage(JSON.parse(message.toString()));
-      });
-    });
-    return () => {
-      client.end();
-    };
-  });
 
   const newMessage = () => {
     SendMessage(name, message);
