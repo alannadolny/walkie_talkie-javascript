@@ -47,11 +47,10 @@ function ChannelsList({
     });
 
     socket.current.on('leaveChannel', (mess) => {
-      console.log('got signal');
       LeaveChannelAction({ name: mess.name, login: mess.user });
     });
 
-    return () => socket.current.close();
+    return () => socket.current.emit('end');
   });
 
   useEffect(() => {

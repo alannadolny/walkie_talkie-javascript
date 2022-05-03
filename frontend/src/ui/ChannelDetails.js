@@ -23,14 +23,11 @@ function ChannelDetails({ GetChannelList, LeftChannel, user }) {
 
   useEffect(() => {
     socket.current = io(`http://${window.location.hostname}:5000`);
-
     socket.current.on('leaveChannel', (mess) => {
-      console.log('got signal');
       LeaveChannelAction({ name: mess.name, login: mess.user });
     });
-
     return () => socket.current.close();
-  });
+  }, []);
 
   return (
     <div>
@@ -54,7 +51,6 @@ function ChannelDetails({ GetChannelList, LeftChannel, user }) {
             <button
               onClick={() => {
                 LeftChannel(channel.name);
-                console.log('clicked');
                 socket.current.emit('leaveChannel', {
                   name: channel.name,
                   user: user.login,
@@ -66,7 +62,12 @@ function ChannelDetails({ GetChannelList, LeftChannel, user }) {
             </button>
           </div>
           <ChannelMedia channel={channel} user={user} />
-          <ChannelMessages name={channel.name} />
+          <ChannelMessages
+            name={channel.name}
+            socket={socket}
+            user={user}
+            id={id}
+          />
         </div>
       )}
     </div>

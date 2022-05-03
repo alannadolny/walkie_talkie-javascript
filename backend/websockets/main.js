@@ -6,6 +6,12 @@ const websocketsEvents = (io) => {
     socket.on('leaveChannel', (mess) => {
       io.emit('leaveChannel', mess);
     });
+    socket.on('message', (mess) => {
+      io.emit('newMessage', mess);
+    });
+    socket.on('end', () => {
+      socket.disconnect(0);
+    });
   });
 };
 
