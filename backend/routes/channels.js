@@ -20,6 +20,16 @@ function verifyToken(req, res, next) {
   });
 }
 
+router.get('/exists/:channelName', async (req, res) => {
+  try {
+    const channel = await Channel.findOne({ name: req.params.channelName });
+    if (channel) return res.status(200).send({ exists: true });
+    return res.status(200).send({ exists: false });
+  } catch (err) {
+    return res.status(500).send(err);
+  }
+});
+
 router.post('/', verifyToken, async (req, res) => {
   try {
     const user = await User.findOne({ login: req.body.login });

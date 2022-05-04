@@ -5,11 +5,11 @@ export const userReducer = (state = { user: {}, error: false }, action) => {
     case types.LOGIN_USER_SUCCESS:
       return { user: action.payload, error: false };
     case types.LOGIN_USER_FAILURE:
-      return { user: {}, error: true };
+      return { user: {}, error: false };
     case types.REGISTER_USER_SUCCESS:
       return { user: action.payload, error: false };
     case types.REGISTER_USER_FAILURE:
-      return { user: {}, error: true };
+      return { user: {}, error: false };
     case types.GET_USER_SUCCESS:
       return { user: action.payload, error: false };
     case types.GET_USER_FAILURE:

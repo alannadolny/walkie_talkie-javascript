@@ -1,12 +1,16 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { useState } from 'react';
 import * as yup from 'yup';
 import { Link, useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { CreateNewChannel } from '../ducks/channels/operation';
 import { getUserFromState } from '../ducks/user/selector';
+import axios from 'axios';
 
 function ChannelForm({ CreateNewChannel, visible, user }) {
   const navigate = useNavigate();
+
+  const [error, setError] = useState('');
 
   const schema = yup.object().shape({
     name: yup
@@ -26,9 +30,18 @@ function ChannelForm({ CreateNewChannel, visible, user }) {
           <Formik
             validationSchema={schema}
             onSubmit={(values) => {
-              CreateNewChannel(values.name);
-              navigate(-1);
+              axios
+                .get(`http://localhost:5000/channels/exists/${values.name}`)
+                .then((data) => {
+                  if (data.data.exists)
+                    setError('This channel name is already taken');
+                  else {
+                    CreateNewChannel(values.name);
+                    navigate(-1);
+                  }
+                });
             }}
+            ł
             enableReinitialize={true}
             initialValues={{
               name: '',
@@ -44,6 +57,7 @@ function ChannelForm({ CreateNewChannel, visible, user }) {
               </div>
             </Form>
           </Formik>
+          {error}
           <Link id='help' to='/contact'>
             Do you need help? Contact us!
           </Link>

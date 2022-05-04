@@ -20,6 +20,16 @@ function verifyToken(req, res, next) {
   });
 }
 
+router.get('/exists/:userLogin', async (req, res) => {
+  try {
+    const response = await User.findOne({ login: req.params.userLogin });
+    if (response) return res.status(200).send({ exists: true });
+    return res.status(200).send({ exists: false });
+  } catch (err) {
+    return res.status(500).send(err);
+  }
+});
+
 router.post('/register', async (req, res) => {
   try {
     const user = await User({
