@@ -10,12 +10,13 @@ import { GetUser } from './ducks/user/operation';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import ChannelsList from './ui/ChannelsList';
-import { getUserFromState } from './ducks/user/selector';
+import { getUserError, getUserFromState } from './ducks/user/selector';
 import Warning from './ui/Warning';
 import ChannelForm from './ui/ChannelForm';
 import ChannelDetails from './ui/ChannelDetails';
+import LoadingPage from './ui/LoadingPage';
 
-function App({ GetUser, user }) {
+function App({ GetUser, user, error }) {
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     GetUser();
@@ -23,6 +24,7 @@ function App({ GetUser, user }) {
 
   return (
     <div className='App'>
+      {console.log(user)}
       <BrowserRouter>
         <Header visible={visible} setVisible={setVisible} />
         <Routes>
@@ -57,8 +59,10 @@ function App({ GetUser, user }) {
             element={
               user.login ? (
                 <ChannelsList visible={visible} setVisible={setVisible} />
-              ) : (
+              ) : error === true ? (
                 <Warning />
+              ) : (
+                <LoadingPage />
               )
             }
           />
@@ -67,14 +71,24 @@ function App({ GetUser, user }) {
             element={
               user.login ? (
                 <ChannelForm visible={visible} setVisible={setVisible} />
-              ) : (
+              ) : error === true ? (
                 <Warning />
+              ) : (
+                <LoadingPage />
               )
             }
           />
           <Route
             path='/channel/details/:id'
-            element={user.login ? <ChannelDetails /> : <Warning />}
+            element={
+              user.login ? (
+                <ChannelDetails />
+              ) : error === true ? (
+                <Warning />
+              ) : (
+                <LoadingPage />
+              )
+            }
           />
         </Routes>
       </BrowserRouter>
@@ -85,6 +99,7 @@ function App({ GetUser, user }) {
 const mapStateToProps = (state) => {
   return {
     user: getUserFromState(state),
+    error: getUserError(state),
   };
 };
 
