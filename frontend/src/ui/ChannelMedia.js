@@ -4,11 +4,11 @@ import * as _ from 'lodash';
 import { getChannelsFromState } from '../ducks/channels/selector';
 import { ConnectToVoiceChannel } from '../ducks/channels/operation';
 import { connect } from 'react-redux';
+import Video from './Video';
 
 const ChannelMedia = ({ user, channel, ConnectToVoiceChannel, channels }) => {
   const [peerId, setPeerId] = useState('');
-  const [remotePeerIdValue, setRemotePeerIdValue] = useState('');
-  const remoteVideoRef = useRef(null);
+  const [streams, setStreams] = useState([]);
   const videoRef = useRef(null);
   const peerInstance = useRef(null);
 
@@ -29,7 +29,8 @@ const ChannelMedia = ({ user, channel, ConnectToVoiceChannel, channels }) => {
         videoRef.current.srcObject = mediaStream;
         call.answer(mediaStream);
         call.on('stream', (remoteStream) => {
-          remoteVideoRef.current.srcObject = remoteStream;
+          setStreams([...streams, remoteStream]);
+          ///remoteVideoRef.current.srcObject = remoteStream;
         });
       });
     });
@@ -49,7 +50,9 @@ const ChannelMedia = ({ user, channel, ConnectToVoiceChannel, channels }) => {
       videoRef.current.srcObject = mediaStream;
 
       call.on('stream', (remoteStream) => {
-        remoteVideoRef.current.srcObject = remoteStream;
+        setStreams([...streams, remoteStream]);
+
+        //remoteVideoRef.current.srcObject = remoteStream;
       });
     });
   };
@@ -67,15 +70,12 @@ const ChannelMedia = ({ user, channel, ConnectToVoiceChannel, channels }) => {
 
   return (
     <div className='channel-details-media'>
-      <video
-        ref={videoRef}
-        autoPlay
-      />
-      <video
-        ref={remoteVideoRef}
-        autoPlay
-      />
-      
+      <video ref={videoRef} autoPlay />
+      {streams.map((s) => (
+        <Video stream={s} />
+      ))}
+
+      {/* <video stream={remoteVideoRef} autoPlay /> */}
     </div>
   );
 };
