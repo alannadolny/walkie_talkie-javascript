@@ -43,6 +43,7 @@ router.post('/', verifyToken, async (req, res) => {
       .status(200)
       .send({ ...channel._doc, owner: [{ login: req.body.login }] });
   } catch (err) {
+    console.log(err);
     return res.status(500).send(err);
   }
 });

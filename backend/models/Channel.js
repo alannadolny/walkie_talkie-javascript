@@ -11,6 +11,7 @@ const channelSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true,
+    unique: false,
   },
   activeUsers: [
     {
@@ -22,7 +23,7 @@ const channelSchema = new Schema({
   currentIds: [
     {
       type: String,
-      unique: true,
+      unique: false,
     },
   ],
 });

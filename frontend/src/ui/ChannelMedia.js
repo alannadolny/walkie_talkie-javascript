@@ -12,6 +12,11 @@ const ChannelMedia = ({ user, channel, ConnectToVoiceChannel, channels }) => {
   const videoRef = useRef(null);
   const peerInstance = useRef(null);
 
+  const [option, setOption] = useState({
+    video: true,
+    audio: true,
+  });
+
   useEffect(() => {
     const peer = new Peer();
 
@@ -25,12 +30,11 @@ const ChannelMedia = ({ user, channel, ConnectToVoiceChannel, channels }) => {
         navigator.webkitGetUserMedia ||
         navigator.mozGetUserMedia;
 
-      getUserMedia({ video: true }, (mediaStream) => {
+      getUserMedia(option, (mediaStream) => {
         videoRef.current.srcObject = mediaStream;
         call.answer(mediaStream);
         call.on('stream', (remoteStream) => {
           setStreams([...streams, remoteStream]);
-          ///remoteVideoRef.current.srcObject = remoteStream;
         });
       });
     });
@@ -51,8 +55,6 @@ const ChannelMedia = ({ user, channel, ConnectToVoiceChannel, channels }) => {
 
       call.on('stream', (remoteStream) => {
         setStreams([...streams, remoteStream]);
-
-        //remoteVideoRef.current.srcObject = remoteStream;
       });
     });
   };
@@ -74,8 +76,6 @@ const ChannelMedia = ({ user, channel, ConnectToVoiceChannel, channels }) => {
       {streams.map((s) => (
         <Video stream={s} />
       ))}
-
-      {/* <video stream={remoteVideoRef} autoPlay /> */}
     </div>
   );
 };
