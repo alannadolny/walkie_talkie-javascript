@@ -11,3 +11,4 @@ do stylowania:
 - about us
 - komunikat w formsie logowani
 - komunikat w formsie tworzenia channelu
+- owner ma sie zawijac
