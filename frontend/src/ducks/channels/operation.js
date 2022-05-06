@@ -148,3 +148,29 @@ export const ConnectToVoiceChannel = (name, id) => {
     ],
   });
 };
+
+export const DisconnectFromVoiceChannel = (name, id) => {
+  return createAction({
+    endpoint: 'http://localhost:5000/channels/disconnect/voice',
+    method: 'PATCH',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      name,
+      id,
+    }),
+    types: [
+      types.DISCONNECT_FROM_VOICE_CHANNEL_REQUEST,
+      {
+        type: types.DISCONNECT_FROM_VOICE_CHANNEL_SUCCESS,
+        payload: async (action, state, res) => {
+          const json = await res.json();
+          return json;
+        },
+      },
+      types.DISCONNECT_FROM_VOICE_CHANNEL_FAILURE,
+    ],
+  });
+};

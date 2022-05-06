@@ -146,4 +146,19 @@ router.patch('/connect/voice', verifyToken, async (req, res) => {
   }
 });
 
+router.patch('/disconnect/voice', verifyToken, async (req, res) => {
+  try {
+    const channel = await Channel.findOne({
+      name: req.body.name,
+    }).updateOne({
+      $pull: {
+        currentIds: req.body.id,
+      },
+    });
+    return res.status(200).send({ name: req.body.name, id: req.body.id });
+  } catch (err) {
+    return res.status(500).send(err);
+  }
+});
+
 module.exports = router;

@@ -6,7 +6,13 @@ import { ConnectToVoiceChannel } from '../ducks/channels/operation';
 import { connect } from 'react-redux';
 import Video from './Video';
 
-const ChannelMedia = ({ user, channel, ConnectToVoiceChannel, channels }) => {
+const ChannelMedia = ({
+  user,
+  channel,
+  ConnectToVoiceChannel,
+  channels,
+  setPeerIdVal,
+}) => {
   const [peerId, setPeerId] = useState('');
   const [streams, setStreams] = useState([]);
   const videoRef = useRef(null);
@@ -60,7 +66,10 @@ const ChannelMedia = ({ user, channel, ConnectToVoiceChannel, channels }) => {
   };
 
   useEffect(() => {
-    if (peerId !== '') ConnectToVoiceChannel(channel.name, peerId);
+    if (peerId !== '') {
+      ConnectToVoiceChannel(channel.name, peerId);
+      setPeerIdVal(peerId);
+    }
   }, [peerId]);
 
   useEffect(() => {
@@ -74,7 +83,7 @@ const ChannelMedia = ({ user, channel, ConnectToVoiceChannel, channels }) => {
     <div className='channel-details-media'>
       <video ref={videoRef} autoPlay />
       {streams.map((s) => (
-        <Video stream={s} />
+        <Video key={s} stream={s} />
       ))}
     </div>
   );

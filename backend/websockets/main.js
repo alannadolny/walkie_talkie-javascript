@@ -18,6 +18,9 @@ const websocketsEvents = (io) => {
     socket.on('newDeleteChannel', (mess) => {
       io.emit('deleteChannel', mess);
     });
+    socket.on('disconnectFromChannel', (mess) => {
+      io.emit('newDisconnectFromChannel', mess);
+    });
   });
 };
 

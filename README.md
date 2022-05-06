@@ -1,6 +1,6 @@
 todo:
 
-- usuwanie refa jeśli użytkownik wyjdzie z pokoju
+- rozlaczanie peera po wyjsciu z channelu
 - dodanie wylaczania/wlaczania audio i kamery
 - dodanie uploadowania obrazkow jako awatary
 - dodanie filtrowania kanalow

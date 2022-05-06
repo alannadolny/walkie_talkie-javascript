@@ -19,3 +19,8 @@ export const DeleteChannelAction = (payload) => ({
   type: types.DELETE_CHANNEL,
   payload,
 });
+
+export const DeleteIdFromStateAction = (payload) => ({
+  type: types.DELETE_ID_FROM_STATE_ACTION,
+  payload,
+});

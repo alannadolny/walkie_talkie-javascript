@@ -8,17 +8,27 @@ import ChannelMessages from './ChannelMessages';
 import { getUserFromState } from '../ducks/user/selector';
 import ChannelMedia from './ChannelMedia';
 import { io } from 'socket.io-client';
+import { useState } from 'react';
+import { DisconnectFromVoiceChannel } from '../ducks/channels/operation';
 
 import {
   LeaveChannelAction,
   JoinChannelAction,
+  DeleteIdFromStateAction,
 } from '../ducks/channels/actions';
 
-function ChannelDetails({ GetChannelList, LeftChannel, user }) {
+function ChannelDetails({
+  GetChannelList,
+  LeftChannel,
+  user,
+  DisconnectFromVoiceChannel,
+  DeleteIdFromStateAction,
+}) {
   const navigate = useNavigate();
   const { id } = useParams();
   const channel = useSelector((state) => getChannelDetails(state, id));
   const socket = useRef(null);
+  const [peerIdVal, setPeerIdVal] = useState('');
 
   useEffect(() => {
     GetChannelList();
@@ -32,11 +42,16 @@ function ChannelDetails({ GetChannelList, LeftChannel, user }) {
     socket.current.on('joinChannel', (mess) => {
       GetChannelList();
     });
+    socket.current.on('newDisconnectFromChannel', (mess) => {
+      DeleteIdFromStateAction(mess);
+      window.location.reload(true);
+    });
     return () => socket.current.emit('end');
   }, []);
 
   return (
     <div>
+      {console.log(channel)}
       {channel && (
         <div className='channel-details-main'>
           <div id='channel-details-title'>
@@ -78,6 +93,11 @@ function ChannelDetails({ GetChannelList, LeftChannel, user }) {
                     name: channel.name,
                     user: user.login,
                   });
+                  DisconnectFromVoiceChannel(channel.name, peerIdVal);
+                  socket.current.emit('disconnectFromChannel', {
+                    name: channel.name,
+                    id: peerIdVal,
+                  });
                   navigate('/channels');
                 }}
               >
@@ -85,7 +105,11 @@ function ChannelDetails({ GetChannelList, LeftChannel, user }) {
               </button>
             </div>
 
-            <ChannelMedia channel={channel} user={user} />
+            <ChannelMedia
+              channel={channel}
+              user={user}
+              setPeerIdVal={setPeerIdVal}
+            />
 
             <ChannelMessages
               name={channel.name}
@@ -111,6 +135,8 @@ const mapDispatchToProps = {
   LeftChannel,
   LeaveChannelAction,
   JoinChannelAction,
+  DisconnectFromVoiceChannel,
+  DeleteIdFromStateAction,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChannelDetails);

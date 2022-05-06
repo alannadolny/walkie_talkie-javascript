@@ -92,6 +92,36 @@ export const channelsReducer = (state = [], action) => {
       return [...state, action.payload];
     case types.DELETE_CHANNEL:
       return [...state.filter((el) => el.name !== action.payload.name)];
+    case types.DISCONNECT_FROM_VOICE_CHANNEL_SUCCESS:
+      return [
+        ...state.map((el) => {
+          if (el.name === action.payload.name) {
+            return {
+              ...el,
+              currentIds: [
+                ...el.currentIds.filter((el2) => el2 !== action.payload.id),
+              ],
+            };
+          } else {
+            return el;
+          }
+        }),
+      ];
+    case types.DELETE_ID_FROM_STATE_ACTION:
+      return [
+        ...state.map((el) => {
+          if (el.name === action.payload.name) {
+            return {
+              ...el,
+              currentIds: [
+                ...el.currentIds.filter((el2) => el2 !== action.payload.id),
+              ],
+            };
+          } else {
+            return el;
+          }
+        }),
+      ];
     default:
       return state;
   }
