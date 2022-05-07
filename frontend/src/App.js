@@ -90,6 +90,10 @@ function App({ GetUser, user, error }) {
               )
             }
           />
+          <Route 
+            path='/loading-page'
+            element={<LoadingPage/>}
+          />
         </Routes>
       </BrowserRouter>
     </div>

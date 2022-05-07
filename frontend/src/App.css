@@ -1260,6 +1260,11 @@ li {
   color: red;
 }
 
+#error2{
+  font-size: 16px;
+  color: red;
+}
+
 .login-formik input {
   width: 250px;
   height: 25px;
@@ -1650,7 +1655,73 @@ button:hover {
   width: 100vw;
   height: 85vh;
   margin: 0 auto;
-  padding: 0;
+  padding: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#about-main-container{
+  width: 550px;
+  height: 450px;
+  padding: 20px 40px 20px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  border: 5px solid rgb(80, 80, 80);
+  border-radius: 20px;
+  background-color: rgba(89, 192, 41, 0.8);
+  box-shadow: 0px 0px 15px black;
+  font-size: 18px;
+  color: black;
+  letter-spacing: 1px;
+  text-align: justify;
+  position: relative;
+}
+
+#about-main-container::before{
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border: 5px solid rgb(80, 80, 80);
+  border-radius: 50%;
+  background-color: white;
+  top: 15px;
+  right: 15px;
+}
+
+#about-main-container-title{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#about-main-container-title h1{
+  margin: 0px 0px 10px 0px;
+  font-size: 40px;
+  color: black;
+  position: relative;
+}
+
+#about-main-container h1::before{
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  background-color: rgb(80, 80, 80);
+  bottom: 0px;
+  left: 0px;
+}
+
+#about-main-container-end{
+  width: 100%;
+  margin-top: 10px;
+  font-size: 20px;
+  -webkit-text-stroke: 0.25px black;
+  color: black;
+  text-align: right;
 }
 
 /* Warning */
@@ -1840,13 +1911,16 @@ button:hover {
 /* channels */
 
 .channels-main {
-  margin: 50px;
+  width: 100vw;
+  height: 84vh;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .channels-left-container {
   width: 600px;
+  height: 450px;
   padding: 20px;
   background-color: rgba(89, 192, 41, 0.8);
   border: 5px solid rgb(80, 80, 80);
@@ -1979,7 +2053,9 @@ button:hover {
 }
 
 .channels-right-container {
-  width: 200px;
+  width: 160px;
+  padding: 20px;
+  height: 450px;
   display: flex;
   flex-wrap: nowrap;
   flex-direction: column;
@@ -2004,6 +2080,7 @@ button:hover {
 
 .channel-filters-container{
   width: 160px;
+  height: 450px;
   padding: 20px;
   border: 5px solid rgb(80, 80, 80);
   border-radius: 20px;
@@ -2103,10 +2180,16 @@ button:hover {
 
 /* Channel details */
 
+.channel-details-main{
+  width: 100vw;
+  height: 84vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
 #channel-details-title{
   width: 100%;
-  padding-top: 20px;
-  padding-bottom: 20px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -2144,6 +2227,14 @@ button:hover {
 
 #name{
   margin-bottom: 5px;
+}
+
+#owner-name{
+  width: 100%;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 #channel-details-left-owner, #channel-details-left-users{
@@ -2213,7 +2304,7 @@ button:hover {
 }
 
 .channel-details-messages{
-  width: 160px;
+  width: 240px;
   height: 400px;
   padding: 20px;
   border: 5px solid rgb(80, 80, 80);
@@ -2309,8 +2400,62 @@ video{
   height: 30%;
 }
 
-#camera{
-  width: 30%;
-  height: 30%;
-  border: 2px solid rgb(80,80,80);
+/* Loading page */
+
+.loading-page-main{
+  width: 100vw;
+  height: 84vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+#loading-page-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#loading-page-container img{
+  width: 200px;
+  height: 200px;
+  animation: loading-page-spinner 3s linear infinite;
+}
+
+#loading-page-container h1{
+  margin-top: 30px;
+  font-size: 60px;
+  color: white;
+  -webkit-text-stroke: 3px black;
+  position: relative;
+}
+
+#loading-page-container h1::before{
+  content: attr(data-text);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+  color: black;
+  -webkit-text-stroke: 0px white;
+  overflow: hidden;
+  animation: loading-page-text 3s ease-out infinite;
+}
+
+@keyframes loading-page-spinner{
+  from{
+    transform: rotate(0deg);
+  }to{
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loading-page-text{
+  from{
+    width: 0%;
+  }to{
+    width: 100%;
+  }
 }

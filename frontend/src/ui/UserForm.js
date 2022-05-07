@@ -88,7 +88,7 @@ function UserForm({ SignIn, Register, user, visible }) {
               </div>
             </Form>
           </Formik>
-          {error}
+          <div id='error2'> {error} </div>
           <Link id='help' to='/contact'>
             {' '}
             Do you need help? Contact us!{' '}

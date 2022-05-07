@@ -57,7 +57,7 @@ function ChannelForm({ CreateNewChannel, visible, user }) {
               </div>
             </Form>
           </Formik>
-          {error}
+          <div id='error2'> {error} </div>
           <Link id='help' to='/contact'>
             Do you need help? Contact us!
           </Link>

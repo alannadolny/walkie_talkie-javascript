@@ -62,10 +62,9 @@ function ChannelDetails({
             <div className='channel-details-left'>
               <div id='channel-details-left-owner'>
                 <div id='name'>
-                  {' '}
-                  <strong> Owner: </strong>{' '}
+                  <strong> Owner: </strong>
                 </div>
-                <div> {channel.owner[0].login} </div>
+                 <span id='owner-name'> {channel.owner[0].login} </span>
               </div>
 
               <div id='channel-details-left-users'>
