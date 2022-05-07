@@ -14,7 +14,7 @@ function About() {
           first started out, their passion for providing online communication drove
           them to start their own business. We hope you enjoy our products as much
           as we enjoy offering them to you. If you have any questions or comments,
-          please don't hesitate to <Link to='/contact'> contact us. </Link>
+          please don't hesitate to <Link id='about-link' to='/contact'> contact us. </Link>
         </div>
         <div id='about-main-container-end'> <strong> Sincerely, Walkie Talkie Team! </strong> </div>
       </div>
