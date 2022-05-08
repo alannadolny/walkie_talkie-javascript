@@ -13,6 +13,7 @@ import cross from '../images/cross.png';
 import UserProfile from './UserProfile';
 import ChannelFilters from './ChannelFilters';
 import { io } from 'socket.io-client';
+import {findChannel} from './ChannelFilters';
 
 import {
   JoinChannelAction,
@@ -20,6 +21,7 @@ import {
   CreateChannelAction,
   DeleteChannelAction,
 } from '../ducks/channels/actions';
+import { find } from 'lodash';
 
 function ChannelsList({
   channels,
@@ -32,9 +34,17 @@ function ChannelsList({
   CreateChannelAction,
   DeleteChannelAction,
 }) {
-  const navigate = useNavigate();
+
+  const [findChannel, setFindChannel] = useState(channels);
+
+  useEffect(() => {
+    setFindChannel(channels)
+  }, [channels]);
 
   const [filteredChannels, setFilteredChannels] = useState(channels);
+
+  const navigate = useNavigate();
+
   const socket = useRef(null);
 
   useEffect(() => {
@@ -65,14 +75,16 @@ function ChannelsList({
   });
 
   useEffect(() => {
-    setFilteredChannels(channels);
-  }, [channels]);
+    setFilteredChannels(findChannel);
+  }, [findChannel]);
 
   return (
     <div className='channels-main'>
       <ChannelFilters
         filteredChannels={filteredChannels}
         setFilteredChannels={setFilteredChannels}
+        findChannel={findChannel}
+        setFindChannel={setFindChannel}
       />
       <div className='channels-left-container'>
         <div id='channels-left-container-header'>

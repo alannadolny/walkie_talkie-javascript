@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import * as _ from 'lodash';
 import { filter } from 'lodash';
 
-function ChannelFilters({ channels, activeUsers, GetChannelList }) {
+function ChannelFilters({ channels, activeUsers, GetChannelList,findChannel, setFindChannel }) {
   const [filters, setFilters] = useState({
     channelName: [],
     ownerName: [],
@@ -38,6 +38,17 @@ function ChannelFilters({ channels, activeUsers, GetChannelList }) {
         name='channel'
         type='text'
         placeholder='Write channel name:'
+        onChange = {(e) => {
+          setFindChannel([])
+          channels.filter((element) => {
+            if(element.name.toLowerCase().includes(e.target.value)){
+              setFindChannel(prev => [...prev,element])
+            }
+          })
+          if(e.target.value === ''){
+            setFindChannel(channels)
+          }
+        }}
       />
       <label id='channel-filters-label'> Filters: </label>
       <div className='filters'>
