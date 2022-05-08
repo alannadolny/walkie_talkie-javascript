@@ -38,7 +38,6 @@ router.get('/image/:login', verifyToken, async (req, res) => {
     });
     return res.status(200).sendFile(`/images/${file.image}`, { root: `./` });
   } catch (err) {
-    console.log(err);
     return res.status(500).send(err);
   }
 });

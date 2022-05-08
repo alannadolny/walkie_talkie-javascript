@@ -91,7 +91,6 @@ router.get('/', verifyToken, async (req, res) => {
       {
         $project: {
           _id: 0,
-          image: 1,
           password: 0,
           __v: 0,
         },
@@ -99,6 +98,7 @@ router.get('/', verifyToken, async (req, res) => {
     ]);
     return res.status(200).send(user[0]);
   } catch (err) {
+    console.log(err);
     return res.status(500).send(err);
   }
 });
