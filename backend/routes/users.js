@@ -35,6 +35,7 @@ router.post('/register', async (req, res) => {
     const user = await User({
       login: req.body.login,
       password: req.body.password,
+      image: null,
     }).save();
     const jwtToken = jwt.sign(
       { login: user.login },
@@ -90,6 +91,7 @@ router.get('/', verifyToken, async (req, res) => {
       {
         $project: {
           _id: 0,
+          image: 1,
           password: 0,
           __v: 0,
         },

@@ -67,6 +67,7 @@ export const GetUser = () => {
         type: types.GET_USER_SUCCESS,
         payload: async (action, state, res) => {
           const json = await res.json();
+          console.log(json);
           return json;
         },
       },

@@ -5,6 +5,7 @@ import { getChannelsFromState } from '../ducks/channels/selector';
 import { ConnectToVoiceChannel } from '../ducks/channels/operation';
 import { connect } from 'react-redux';
 import Video from './Video';
+import { io } from 'socket.io-client';
 
 const ChannelMedia = ({
   user,
@@ -17,10 +18,21 @@ const ChannelMedia = ({
   const [streams, setStreams] = useState([]);
   const videoRef = useRef(null);
   const peerInstance = useRef(null);
+  const socket = useRef();
 
   const [option, setOption] = useState({
     video: true,
     audio: true,
+  });
+
+  useEffect(() => {
+    socket.current = io(`http://${window.location.hostname}:5000`);
+
+    socket.current.on('leaveChannel', (mess) => {
+      window.location.reload(true);
+    });
+
+    return () => socket.current.emit('end');
   });
 
   useEffect(() => {
