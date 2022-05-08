@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { connect } from 'react-redux';
 
-export const UploadImage = () => {
+export const UploadImage = ({ setNewImage }) => {
   const [image, setImage] = useState({ preview: '', data: '' });
   const [status, setStatus] = useState('');
 
@@ -17,6 +17,7 @@ export const UploadImage = () => {
     });
     if (response) {
       setStatus(response.statusText);
+      setNewImage((prev) => !prev);
     }
   };
 

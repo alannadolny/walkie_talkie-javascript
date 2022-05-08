@@ -11,6 +11,7 @@ const instance = axios.create({
 
 function UserProfile({ user }) {
   const [image, setImage] = useState(null);
+  const [newImage, setNewImage] = useState(false);
 
   useEffect(() => {
     instance
@@ -21,7 +22,7 @@ function UserProfile({ user }) {
         setImage(Buffer.from(response.data, 'binary').toString('base64'));
       })
       .catch();
-  }, []);
+  }, [newImage]);
 
   return (
     <div className='channels-right-container'>
@@ -41,7 +42,7 @@ function UserProfile({ user }) {
       ) : (
         <img src={`data:image/jpeg;charset=utf-8;base64,${image}`} alt='' />
       )}
-      <UploadImage />
+      <UploadImage setNewImage={setNewImage} />
       <span id='nickname'> {user.login} </span>
     </div>
   );
