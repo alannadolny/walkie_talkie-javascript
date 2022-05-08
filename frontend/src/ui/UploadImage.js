@@ -30,13 +30,12 @@ export const UploadImage = ({ setNewImage }) => {
   };
 
   return (
-    <div>
-      <hr></hr>
+    <div className='upload-container'>
+      {status && <span id='image-status'> <strong> {status} </strong> </span>}
       <form onSubmit={handleSubmit}>
-        <input type='file' name='file' onChange={handleFileChange}></input>
-        <button type='submit'>Set</button>
+        <input id='upload-image' type='file' name='file' onChange={handleFileChange}></input>
+        <button id='set-image' type='submit'> Set </button>
       </form>
-      {status && <h4>{status}</h4>}
     </div>
   );
 };

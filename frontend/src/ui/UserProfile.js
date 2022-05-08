@@ -27,23 +27,17 @@ function UserProfile({ user }) {
   return (
     <div className='channels-right-container'>
       {image === null ? (
-        <div
-          id='profile'
-          style={{
-            alignItems: 'center',
-            display: 'flex',
-            justifyContent: 'center',
-            fontWeight: 'bolder',
-            fontSize: '40px',
-          }}
-        >
-          {user.login[0]}
+        <div id='profile'>
+          <div id='profile-image'> {user.login[0]} </div>
+          <span id='nickname'> <strong> {user.login} </strong> </span>
         </div>
       ) : (
-        <img src={`data:image/jpeg;charset=utf-8;base64,${image}`} alt='' />
+        <div id='profile'>
+          <img id='profile-image' src={`data:image/jpeg;charset=utf-8;base64,${image}`} alt='' />
+          <span id='nickname'> <strong> {user.login} </strong> </span>
+        </div>
       )}
       <UploadImage setNewImage={setNewImage} />
-      <span id='nickname'> {user.login} </span>
     </div>
   );
 }
