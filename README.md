@@ -96,7 +96,7 @@ Backend:
 - Wszystkie akcje dzieją się w czasie rzeczywistych u każdego podłączonego klienta
 - Możliwość dodania zdjęcia profilowego
 - Możliwość wysyłania wiadomości na chacie danego kanału
-- Możliwość video rozmów na kanale, nieograniczona liczba użytkowników
+- Możliwość videorozmów na kanale, nieograniczona liczba użytkowników
 
 ## STATUS PROJEKTU
 
