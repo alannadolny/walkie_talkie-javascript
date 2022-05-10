@@ -13,7 +13,6 @@ import cross from '../images/cross.png';
 import UserProfile from './UserProfile';
 import ChannelFilters from './ChannelFilters';
 import { io } from 'socket.io-client';
-import {findChannel} from './ChannelFilters';
 
 import {
   JoinChannelAction,
@@ -21,7 +20,6 @@ import {
   CreateChannelAction,
   DeleteChannelAction,
 } from '../ducks/channels/actions';
-import { find } from 'lodash';
 
 function ChannelsList({
   channels,

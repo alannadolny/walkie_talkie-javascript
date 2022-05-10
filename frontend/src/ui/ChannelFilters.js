@@ -3,21 +3,20 @@ import { getChannelsFromState } from '../ducks/channels/selector';
 import { GetChannelList } from '../ducks/channels/operation';
 import { useEffect, useState } from 'react';
 import * as _ from 'lodash';
-import { filter } from 'lodash';
+import { filter, forEach, set } from 'lodash';
 
 function ChannelFilters({ channels, activeUsers, GetChannelList,findChannel, setFindChannel }) {
   const [filters, setFilters] = useState({
-    channelName: [],
     ownerName: [],
-    activeUser: [],
-    sort: 0, // powiedzmy ze 0 to increase, a 1 to decrease
-  }); //to bedzie obiekt zawierajacy tablice, w ktorych beda elementy po ktorych chcemy filtrowac
-  // jesli tablice beda puste to nie filtrujemy po danym elemencie
+    activeUser: []
+  });
+  
   const [showFilters, setShowFilters] = useState({
-    channelName: false,
     ownerName: false,
     activeUser: false,
   });
+
+  const [sort, setSort] = useState('');
 
   let ownerList = [];
   let activeUserList = [];
@@ -54,13 +53,8 @@ function ChannelFilters({ channels, activeUsers, GetChannelList,findChannel, set
       <div className='filters'>
         <div>
           {' '}
-          {/* <input type='checkbox' />
-          Channel name{' '} */}
-        </div>
-
-        <div>
-          {' '}
           <input
+            id='checkbox'
             type='checkbox'
             onClick={() =>
               setShowFilters({
@@ -104,6 +98,7 @@ function ChannelFilters({ channels, activeUsers, GetChannelList,findChannel, set
         <div>
           {' '}
           <input
+            id='checkbox'
             type='checkbox'
             onClick={() =>
               setShowFilters({
@@ -147,10 +142,48 @@ function ChannelFilters({ channels, activeUsers, GetChannelList,findChannel, set
 
       <div className='sort'>
         <label id='channel-filters-label'> Sort: </label>
-        {/* <div> <input type='checkbox' onClick={SortSetCheckboxes} /> Increasing </div>
-          <div> <input type='checkbox' onClick={SortSetCheckboxes} /> Decreasing </div> */}
+        <select onChange={(e) => {setSort(e.target.value)}}>
+          <option value='channel asc'> A-Z channel </option>
+          <option value='channel desc'> Z-A channel </option>
+          <option value='owner asc'> A-Z owner </option>
+          <option value='owner desc'> Z-A owner </option>
+          <option value='users asc'> A-Z users </option>
+          <option value='users desc'> Z-A users </option>
+        </select>
       </div>
-      {/* <button id='filter-button' type='submit' onClick={SortingChannelList}> Submit </button> */}
+      <button id='filter-button' type='submit' onClick={() => {
+        if(filters.ownerName.length !== 0 && filters.activeUser.length !== 0){
+          setFindChannel(channels.filter((e) => _.includes(filters.ownerName,e.owner[0].login)))
+          findChannel.filter((e) => {e.activeUsers.forEach((el) => {
+            if(filters.activeUser.includes(el.login)){
+              return true;
+            }else{
+              return false;
+            }
+          })})
+        }else if(filters.ownerName.length !== 0 && filters.activeUser.length === 0){
+          setFindChannel(channels.filter((e) => _.includes(filters.ownerName,e.owner[0].login)))
+        }else if(filters.ownerName.length === 0 && filters.activeUser.length !== 0){
+          setFindChannel(channels.filter((e) => {e.activeUsers.forEach((el) => {
+            if(filters.activeUser.includes(el.login)){
+              return true;
+            }else{
+              return false;
+            }
+          })}))
+        }else{
+          setFindChannel(channels)
+        }
+        setFilters({ownerName: [], activeUser: []})
+        setShowFilters({ownerName: false, activeUser: false})
+        let checkboxes = [...document.querySelectorAll("#checkbox")];
+        checkboxes.forEach((e) => {
+          e.checked = false;
+        })
+
+        console.log(filters.ownerName.length)
+        console.log(filters.activeUser.length)
+      }}> Submit </button>
     </div>
   );
 }
