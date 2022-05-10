@@ -10,11 +10,16 @@ function ChannelFilters({ channels, activeUsers, GetChannelList,findChannel, set
     ownerName: [],
     activeUser: []
   });
+
+  useEffect(() =>{
+    setFilters({ownerName: [], activeUser: []})
+  },[findChannel])
   
   const [showFilters, setShowFilters] = useState({
     ownerName: false,
     activeUser: false,
   });
+
 
   const [sort, setSort] = useState('');
 
@@ -164,25 +169,21 @@ function ChannelFilters({ channels, activeUsers, GetChannelList,findChannel, set
         }else if(filters.ownerName.length !== 0 && filters.activeUser.length === 0){
           setFindChannel(channels.filter((e) => _.includes(filters.ownerName,e.owner[0].login)))
         }else if(filters.ownerName.length === 0 && filters.activeUser.length !== 0){
-          setFindChannel(channels.filter((e) => {e.activeUsers.forEach((el) => {
+          setFindChannel(channels.filter((e) => e.activeUsers.forEach((el) => {
             if(filters.activeUser.includes(el.login)){
               return true;
             }else{
               return false;
             }
-          })}))
+          })))
         }else{
           setFindChannel(channels)
         }
-        setFilters({ownerName: [], activeUser: []})
         setShowFilters({ownerName: false, activeUser: false})
         let checkboxes = [...document.querySelectorAll("#checkbox")];
         checkboxes.forEach((e) => {
           e.checked = false;
         })
-
-        console.log(filters.ownerName.length)
-        console.log(filters.activeUser.length)
       }}> Submit </button>
     </div>
   );
