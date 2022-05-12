@@ -114,7 +114,7 @@ function ChannelsList({
                   </div>
 
                   <div id='channel-container-status'>
-                    <strong>Owner: {el.owner[0].login}</strong>
+                    <span id='channel-owner'> <strong>Owner: {el.owner[0].login}</strong> </span>
                     <button
                       id='join-channel-button'
                       onClick={() => {

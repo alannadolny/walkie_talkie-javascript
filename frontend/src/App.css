@@ -22,6 +22,7 @@
   margin: 0 auto;
   padding: 0px;
   overflow: hidden;
+  overflow-y: auto;
 }
 
 header {
@@ -2148,7 +2149,7 @@ button:hover {
   margin-bottom: 10px;
 }
 
-#channel-filters-label{
+#channel-filters-label-f,#channel-filters-label-s{
   margin-top: 10px;
   margin-bottom: 10px;
   font-size: 18px;
@@ -2161,26 +2162,31 @@ button:hover {
   flex-direction: column;
   justify-content: center;
 }
+.sort{
+  height: 140px;
+}
 
 .filters input, .sort input{
   cursor: pointer;
 }
 
-#filter-list{
+.filter-list{
   width: 100%;
   max-height: 75px;
   margin-top: 5px;
   margin-bottom: 5px;
-  display: none;
   flex-direction: column;
   flex-wrap: nowrap;
   overflow-y: auto;
 }
 
-#filter-name-list::-webkit-scrollbar {
+.filter-list::-webkit-scrollbar {
   width: 10px;
   height: 100%;
   background-color: rgba(80, 80, 80, 0.8);
+  border-radius: 10px;
+}
+.filter-list::-webkit-scrollbar-track{
   border-radius: 10px;
 }
 
@@ -2190,18 +2196,19 @@ button:hover {
   margin-left: 15px;
   display: flex;
   flex-direction: row;
+  flex-wrap: nowrap;
   align-items: center;
   font-size: 14px;
 }
 
 #filter-list-container span{
-  overflow-x: hidden;
+  overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
 #filter-button{
-  width: 100px;
+  width: 100%;
   height: 30px;
   margin: auto;
   border: 2px solid black;
@@ -2213,6 +2220,256 @@ button:hover {
 #filter-button:hover{
   background-color: white;
   cursor: pointer;
+}
+
+
+@media (max-width: 1120px){
+  .channels-main {
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+  .channels-left-container{
+    margin-left: 40px;
+  }
+  .channels-right-container{
+    margin-right: 40px;
+  }
+  .channel-filters-container{
+    width: 100%;
+    max-height: 100px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    margin-left: 40px;
+    margin-right: 40px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  #channel-filters-container-title{
+    display: none;
+  }
+  .filters{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .filters div{
+    max-width: 150px;
+    margin-right: 10px;
+  }
+  .sort{
+    width: 150px;
+    align-items: center;
+  }
+  .sort select{
+    width: 100%;
+    height: 20px;
+    margin-bottom: 10px;
+  }
+  #channel-filters-label{
+    margin: 0px;
+  }
+  #filter-button{
+    margin: 0px;
+  }
+}
+
+@media (max-width: 950px){
+  .channels-left-container{
+    width: 100%;
+    margin-right: 40px;
+    margin-bottom: 40px;
+  }
+  .channels-right-container{
+    width: 100%;
+    height: 100px;
+    margin-left: 40px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+  }
+  #profile{
+    flex-direction: row;
+  }
+  #profile-image{
+    min-width: 100px;
+    min-height: 100px;
+  }
+  #nickname{
+    margin-top: 0px;
+    margin-left: 20px;
+    text-align: left;
+  }
+  .upload-container form{
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 850px){
+  .filters div{
+    width: 120px;
+  }
+  #channel-filters-input{
+    width: 150px;
+  }
+}
+
+@media (max-width: 750px){
+  .channel-filters-container{
+    margin-left: 15px;
+    margin-right: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .channels-left-container, .channels-right-container{
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  #channel-filters-input{
+    width: 130px;
+  }
+}
+
+@media (max-width: 680px){
+  .channel-filters-container{
+    padding: 15px;
+  }
+  #channel-filters-label-f{
+    display: none;
+  }
+  .sort{
+    width: 100px;
+  }
+  #filter-button{
+    height: 20px;
+    font-size: 14px;
+  }
+  #join-channel-button{
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  #channel-owner{
+    width: 200px;
+    overflow-x: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+@media (max-width: 580px){
+  .channel-filters-container, .channels-left-container, .channels-right-container{
+    margin-left: 0px;
+    margin-right: 0px;
+    border-radius: 0px;
+    border-left: none;
+    border-right: none;
+  }
+  .channels-left-container{
+    height: 440px;
+  }
+}
+
+@media (max-width: 550px){
+  .channel-filters-container,.channels-left-container{
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .channels-right-container{
+    padding: 10px;
+  }
+}
+
+@media (max-width: 520px){
+  #channel-container-status{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  #channel-container-header, #channel-container-activeusers{
+    margin: 0px;
+  }
+  #join-channel-button{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+  }
+  #channel-owner{
+    width: auto;
+    overflow-x: auto;
+  }
+  .channel-filters-container{
+    flex-wrap: wrap;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 300px;
+  }
+  #channel-filters-input{
+    width: 100%;
+    margin-top: 0px;
+    margin-bottom: 5px;
+  }
+  .channel-filters-container{
+    align-items: flex-start;
+  }
+  .sort{
+    height: 80px;
+    justify-content: start;
+  }
+  .sort select{
+    margin-bottom: 5px;
+  }
+  #channel-filters-label-s{
+    margin-top: 0px;
+    margin-bottom: 5px;
+  }
+  .filter-list{
+    max-height: 50px;
+    margin-top: 0px;
+    overflow-y: auto;
+  }
+  #filter-list-container{
+    margin-left: 5px;
+  }
+}
+
+@media (max-width: 450px){
+  .channel-filters-container, .channels-left-container{
+    padding: 10px;
+  }
+  #channels-left-container-header{
+    margin-bottom: 15px;
+  }
+  #channels-left-container-header h1{
+    font-size: 28px;
+  }
+  #new-channel-button{
+    height: 30px;
+  }
+  #channels-container::-webkit-scrollbar{
+    display: none;
+  }
+  #channels-left-container-header{
+    padding: 0px;
+  }
+  #new-channel-button{
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 380px){
+  .sort{
+    width: 90px;
+  }
+  .filters div{
+    width: 110px;
+    margin-right: 5px;
+  }
+  #checkbox{
+    margin-left: 0px;
+  }
 }
 
 /* Channel details */
@@ -2589,3 +2846,8 @@ video{
   text-align: center;
 }
 
+@media (max-width: 580px){
+  .App::-webkit-scrollbar{
+    display: none;
+  }
+}

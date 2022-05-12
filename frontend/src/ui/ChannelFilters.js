@@ -54,7 +54,7 @@ function ChannelFilters({ channels, activeUsers, GetChannelList,findChannel, set
           }
         }}
       />
-      <label id='channel-filters-label'> Filters: </label>
+      <label id='channel-filters-label-f'> Filters: </label>
       <div className='filters'>
         <div>
           {' '}
@@ -146,7 +146,7 @@ function ChannelFilters({ channels, activeUsers, GetChannelList,findChannel, set
       </div>
 
       <div className='sort'>
-        <label id='channel-filters-label'> Sort: </label>
+        <label id='channel-filters-label-s'> Sort: </label>
         <select onChange={(e) => {setSort(e.target.value)}}>
           <option value='channel asc'> A-Z channel </option>
           <option value='channel desc'> Z-A channel </option>
@@ -155,8 +155,7 @@ function ChannelFilters({ channels, activeUsers, GetChannelList,findChannel, set
           <option value='users asc'> A-Z users </option>
           <option value='users desc'> Z-A users </option>
         </select>
-      </div>
-      <button id='filter-button' type='submit' onClick={() => {
+        <button id='filter-button' type='submit' onClick={() => {
         if(filters.ownerName.length !== 0 && filters.activeUser.length !== 0){
           setFindChannel(channels.filter((e) => _.includes(filters.ownerName,e.owner[0].login)))
           findChannel.filter((e) => {e.activeUsers.forEach((el) => {
@@ -169,13 +168,13 @@ function ChannelFilters({ channels, activeUsers, GetChannelList,findChannel, set
         }else if(filters.ownerName.length !== 0 && filters.activeUser.length === 0){
           setFindChannel(channels.filter((e) => _.includes(filters.ownerName,e.owner[0].login)))
         }else if(filters.ownerName.length === 0 && filters.activeUser.length !== 0){
-          setFindChannel(channels.filter((e) => e.activeUsers.forEach((el) => {
+          setFindChannel(channels.filter((e) => {e.activeUsers.forEach((el) => {
             if(filters.activeUser.includes(el.login)){
               return true;
             }else{
               return false;
             }
-          })))
+          })}))
         }else{
           setFindChannel(channels)
         }
@@ -185,6 +184,7 @@ function ChannelFilters({ channels, activeUsers, GetChannelList,findChannel, set
           e.checked = false;
         })
       }}> Submit </button>
+      </div>
     </div>
   );
 }
