@@ -1967,7 +1967,6 @@ button:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
 }
 
 #channels-left-container-header h1 {
@@ -2233,6 +2232,7 @@ button:hover {
     margin-bottom: 40px;
   }
   .channels-left-container{
+    width: 60%;
     margin-left: 40px;
   }
   .channels-right-container{
@@ -2318,6 +2318,12 @@ button:hover {
   }
 }
 
+@media (max-width: 780px){
+  .channels-left-container{
+    min-width: 600px;
+  }
+}
+
 @media (max-width: 750px){
   .channel-filters-container{
     margin-left: 15px;
@@ -2350,13 +2356,15 @@ button:hover {
   }
   #join-channel-button{
     margin-left: 10px;
-    margin-right: 10px;
   }
   #channel-owner{
     width: 200px;
     overflow-x: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+  }
+  .channels-left-container{
+    min-width: 300px;
   }
 }
 
@@ -2454,8 +2462,8 @@ button:hover {
   #channels-left-container-header{
     padding: 0px;
   }
-  #new-channel-button{
-    margin-right: 10px;
+  #channels-container{
+    width: 100%;
   }
 }
 
@@ -2476,7 +2484,8 @@ button:hover {
 
 .channel-details-main{
   width: 100vw;
-  height: 84vh;
+  min-height: 84vh;
+  margin-bottom: 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -2490,7 +2499,8 @@ button:hover {
 }
 
 #channel-details-title h1{
-  margin: 0px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .channel-details-container{
@@ -2687,11 +2697,101 @@ button:hover {
   justify-content: space-between;
   flex-wrap: wrap;
   overflow: hidden;
+  overflow-y: auto;
+}
+
+.channel-details-media::-webkit-scrollbar{
+  display: none;
 }
 
 video{
-  width: 30%;
-  height: 30%;
+  max-width: 31%;
+  max-height: 31%;
+  min-width: 31%;
+  min-height: 31%;
+  margin-bottom: 12px;
+}
+
+#xd{
+  max-width: 31%;
+  max-height: 31%;
+  min-width: 31%;
+  min-height: 31%;
+  margin-bottom: 16px;
+  background-color: red;
+}
+
+@media (max-width: 1200px){
+  .channel-details-container{
+    margin-right: 40px;
+    margin-left: 40px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .channel-details-left{
+    width: 100%;
+    height: 100px;
+    margin-bottom: 30px;
+    padding: 10px 20px;
+    flex-direction: row;
+  }
+  #channel-details-left-owner{
+    width: 30%;
+  }
+  #channel-details-left-users{
+    width: 50%;
+    height: 100px;
+  }
+  #channel-details-left-users-list{
+    height: 90px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  #active-user{
+    width: 45%;
+    height: 31%;
+    margin-right: 10px;
+  }
+  .channel-details-messages{
+    width: 25%;
+  }
+  .channel-details-media{
+    width: 60%;
+  }
+}
+
+@media (max-width: 1035px){
+  .channel-details-left{
+    position: relative;
+  }
+  #leave-channel-button{
+    visibility: hidden;
+  }
+  #leave-channel-button::after{
+    visibility: visible;
+    content: 'Left channel';
+    display: block;
+    position: absolute;
+    width: 100px;
+    margin: auto;
+    padding: 5px;
+    border: 2px solid black;
+    top: 45px;
+    right: 30px;
+  }
+  #leave-channel-button:hover::after{
+    background-color: white;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
+
+@media (max-width: 850px){
+  #chat{
+    width: 32px;
+    height: 32px;
+  }
 }
 
 /* Loading page */
@@ -2846,7 +2946,7 @@ video{
   text-align: center;
 }
 
-@media (max-width: 580px){
+@media (max-width: 1024px){
   .App::-webkit-scrollbar{
     display: none;
   }
