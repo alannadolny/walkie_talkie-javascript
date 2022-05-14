@@ -17,8 +17,7 @@ import {
   DeleteIdFromStateAction,
 } from '../ducks/channels/actions';
 
-import ChatIcon from '@mui/icons-material/Chat';  
-import Box from '@mui/material/Box';
+import ChatIcon from '@mui/icons-material/Chat';
 
 function ChannelDetails({
   GetChannelList,
@@ -119,7 +118,7 @@ function ChannelDetails({
               user={user}
               id={id}
             />
-            <Box />
+            <ChatIcon id='chat' fontSize='large' onClick={() => console.log('xd')}/>
           </div>
         </div>
       )}
