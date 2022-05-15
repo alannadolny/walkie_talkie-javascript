@@ -97,15 +97,6 @@ const ChannelMedia = ({
       {streams.map((s) => (
         <Video key={s} stream={s} />
       ))}
-      <div id='xd'></div>
-      <div id='xd'></div>
-      <div id='xd'></div>
-      <div id='xd'></div>
-      <div id='xd'></div>
-      <div id='xd'></div>
-      <div id='xd'></div>
-      <div id='xd'></div>
-      <div id='xd'></div>
     </div>
   );
 };

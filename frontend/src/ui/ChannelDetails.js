@@ -51,9 +51,10 @@ function ChannelDetails({
     return () => socket.current.emit('end');
   }, []);
 
+  const [chatVisibility, setChatVisibility] = useState(true)
+
   return (
     <div>
-      {console.log(channel)}
       {channel && (
         <div className='channel-details-main'>
           <div id='channel-details-title'>
@@ -118,7 +119,29 @@ function ChannelDetails({
               user={user}
               id={id}
             />
-            <ChatIcon id='chat' fontSize='large' onClick={() => console.log('xd')}/>
+            <ChatIcon id='chat' fontSize='large' onClick={() => {
+                setChatVisibility(!chatVisibility)
+                let media = document.querySelectorAll('.channel-details-media')
+                let chat = document.querySelectorAll('.channel-details-messages')
+                if(chatVisibility){
+                  media.forEach((e) => {
+                    e.setAttribute('style','display: none')
+                  })
+                  chat.forEach((e) => {
+                    e.setAttribute('style','display: flex')
+                  })
+                  document.getElementById('chat').setAttribute('style','background-color: rgba(110,110,110,0.5)')
+                }else{
+                  media.forEach((e) => {
+                    e.setAttribute('style','display: flex')
+                  })
+                  chat.forEach((e) => {
+                    e.setAttribute('style','display: none')
+                  })
+                  document.getElementById('chat').setAttribute('style','background-color: white)')
+                } 
+              }}
+            />
           </div>
         </div>
       )}
