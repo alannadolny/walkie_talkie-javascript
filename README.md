@@ -89,11 +89,12 @@ Backend:
 - ,,About Us'' z krótkimi informacjami o firmie
 - Wszystkie formularze są odpowiednio walidowane
 - Wyświetlanie się ,,Loading page'' pomiędzy akcjami
+- Responsywność strony (dopsowanie do telefonów, tabletów oraz ekranów komputerowych)
 - Wyświetlanie błędu jeśli niezalogowany użytkownik spróbuje dostać się na podstrony dostępne tylko dla zalogowanych użytkowników
 - Możliwość filtrowania po nazwie kanału, aktywnych użytkownikach oraz możliwość sortowania
 - Wyświetlanie listy aktywnych kanałów
 - Możliwość tworzenia \ usuwania kanałów
-- Wszystkie akcje dzieją się w czasie rzeczywistych u każdego podłączonego klienta
+- Wszystkie akcje dzieją się w czasie rzeczywistym u każdego podłączonego klienta
 - Możliwość dodania zdjęcia profilowego
 - Możliwość wysyłania wiadomości na chacie danego kanału
 - Możliwość videorozmów na kanale, nieograniczona liczba użytkowników
