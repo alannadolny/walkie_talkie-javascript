@@ -24,7 +24,6 @@ function App({ GetUser, user, error }) {
 
   return (
     <div className='App'>
-      {console.log(user)}
       <BrowserRouter>
         <Header visible={visible} setVisible={setVisible} />
         <Routes>
@@ -82,7 +81,7 @@ function App({ GetUser, user, error }) {
             path='/channel/details/:id'
             element={
               user.login ? (
-                <ChannelDetails />
+                <ChannelDetails visible={visible} setVisible={setVisible}/>
               ) : error === true ? (
                 <Warning />
               ) : (

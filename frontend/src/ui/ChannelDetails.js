@@ -25,6 +25,7 @@ function ChannelDetails({
   user,
   DisconnectFromVoiceChannel,
   DeleteIdFromStateAction,
+  visible
 }) {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -53,10 +54,14 @@ function ChannelDetails({
 
   const [chatVisibility, setChatVisibility] = useState(true)
 
+  const style = {
+    opacity: '40%',
+  };
+
   return (
     <div>
       {channel && (
-        <div className='channel-details-main'>
+        <div className='channel-details-main' style={visible ? style : {}}>
           <div id='channel-details-title'>
             <h1>{channel.name}</h1>
           </div>

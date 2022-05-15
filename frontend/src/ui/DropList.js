@@ -17,7 +17,7 @@ function DropList({ user, Logout, visible, setVisible }) {
 
   return (
     <div id='header-center-container'>
-      <img id='list' alt='error' onClick={() => ShowList()} src={list} />
+      <img id='list' alt='menu' onClick={() => ShowList()} src={list} />
       {visible ? (
         <div id='droplist-container'>
           <nav className='droplist'>
@@ -29,14 +29,14 @@ function DropList({ user, Logout, visible, setVisible }) {
             </div>
 
             <div id='droplist-element'>
-              <Link to='/' onClick={() => setVisible(false)}>
+              <Link to='/about' onClick={() => setVisible(false)}>
                 {' '}
                 ABOUT{' '}
               </Link>
             </div>
 
             <div id='droplist-element'>
-              <Link to='/' onClick={() => setVisible(false)}>
+              <Link to='/contact' onClick={() => setVisible(false)}>
                 {' '}
                 CONTACT{' '}
               </Link>

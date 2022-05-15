@@ -31,6 +31,7 @@ function ChannelsList({
   LeaveChannelAction,
   CreateChannelAction,
   DeleteChannelAction,
+  visible
 }) {
 
   const [findChannel, setFindChannel] = useState(channels);
@@ -76,8 +77,12 @@ function ChannelsList({
     setFilteredChannels(findChannel);
   }, [findChannel]);
 
+  const style = {
+    opacity: '40%',
+  };
+
   return (
-    <div className='channels-main'>
+    <div className='channels-main' style={visible ? style : {}}>
       <ChannelFilters
         filteredChannels={filteredChannels}
         setFilteredChannels={setFilteredChannels}

@@ -1674,7 +1674,7 @@ button:hover {
   margin: 0 auto;
   padding: 0px;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
 }
 
@@ -1753,6 +1753,112 @@ button:hover {
   -webkit-text-stroke: 0.25px black;
   color: black;
   text-align: right;
+}
+
+#author-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#author-image{
+  width: 150px;
+  height: 150px;
+  border: 5px solid rgb(80, 80, 80);
+  border-radius: 50%;
+  box-shadow: 0 3px 15px black;
+}
+
+#author-nickname{
+  font-size: 24px;
+  margin-top: 15px;
+}
+
+@media (max-width: 1050px){
+  .about-main-container{
+    order: 1;
+  }
+  #author-container{
+    order: -1;
+    height: 50%;
+  }
+  #author-image{
+    width: 100px;
+    height: 100px;
+  }
+  #author-nickname{
+    font-size: 20px;
+  }
+  .about-main{
+    position: relative;
+  }
+  #author-container:nth-child(1){
+    position: absolute;
+    top: 20px;
+    left: 40px;
+  }
+  #author-container:nth-child(3){
+    position: absolute;
+    bottom: 20px;
+    left: 40px;
+  }
+  #about-main-container{
+    margin-left: 160px;
+  }
+}
+
+@media (max-width: 850px){
+  #about-main-container{
+    margin-left: 0px;
+  }
+  #author-container{
+    display: none;
+  }
+}
+
+@media (max-width: 650px){
+  #about-main-container{
+    width: 100%;
+    height: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 0px;
+    border-right: none;
+    border-left: none;
+  }
+  #about-main-container-title h1{
+    font-size: 30px;
+  }
+  #about-main-container-title{
+    margin-bottom: 10px;
+  }
+  #about-main-container-end{
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 500px){
+  .about-main{
+    height: auto;
+  }
+  #about-main-container{
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  #about-main-container-end{
+    font-size: 18px;
+  }
+}
+
+@media (max-height: 650px){
+  .about-main{
+    height: auto;
+  }
+  #about-main-container{
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
 }
 
 /* Warning */
