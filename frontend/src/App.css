@@ -2142,22 +2142,6 @@ button:hover {
   padding-top: 5px;
 }
 
-#delete-channel-button {
-  width: 16px;
-  height: 16px;
-  border: none;
-  background-color: transparent;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-
-#delete-channel-button img {
-  width: 16px;
-  height: 16px;
-}
-
 #channel-container-status {
   display: flex;
   justify-content: space-between;

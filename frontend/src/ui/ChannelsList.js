@@ -9,10 +9,10 @@ import { useEffect, useRef, useState } from 'react';
 import * as _ from 'lodash';
 import { useNavigate } from 'react-router-dom';
 import { getUserFromState } from '../ducks/user/selector';
-import cross from '../images/cross.png';
 import UserProfile from './UserProfile';
 import ChannelFilters from './ChannelFilters';
 import { io } from 'socket.io-client';
+import CloseIcon from '@mui/icons-material/Close';
 
 import {
   JoinChannelAction,
@@ -109,12 +109,7 @@ function ChannelsList({
                   <div id='channel-container-header'>
                     <strong> Name: {el.name}</strong> <br />
                     {user.login === el.owner[0].login && (
-                      <button
-                        id='delete-channel-button'
-                        onClick={() => DeleteChannel(el.name)}
-                      >
-                        <img src={cross} alt='error'></img>
-                      </button>
+                      <CloseIcon sx={{ fontSize: 25, color: 'red', cursor: 'pointer' }} onClick={() => DeleteChannel(el.name)}/>
                     )}
                   </div>
 
