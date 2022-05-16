@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom';
 import * as _ from 'lodash';
 import { Logout } from '../ducks/user/operation';
 import { useState } from 'react';
-import list from '../images/list.png';
 import { getUserFromState } from '../ducks/user/selector';
 import { connect } from 'react-redux';
+import MenuIcon from '@mui/icons-material/Menu';
 
 function DropList({ user, Logout, visible, setVisible }) {
   function ShowList() {
@@ -17,7 +17,7 @@ function DropList({ user, Logout, visible, setVisible }) {
 
   return (
     <div id='header-center-container'>
-      <img id='list' alt='menu' onClick={() => ShowList()} src={list} />
+      <MenuIcon sx={{fontSize: '32px', color: 'black', cursor: 'pointer'}} alt='menu' onClick={() => ShowList()}/>
       {visible ? (
         <div id='droplist-container'>
           <nav className='droplist'>
