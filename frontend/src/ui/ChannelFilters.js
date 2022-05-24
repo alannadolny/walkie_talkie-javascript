@@ -19,7 +19,6 @@ function ChannelFilters({ channels, filters, setFilters }) {
 
   return (
     <div className='channel-filters-container'>
-      {console.log(filters)}
       <label id='channel-filters-container-title'> Find channel: </label>
       <input
         id='channel-filters-input'
@@ -100,8 +99,8 @@ function ChannelFilters({ channels, filters, setFilters }) {
           <option value='channel desc'> Z-A channel </option>
           <option value='owner asc'> A-Z owner </option>
           <option value='owner desc'> Z-A owner </option>
-          <option value='users asc'> active users asc </option>
-          <option value='users desc'> active users desc </option>
+          <option value='users asc'> Active users asc </option>
+          <option value='users desc'> Active users desc </option>
         </select>
       </div>
     </div>
