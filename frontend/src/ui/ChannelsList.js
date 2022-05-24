@@ -31,16 +31,14 @@ function ChannelsList({
   LeaveChannelAction,
   CreateChannelAction,
   DeleteChannelAction,
-  visible
+  visible,
 }) {
-
-  const [findChannel, setFindChannel] = useState(channels);
-
-  useEffect(() => {
-    setFindChannel(channels)
-  }, [channels]);
-
-  const [filteredChannels, setFilteredChannels] = useState(channels);
+  const [filters, setFilters] = useState({
+    name: '',
+    activeUsers: [],
+    owners: [],
+    sort: 'channel asc',
+  });
 
   const navigate = useNavigate();
 
@@ -73,21 +71,21 @@ function ChannelsList({
     return () => socket.current.emit('end');
   });
 
-  useEffect(() => {
-    setFilteredChannels(findChannel);
-  }, [findChannel]);
-
   const style = {
     opacity: '40%',
+  };
+
+  const reverse = (data) => {
+    if (filters.sort.split(' ')[1] === 'desc') return data.reverse();
+    return data;
   };
 
   return (
     <div className='channels-main' style={visible ? style : {}}>
       <ChannelFilters
-        filteredChannels={filteredChannels}
-        setFilteredChannels={setFilteredChannels}
-        findChannel={findChannel}
-        setFindChannel={setFindChannel}
+        filters={filters}
+        setFilters={setFilters}
+        channels={channels}
       />
       <div className='channels-left-container'>
         <div id='channels-left-container-header'>
@@ -103,18 +101,64 @@ function ChannelsList({
 
         <div id='channels-container'>
           {channels &&
-            filteredChannels.map((el) => {
+            reverse(
+              _.sortBy(
+                channels
+                  .filter((channel) => {
+                    if (filters.name === '') return true;
+                    else {
+                      return new RegExp(`.*${filters.name}.*`, 'i').test(
+                        channel.name
+                      );
+                    }
+                  })
+                  .filter((channel) => {
+                    if (_.isEmpty(filters.activeUsers)) return true;
+                    else {
+                      const channelActiveUsers = channel.activeUsers.map(
+                        (usr) => usr.login
+                      );
+                      if (
+                        _.intersection(channelActiveUsers, filters.activeUsers)
+                          .length === filters.activeUsers.length
+                      )
+                        return true;
+                      else return false;
+                    }
+                  })
+                  .filter((channel) => {
+                    if (_.isEmpty(filters.owners)) return true;
+                    else {
+                      if (filters.owners.includes(channel.owner[0].login))
+                        return true;
+                      else return false;
+                    }
+                  }),
+                [
+                  filters.sort.split(' ')[0] === 'channel'
+                    ? 'name'
+                    : filters.sort.split(' ')[0] === 'owner'
+                    ? 'owner'
+                    : 'activeUsers',
+                ]
+              )
+            ).map((el) => {
               return (
                 <div id='channel-container' key={el._id}>
                   <div id='channel-container-header'>
                     <strong> Name: {el.name}</strong> <br />
                     {user.login === el.owner[0].login && (
-                      <CloseIcon sx={{ fontSize: 25, color: 'red', cursor: 'pointer' }} onClick={() => DeleteChannel(el.name)}/>
+                      <CloseIcon
+                        sx={{ fontSize: 25, color: 'red', cursor: 'pointer' }}
+                        onClick={() => DeleteChannel(el.name)}
+                      />
                     )}
                   </div>
-
                   <div id='channel-container-status'>
-                    <span id='channel-owner'> <strong>Owner: {el.owner[0].login}</strong> </span>
+                    <span id='channel-owner'>
+                      {' '}
+                      <strong>Owner: {el.owner[0].login}</strong>{' '}
+                    </span>
                     <button
                       id='join-channel-button'
                       onClick={() => {
@@ -136,7 +180,6 @@ function ChannelsList({
                       </strong>{' '}
                     </span>
                   </div>
-
                   {!_.isEmpty(el.activeUsers) ? (
                     <div
                       id='channel-container-activeusers'
