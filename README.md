@@ -101,6 +101,15 @@ Backend:
 
 ## STATUS PROJEKTU
 
-Rozpoczęty: 19 Marca
+Projekt zakończony: 19 Marca - 5 Czerwca
 
 ## ZRZUTY EKRANU
+
+<img src="./images/main.gif"/>
+<img src="./images/main-responsive.gif"/>
+<img src="./images/sort.gif"/>
+<img src="./images/create-channel.gif"/>
+<img src="./images/video.gif"/>
+<img src="./images/responsive-logged.gif"/>
+<img src="./images/change-photo.gif"/>
+<img src="./images/chat.gif"/>
